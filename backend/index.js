@@ -27,34 +27,75 @@ const CALENDAR_ID = process.env.CALENDAR_ID;
 
 
 /////////////////////////
-// GET ROUTES
+// HOME 
 //////////////////////////
 app.get('/', (req, res) => {
   res.send('Home page');
 });
 
+
+/////////////////////////
+// PROJECTS
+//////////////////////////
+
 app.get('/projects', (req, res) => {
   res.send('This is the Projects Page');
 });
 
-app.get('/blog', (req, res) => {
-  res.send('This is the Blog Page');
-});
-
-app.get('/calendar', (req, res) => {
-    res.send('This is the Calendar Page');
-  });
+/////////////////////////
+// ABOUT US
+//////////////////////////
 
 app.get('/about-us', (req, res) => {
     res.send('This is the About Us Page');
 });
 
 //////////////////////////
-// POST ROUTES
+// BLOG
 //////////////////////////
 
-// Adding blogs 
-app.post('/blog', (req, res) => {
+// Retreiving papers from Semantic Scholar API
+app.get('/search-papers/:category', async (req, res) => {
+  try {
+
+      // Semantic Scholar API URL
+      const apiUrl = 'https://api.semanticscholar.org/graph/v1/paper/search';
+
+      // we'll have different categories for searching
+      const category = req.params.category;
+
+
+      // Query parameters for the API
+      const queryParams = {
+          query: category,
+          fields: 'url,title,authors,abstract,year',
+          openAccessPdf: 1
+      };
+
+      // Make the GET request to Semantic Scholar API
+      const response = await axios.get(apiUrl, { params: queryParams });
+      
+
+      // Send the API response back to the client
+      res.status(200).json({
+          success: true,
+          data: response.data
+      });
+  } catch (error) {
+      console.error('Error fetching data from Semantic Scholar API:', error);
+
+      // Handle error
+      res.status(500).json({
+          success: false,
+          message: 'An error occurred while fetching data.',
+          error: error.message
+      });
+  }
+});
+
+// Displaying blogs
+app.get('/blog', (req, res) => {
+  res.send('Blog page')
   });
 
 ///////////////////
