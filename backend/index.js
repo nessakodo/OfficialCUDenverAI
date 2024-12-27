@@ -8,6 +8,8 @@ const ActivityLog = require('./activity_log');
 */
 const Calendar = require('./calendar_auth')
 const { google } = require('googleapis');
+const mysql = require('mysql2/promise');
+const { connectToDB , connection } = require('./database_connection');
 require('dotenv').config();
 const axios = require('axios');
 const app = require('express')();
@@ -29,8 +31,7 @@ const CALENDAR_ID = process.env.CALENDAR_ID;
 /////////////////////////
 // HOME 
 //////////////////////////
-app.get('/', (req, res) => {
-  res.send('Home page');
+app.get('/', async (req, res) => {
 });
 
 
@@ -145,7 +146,62 @@ app.get('/events', async (req, res) => {
 //////////////////////////
 // Signing in / Signing up
 //////////////////////////
+app.post('/sign-up', async (req, res) => {
+  const {fname, lname, email, password } = req.body;
 
+  try {
+    // Checks if user already exists
+    const existingUser = await User.findOne({ where: {email} });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exits' });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    console.log("working")
+
+    // Create new user
+    const newUser = await User.create({
+      fname,
+      lname,
+      email,
+      password_hash: hashedPassword,
+    });
+
+    res.status(201).json({ message: 'User created successfully', user: newUser }); } catch (error) {
+      res.status(500).json({ message: 'Error creating user', error: error.message });
+    }
+});
+
+// Sign-in Route
+app.post('/sign-in', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Find the user by email
+    const user = await User.findOne ({ where: { email } });
+    if ( !user ) {
+      return res.status(401).json({ message: 'Invalid email or password'});
+    }
+
+    // Compare password with hashed password
+    const isPasswordValid = await bcrypt.compare(password, user.password_hash);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Invalid email or password'});
+    }
+      // Generate JWT token
+      const token = jwt.sign(
+        { userId: user.user_id, email: user.email },
+        JWT_SECRET,
+        { expiresIn: '1HR'}
+      );
+      
+      res.status(200).json({ message: 'Sign-in successful', token});
+    } catch (error) {
+      res.status(500).json({ message: 'Error signing in'});
+    }
+});
 
 
 app.listen(PORT, async () => {
