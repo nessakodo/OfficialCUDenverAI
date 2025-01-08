@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+import './Home.css'; 
+import img from './images/group.jpg';
+import icon from './images/club-rxCX8m8Y.png';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardActions from '@mui/material/CardActions';
+
+
+
 
 function Home() {
     ///////////////////////////
     //States
     ///////////////////////////
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -21,10 +34,10 @@ function Home() {
     //HTML Rendering
     ///////////////////////////
     return (
-            <div className="HomePage">
+            <div className="HomePage" >
                 <div className="HeroTitle">
                     <h1> Empowering the Next Generation of AI Innovators </h1>
-                    <h2> Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver. </h2>
+                    <p> Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver. </p>
                     
                     <button>
                         <h3> Join Us </h3>
@@ -50,34 +63,99 @@ function Home() {
                     </div>
                     
                     <div className="FP-Image">
-  
+                        <img src={img} alt="AI Club"></img>
                     </div>
 
                 </div>
 
-
+                <div className="UpcomingEventsTitle">
+                    <h4>Upcoming Events</h4>
+                </div>
                 <div className="UpcomingEvents">
-                    <h4> Upcoming Events </h4>
+                
 
-                    <div className="Event#1">
-                        <h4> Title </h4>
-                        
-                        
-
-                    </div>
-
-                    <div className="Event#2">
-
-                    </div>
-
-                    <div className="Event#3">
-
-                    </div>
-
-
-
+                <div className="Event1">
+                <Card sx={{ maxWidth: 1000}}>
+                    <CardActionArea>
+                        <CardMedia
+                        component="img"
+                        height="140"
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        alt=""
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                            Event 1
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                            Desc
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button size="small" color="primary">
+                        Show More
+                        </Button>
+                    </CardActions>
+                    </Card>
                 </div>
 
+                <div className="Event2">
+                <Card sx={{ maxWidth: 1000 }}>
+                    <CardActionArea>
+                        <CardMedia
+                        component="img"
+                        height="140"
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        alt=""
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                            Event 2
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                           Desc1
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button size="small" color="primary">
+                        Show More
+                        </Button>
+                    </CardActions>
+                    </Card>
+                </div>
+
+                <div className="Event3">
+            <Card sx={{ maxWidth: 1000 }}>
+                    <CardActionArea>
+                        <CardMedia
+                        component="img"
+                        height="140"
+                        image="images/download.jpg"
+                        alt=""
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                            Event 3
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                            Desc
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button size="small" color="primary">
+                        Show More
+                        </Button>
+                    </CardActions>
+                    </Card>
+                
+                </div>
+                
+            </div>
+            
+           
 
                 
 

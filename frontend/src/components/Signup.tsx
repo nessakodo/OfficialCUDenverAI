@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'; // For dispatching actions
 import { submitRegister } from '../actions/authActions'; // Action creator for registering
-import { useHistory } from 'react-router-dom'; // For navigating between routes
+import { useNavigate } from 'react-router-dom'; // For navigating between routes
 import './LoginForm.css';
 
 // Functional component for the Signup form
 function Signup() {
   // Hooks for managing state and actions
   const dispatch = useDispatch(); // Accessing dispatch function
-  const history = useHistory(); // Accessing history object for navigation
+  const history = useNavigate(); // Accessing history object for navigation
   const [username, setUsername] = useState(''); // State for username input
   const [password, setPassword] = useState(''); // State for password input
   const [error, setError] = useState(''); // State for error message

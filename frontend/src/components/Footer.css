@@ -1,0 +1,42 @@
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-left p {
+    margin: 0;
+  }
+  
+  .footer-center .footer-links,
+  .footer-right .footer-social {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-center .footer-links li,
+  .footer-right .footer-social li {
+    margin: 0 10px;
+  }
+  
+  .footer-center .footer-links a,
+  .footer-right .footer-social a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-center .footer-links a:hover,
+  .footer-right .footer-social a:hover {
+    color: #ffd700; /* Golden color on hover */
+  }

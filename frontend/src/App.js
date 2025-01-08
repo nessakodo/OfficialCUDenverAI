@@ -1,28 +1,32 @@
-import React from 'react'; 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Signup from './components/Signup.tsx';
-import Login from './components/Login.tsx';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Signup from './components/Signup';
+import Login from './components/Login';
 import Home from './components/Home.tsx';
-import Projects from './components/Projects.tsx';
-import Blog from './components/Blog.tsx';
-import Events from './components/Events.tsx';
-import AboutUs from './components/AboutUs.tsx';
-import Nav from './components/Navbar.tsx';
+import Projects from './components/Projects';
+import Blog from './components/Blog';
+import Events from './components/Events';
+import AboutUs from './components/AboutUs';
+import Nav from './components/Navbar';
+import Footer from './components/Footer.tsx';
 
 function App() {
   return (
     <Router>
       <div>
-        <Switch>
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/" exact component={Home} />
-          <Route path="/home" component={Home} />
-          <Route path="/blog" component={Blog} />
-          <Route path="/projects" component={Projects} />
-          <Route path="/about-us" component={AboutUs} />
-          <Route path="/events" component={Events} />
-        </Switch>
+        {/* Possibly a layout that has a nav bar and a footer */}
+        <Nav />
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/events" element={<Events />} />
+        </Routes>
+        <Footer />
       </div>
     </Router>
   );

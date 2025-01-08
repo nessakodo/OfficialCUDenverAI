@@ -1,30 +1,56 @@
 nav {
-    background-color: #333; 
-    padding: 20px;
-  }
-  
-  ul {
-    list-style-type: none; 
-    margin: 0;
-    padding: 0;
-    margin-left: 2100px;
-  }
-  
-  li {
-    display: inline; 
-    margin-right: 10px;
-  }
-  
-  a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: lightgray; 
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #ffffff; /* Dark background */
+}
 
-  .icon {
-    color: white;
-    font-size: 20pt;
-  }
+nav img {
+  width: 50px;
+  height: 50px;
+}
+
+.Nav-Links {
+  display: flex;
+  gap: 20px;
+}
+
+.Nav-Links button {
+  background-color: transparent;
+  border: 2px solid #000000;
+  color: #000000;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 25px; /* Round buttons */
+  cursor: pointer;
+}
+
+.Nav-Links button:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+.Nav-Links button:focus, 
+.Nav-Links button:active {
+  background-color: #000; /* Keep the background black when clicked */
+  color: blue; /* Change the text color to blue when clicked */
+}
+
+.Join-Us {
+  background-color: black;
+  color: white;
+  padding: 12px 30px;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.Join-Us:hover {
+  background-color: #444; /* Darker black on hover */
+}
+
+.Link {
+  color: white;
+  text-decoration: none;
+}
