@@ -1,0 +1,56 @@
+.container {
+  margin: 0 auto; 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: calc(100% - 320px); 
+
+}
+
+.footer-col {
+  flex: 1; 
+  text-align: center;
+  margin: 0 auto; 
+  width: calc(100% - 320px); 
+}
+
+.footer-col:first-child {
+  margin-left: 160px;
+  text-align: left; 
+}
+
+.footer-col:last-child {
+  margin-right: 160px;
+  text-align: right; 
+}
+
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 17px;
+}
+
+.hring {
+  margin: 0 auto; 
+  width: calc(100% - 320px); 
+}
+
+.social-link i {
+  font-size: 44px; /* Increase the size of the social icons */
+  margin: 0 10px; /* Add spacing between icons */
+}
+
+.contact-list i {
+  color: black;
+  font-size: 20px; /* Adjust the size of the icons in the contact list */
+  margin-right: 8px; /* Add spacing between icon and text */
+  
+}
+
+.RightsReserved {
+  margin-right: 160px;
+  margin-left: 160px;
+  text-align: center;
+}
