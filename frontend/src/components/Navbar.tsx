@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './nav.css'; // Import your CSS file
-import { useSelector, useDispatch } from 'react-redux'; // Import useSelector and useDispatch
-import { logoutUser } from '../actions/authActions'; // Import logoutUser action creator
+import './nav.css'; 
+import { useSelector, useDispatch } from 'react-redux'; 
+import { logoutUser } from '../actions/authActions'; 
 import { CgProfile } from "react-icons/cg";
+import { useNavigate } from 'react-router-dom';
 import icon from './images/club-rxCX8m8Y.png';
+
 
 const Nav = () => {
     ///////////////////////////
@@ -14,12 +16,13 @@ const Nav = () => {
     ///////////////////////////
     //Functions
     ///////////////////////////
-
+    const navigate = useNavigate(); // React Router hook for navigation
 
     ///////////////////////////
     //HTML Rendering
     ///////////////////////////
     return (
+      <div className="parent">
       <nav>
 
         <img
@@ -28,16 +31,24 @@ const Nav = () => {
             style={{ width: '50px', height: '50px' }} // Customize size
         />
         <div className='Nav-Links'>
-          <button><Link to="/">Home</Link></button>
-          <button><Link to="/about">Our Work</Link></button>
-          <button><Link to="/blog">Resources</Link></button>
-          <button><Link to="/sign-up">Get Involved</Link></button>
+          <button onClick={() => navigate('/home')}>Home</button>
+          <button onClick={() => navigate('/projects')}>Our Work</button>
+          <button onClick={() => navigate('/events')}>Events</button>
+          <button onClick={() => navigate('/blog')}>Resources</button>
+          <button onClick={() => navigate('/about-us')}>About Us</button>
+          <div className='Join-Us'>
+            <button onClick={() => navigate('/signup')}>Join Us</button>
+          </div>
         </div>
           
-        <button className='Join-Us'><Link to="/sign-up">Join Us</Link></button>
 
         
       </nav>
+
+      <div className="hring">
+        <hr />
+      </div>
+      </div>
     );
 };
 

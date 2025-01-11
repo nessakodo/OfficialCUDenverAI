@@ -11,15 +11,33 @@ const { google } = require('googleapis');
 const mysql = require('mysql2/promise');
 const { connectToDB , connection } = require('./database_connection.ts');
 require('dotenv').config();
+const generateUserId = require('./utils.ts')
 const axios = require('axios');
 const app = require('express')()
+const bcrypt = require('bcrypt');
 var bodyParser = require('body-parser');
 app.use(bodyParser.json())
 const PORT = 8080;
+const cors = require("cors");
+const allowedOrigins = ["http://localhost:3000", "http://localhost:8080"];
+const { v4: uuidv4 } = require('uuid');
 
 
 
-
+app.use(
+  cors({
+      origin: function(origin, callback) {
+          if (!origin) return callback(null, true);
+          if (allowedOrigins.indexOf(origin) === -1) {
+              var msg =
+                  "The CORS policy for this site does not " +
+                  "allow access from the specified Origin.";
+              return callback(new Error(msg), false);
+          }
+          return callback(null, true);
+      }
+  })
+); 
 
 // Table relationships
 /*
@@ -66,7 +84,7 @@ app.get('/blog', (req, res) => {
   });
 
 app.get('/blog/:category', (req, res) => {
-    let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
+    let connection = connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
 
 
   });
@@ -119,64 +137,72 @@ app.get('/events', async (req, res) => {
 // Signing in / Signing up
 //////////////////////////
 app.post('/sign-up', async (req, res) => {
-  connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD)
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD)
 
   const {fname, lname, email, password } = req.body
 
   try {
-    // Checks if user already exists
-    const existingUser = await User.findOne({ where: {email} });
-    if (existingUser) {
-      return res.status(400).json({ message: 'User already exits' });
-    }
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    console.log("working")
+    
+    // Generate a unique user_id
+    const userId = parseInt(uuidv4().replace(/-/g, '').slice(0, 6), 16);
 
-    // Create new user
-    const newUser = await User.create({
-      fname,
-      lname,
-      email,
-      password_hash: hashedPassword,
-    });
+    await connection.execute(
+      'INSERT INTO USERS (user_id, email, fname, lname, password_hash, join_date, role) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [userId,email, fname, lname, hashedPassword, new Date(), 'member']
+    );
 
-    res.status(201).json({ message: 'User created successfully', user: newUser }); } catch (error) {
-      res.status(500).json({ message: 'Error creating user', error: error.message });
+    console.log(new Date())
+
+
+    await connection.end();
+
+    res.status(201).json({ message: 'User created successfully' }); } catch (error) {
+      res.status(500).json({ message: 'Error creating user', error: error });
     }
 });
 
 // Sign-in Route
 app.post('/sign-in', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD)
+
   const { email, password } = req.body;
 
   try {
-    // Find the user by email
-    const user = await User.findOne ({ where: { email } });
-    if ( !user ) {
-      return res.status(401).json({ message: 'Invalid email or password'});
+    const [rows] = await connection.execute(
+      'SELECT user_id, password_hash FROM USERS WHERE email = ?',
+      [email]
+    );
+
+    if (rows.length === 0) {
+      return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Compare password with hashed password
-    const isPasswordValid = await bcrypt.compare(password, user.password_hash);
+    const storedPasswordHash = rows[0].password_hash;
+
+    const isPasswordValid = await bcrypt.compare(password, storedPasswordHash);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid email or password'});
+      return res.status(401).json({ message: 'Invalid email or password' });
     }
-      // Generate JWT token
-      const token = jwt.sign(
-        { userId: user.user_id, email: user.email },
-        JWT_SECRET,
-        { expiresIn: '1HR'}
-      );
-      
-      res.status(200).json({ message: 'Sign-in successful', token});
-    } catch (error) {
-      res.status(500).json({ message: 'Error signing in'});
-    }
-});
 
+    /*
+        const token = jwt.sign(
+      { userId: rows[0].user_id, email },
+      JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    */ 
+
+
+    res.status(200).json({ message: 'Sign-in successful'});
+  } catch (error) {
+    res.status(500).json({ message: 'Error signing in', error: error.message });
+  }
+});
 
 app.listen(PORT, async () => {
   try {

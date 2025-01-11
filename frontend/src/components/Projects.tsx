@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './nav.css'; // Import your CSS file
-import { useSelector, useDispatch } from 'react-redux'; // Import useSelector and useDispatch
+import './projects.css';
+import { useSelector, useDispatch } from 'react-redux'; 
 import { CgProfile } from "react-icons/cg";
 
 function Projects() {
-
+    <h1></h1>
 }
 
 

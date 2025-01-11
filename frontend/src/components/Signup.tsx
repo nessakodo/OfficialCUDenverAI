@@ -1,52 +1,107 @@
-// Importing necessary modules from React and Redux
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'; // For dispatching actions
-import { submitRegister } from '../actions/authActions'; // Action creator for registering
-import { useNavigate } from 'react-router-dom'; // For navigating between routes
-import './LoginForm.css';
+import React, { useState} from 'react';
 
-// Functional component for the Signup form
-function Signup() {
-  // Hooks for managing state and actions
-  const dispatch = useDispatch(); // Accessing dispatch function
-  const history = useNavigate(); // Accessing history object for navigation
-  const [username, setUsername] = useState(''); // State for username input
-  const [password, setPassword] = useState(''); // State for password input
-  const [error, setError] = useState(''); // State for error message
+function SignupPage() {
+  const [formData, setFormData] = useState({
+    fname: '',
+    lname: '',
+    email: '',
+    password: '',
+  });
 
-  // Function to handle registration submission
-  const handleRegister = async (e) => {
-    e.preventDefault(); // Prevents default form submission behavior
-    try {
-      await dispatch(submitRegister({ username, password })); // Dispatches register action
-      history.push('/tasks'); // Redirects to tasks page upon successful registration
-    } catch (err) {
-        setError('error'); // Sets error message if registration fails
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const DirectToLogin = async (e) => {
-    e.preventDefault(); // Prevents default form submission behavior
-    history.push('/login'); // Redirects to tasks page upon successful registration
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Signup Data:', formData);
+    
+    fetch('http://localhost:8080/sign-up', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then((data) => {
+        // Now we wanna redirect to login
+
+    })
+    .catch((error) => {
+        console.log('Signup failed:', error);
+    });
   };
 
   return (
-    <div className='wrapper'>
-      <h1>Signup</h1>
-      <form onSubmit={handleRegister}> {/* Form submission triggers handleRegister function */}
-      <div className='input-box'>
-          <input type="text"  placeholder="Username" id="username" value={username} onChange={(e) => setUsername(e.target.value)} /> {/* Input field for username */}
+    <div style={{ padding: '20px', maxWidth: '400px', margin: '0 auto' }}>
+      <h2>Signup</h2>
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: '15px' }}>
+          <label>First Name</label>
+          <input
+            type="text"
+            name="fname"
+            value={formData.fname}
+            onChange={handleChange}
+            required
+            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+          />
         </div>
-        <div className='input-box'>
-          <input type="password" placeholder="Password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} /> {/* Input field for password */}
+        <div style={{ marginBottom: '15px' }}>
+          <label>Last Name</label>
+          <input
+            type="text"
+            name="lname"
+            value={formData.lname}
+            onChange={handleChange}
+            required
+            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+          />
         </div>
-        <button onClick={handleRegister} type="submit">Register</button> {/* Button to submit registration */}
+        <div style={{ marginBottom: '15px' }}>
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+          />
+        </div>
+        <div style={{ marginBottom: '15px' }}>
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+          />
+        </div>
+        <button
+          type="submit"
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#4CAF50',
+            color: 'white',
+            border: 'none',
+            cursor: 'pointer',
+          }}
+        >
+          Sign Up
+        </button>
       </form>
-      <div className='register-link'>
-      <p> If you have an account -- <a href="http://localhost:3000/login">Login</a></p>
-        </div>
     </div>
-  )
+  );
 }
 
-export default Signup; // Exports Signup component
+export default SignupPage;

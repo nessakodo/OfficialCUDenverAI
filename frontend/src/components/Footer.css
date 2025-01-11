@@ -1,42 +1,56 @@
-.footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    box-sizing: border-box;
-  }
+.container {
+  margin: 0 auto; 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: calc(100% - 320px); 
+
+}
+
+.footer-col {
+  flex: 1; 
+  text-align: center;
+  margin: 0 auto; 
+  width: calc(100% - 320px); 
+}
+
+.footer-col:first-child {
+  margin-left: 160px;
+  text-align: left; 
+}
+
+.footer-col:last-child {
+  margin-right: 160px;
+  text-align: right; 
+}
+
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 17px;
+}
+
+.hring {
+  margin: 0 auto; 
+  width: calc(100% - 320px); 
+}
+
+.social-link i {
+  font-size: 44px; /* Increase the size of the social icons */
+  margin: 0 10px; /* Add spacing between icons */
+}
+
+.contact-list i {
+  color: black;
+  font-size: 20px; /* Adjust the size of the icons in the contact list */
+  margin-right: 8px; /* Add spacing between icon and text */
   
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .footer-left p {
-    margin: 0;
-  }
-  
-  .footer-center .footer-links,
-  .footer-right .footer-social {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-center .footer-links li,
-  .footer-right .footer-social li {
-    margin: 0 10px;
-  }
-  
-  .footer-center .footer-links a,
-  .footer-right .footer-social a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .footer-center .footer-links a:hover,
-  .footer-right .footer-social a:hover {
-    color: #ffd700; /* Golden color on hover */
-  }
+}
+
+.RightsReserved {
+  margin-right: 160px;
+  margin-left: 160px;
+  text-align: center;
+}

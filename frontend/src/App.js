@@ -10,6 +10,10 @@ import AboutUs from './components/AboutUs';
 import Nav from './components/Navbar';
 import Footer from './components/Footer.tsx';
 
+const allowedOrigins = ["http://localhost:3000", "http://localhost:8080"];
+
+
+
 function App() {
   return (
     <Router>

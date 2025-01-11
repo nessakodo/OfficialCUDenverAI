@@ -1,3 +1,9 @@
+html, body {
+  width: 100%;
+}
+
+
+
 .HomePage {
   text-align: center;
   display: flex;
@@ -5,24 +11,20 @@
   align-items: stretch; 
 }
 
-.HeroTitle, .WhoWeAre, .FeaturedProject, .UpcomingEvents {
-  margin: 0px 0;
-  padding: 20px;
-  width: 100%;
-}
+
 
 .HeroTitle {
   background: 
       linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),       
       url("images/vicente.jpg");
-  background-size: cover; /* Ensures the image covers the entire area */
-  background-position: center; /* Centers the image */
-  min-height: 952px; /* Sets a minimum height */
-  display: flex; /* Enables Flexbox layout */
-  flex-direction: column; /* Stacks children vertically */
-  justify-content: center; /* Centers content vertically */
-  align-items: center; /* Centers content horizontally */
-  text-align: center; /* Centers text alignment */
+  background-size: cover;
+  background-position: center;
+  min-height: 952px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center; 
+  text-align: center; 
 }
 
 
@@ -33,54 +35,71 @@
 }
 
 .HeroTitle h1 {
+  margin-right: 160px;
+  margin-left: 160px;
   font-size: 72px;
   font-weight: 700;
-  color: #444;
+  color: #000000;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-.HeroTitle p {
+.HeroTitle h3 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+}
+
+.HeroTitle h2 {
+  margin-right: 160px;
+  margin-left: 160px;
   font-size: 32px;
-  line-height: 28px;
-  color: #666;
-  margin: 0 auto;
+  line-height: 50px;
+  color: #000000;
 }
 
 
 .HeroTitle button {
-  margin-top: 30px;
-  background: linear-gradient(90deg, #ffffff, #ffffff); /* Green gradient */
-  color: rgb(0, 0, 0); /* Text color */
-  font-size: 14px; /* Text size */
-  padding: 12px 24px; /* Padding around the button */
-  border: none; /* No border */
-  border-radius: 8px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin: 20px;
+  background: linear-gradient(90deg, #ffffff, #ffffff); 
+  color: rgb(0, 0, 0);
+  font-size: 14px; 
+  padding: 12px 24px; 
+  border: none; 
+  border-radius: 40px; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  text-align: center;
 }
 
 .HeroTitle button:hover {
-  background: linear-gradient(90deg, #a7a7a7, #acacac); /* Reverse gradient */
-  transform: scale(1.05); /* Slight zoom effect */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+  background: linear-gradient(90deg, #a7a7a7, #acacac);
+  transform: scale(1.05); 
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .WhoWeAre{
+  margin-right: 160px;
+  margin-left: 160px;
   padding: 80px;
 }
 
 
 .WhoWeAre h4 {
+  margin-right: 160px;
+  margin-left: 160px;
   font-size: 24px;
   font-weight: 700;
   color: #444;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .WhoWeAre p {
+  margin-right: 160px;
+  margin-left: 160px;
   font-size: 16px;
   line-height: 28px;
   color: #666;
@@ -95,18 +114,20 @@
   flex-direction: row; 
   justify-content: space-between; 
   align-items: center; 
-  gap: 20px; 
-  padding: 20px; 
+  gap: 20px;   
 }
 
 .FP-Text {
+  margin-left: 160px;
   flex: 1; 
   padding: 10px;
+  max-height: 600px; 
 }
 
 .FP-Image {
+  margin-right: 160px;
   flex: 1; 
-  text-align: center; 
+  text-align: right; 
 }
 
 .FP-Text h4 {
@@ -126,11 +147,13 @@
 }
 
 .FP-Text p {
+  word-wrap: break-word;
   font-size: 16px;
   line-height: 28px;
   color: #666;
   margin: 0 auto;
   text-align: left;
+  max-height: inherit;
 }
 
 .FP-Image img {
@@ -141,6 +164,8 @@
 }
 
 .UpcomingEvents {
+  margin-right: 160px;
+  margin-left: 160px;
   display: flex;
   justify-content: space-between;
   gap: 20px; 
@@ -149,7 +174,7 @@
 
 
 .UpcomingEventsTitle h4{
-  margin-top: 30px;
+  margin-top: 60px;
   font-size: 24px;
   font-weight: 700;
   color: #444;
@@ -159,22 +184,26 @@
 
 
 .UpcomingEvents button {
+  margin: 10px;
   margin-top: 30px;
-  background: linear-gradient(90deg, #ffffff, #ffffff); /* Green gradient */
-  color: rgb(0, 0, 0); /* Text color */
-  font-size: 14px; /* Text size */
-  padding: 12px 24px; /* Padding around the button */
-  border: none; /* No border */
-  border-radius: 8px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background: linear-gradient(90deg, #ffffff, #ffffff); 
+  color: rgb(0, 0, 0);
+  font-size: 14px; 
+  padding: 12px 24px; 
+  border: none; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .UpcomingEvents button:hover {
-  background: linear-gradient(90deg, #a7a7a7, #acacac); /* Reverse gradient */
-  transform: scale(1.05); /* Slight zoom effect */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+  background: linear-gradient(90deg, #a7a7a7, #acacac); 
+  transform: scale(1.05); 
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
 }
 
-
+ 
+.Event1, .Event2, .Event3 {
+  flex: 1 1 calc(33.33% - 20px);
+}

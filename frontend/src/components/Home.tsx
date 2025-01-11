@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import './Home.css'; 
+import './home.css'; 
 import img from './images/group.jpg';
+import neuralnetwork from './images/5-AI-Advancements-to-Expect-in-the-Next-10-Years-scaled.jpeg'
+import robotics from './images/sick-sponsored-featured-image-july2023-article1.jpg'
 import icon from './images/club-rxCX8m8Y.png';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -36,13 +38,12 @@ function Home() {
     return (
             <div className="HomePage" >
                 <div className="HeroTitle">
-                    <h1> Empowering the Next Generation of AI Innovators </h1>
-                    <p> Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver. </p>
-                    
-                    <button>
-                        <h3> Join Us </h3>
-                    </button>
-
+                        <h1> Empowering the Next Generation of AI Innovators </h1>
+                        <h2> Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver. </h2>
+                        
+                        <button>
+                            <h3> Join Us </h3>
+                        </button>
 
                     
                 </div>
@@ -79,16 +80,16 @@ function Home() {
                     <CardActionArea>
                         <CardMedia
                         component="img"
-                        height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
+                        height="240"
+                        image={img}
                         alt=""
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            Event 1
+                        Panel Discussion: The Future of AI Ethics
                         </Typography>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                            Desc
+                        Explore the ethical challenges of artificial intelligence in this engaging panel discussion featuring experts from academia and industry. Discuss topics such as AI bias, data privacy, and the societal impact of automation. Gain insights into the responsibilities of AI practitioners in shaping a fair and equitable future.
                         </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -101,20 +102,20 @@ function Home() {
                 </div>
 
                 <div className="Event2">
-                <Card sx={{ maxWidth: 1000 }}>
+                <Card sx={{ maxWidth: 1000, maxHeight: 800}}>
                     <CardActionArea>
                         <CardMedia
                         component="img"
-                        height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
+                        height="240"
+                        image={robotics}
                         alt=""
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            Event 2
+                        AI Hackathon: Innovate with Machine Learning
                         </Typography>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                           Desc1
+                        Join us for an exciting 24-hour hackathon where students collaborate to solve real-world problems using machine learning and AI. With mentorship from industry professionals, participants will create innovative solutions, compete for prizes, and gain valuable hands-on experience in AI development.
                         </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -127,25 +128,27 @@ function Home() {
                 </div>
 
                 <div className="Event3">
-            <Card sx={{ maxWidth: 1000 }}>
+            <Card sx={{ maxWidth: 1000, maxHeight: 800 }}>
                     <CardActionArea>
                         <CardMedia
                         component="img"
-                        height="140"
-                        image="images/download.jpg"
+                        height="240"
+                        image={neuralnetwork}
                         alt=""
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            Event 3
+                         Workshop: Introduction to Neural Networks
                         </Typography>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                            Desc
+                        Dive into the fascinating world of neural networks in this beginner-friendly workshop. Learn the basics of how neural networks function, explore their applications, and build your first AI model using Python and TensorFlow. No prior experience is required—just curiosity and enthusiasm!
+
+
                         </Typography>
                         </CardContent>
                     </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary">
+                    <CardActions >
+                        <Button size="small" color="primary" >
                         Show More
                         </Button>
                     </CardActions>
