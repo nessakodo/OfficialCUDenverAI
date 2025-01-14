@@ -2,6 +2,7 @@
 ~$cumentation.doc
 backend/.env
 backend/cudenveraicalendar-23d94fc6babc.json
-
+backend/node_modules
+node_modules
 
 .codegpt

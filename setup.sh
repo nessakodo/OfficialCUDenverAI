@@ -25,10 +25,14 @@ npm install
 
 # 3. Install front-end npm dependencies
 echo "Installing front-end npm dependencies..."
-cd front-end
+cd frontend
 npm install
 cd ..
 
-
+# 3. Install back-end npm dependencies
+echo "Installing front-end npm dependencies..."
+cd backend
+npm install
+cd ..
 
 echo "Setup complete!"

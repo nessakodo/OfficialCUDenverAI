@@ -21,7 +21,18 @@ const PORT = 8080;
 const cors = require("cors");
 const allowedOrigins = ["http://localhost:3000", "http://localhost:8080"];
 const { v4: uuidv4 } = require('uuid');
+const session = require('express-session');
 
+// Session authentication setup
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,  
+  cookie: {
+    maxAge: 60000 * 60
+  }
+
+}))
 
 
 app.use(
@@ -39,12 +50,6 @@ app.use(
   })
 ); 
 
-// Table relationships
-/*
-EventRegistration.associate({ User, Event });
-Resource.associate({ User });
-ActivityLog.associate({ User });
-*/
 
 // Setting up hidden keys
 const CALENDAR_ID = process.env.CALENDAR_ID;
@@ -54,6 +59,9 @@ const CALENDAR_ID = process.env.CALENDAR_ID;
 // HOME 
 //////////////////////////
 app.get('/', async (req, res) => {
+  console.log(req.session)
+  console.log(req.session.id)
+  req.session.visited = true;
 });
 
 
@@ -83,11 +91,21 @@ app.get('/blog', (req, res) => {
   res.send('Blog page')
   });
 
-app.get('/blog/:category', (req, res) => {
-    let connection = connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
-
-
-  });
+app.get('/research/:category', async (req, res) => {
+    try {
+      let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
+  
+      const [rows] = await connection.execute(
+        'SELECT * FROM research_papers WHERE category = ?',
+        [req.params.category]
+      );
+  
+      res.status(200).json(rows);
+    } catch (error) {
+      console.error('Error fetching research papers:', error.message);
+      res.status(500).send('Failed to fetch research papers');
+    }
+});
 
 ///////////////////
 // CALENDAR

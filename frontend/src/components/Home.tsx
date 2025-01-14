@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './home.css'; 
+
 import img from './images/group.jpg';
 import neuralnetwork from './images/5-AI-Advancements-to-Expect-in-the-Next-10-Years-scaled.jpeg'
 import robotics from './images/sick-sponsored-featured-image-july2023-article1.jpg'
 import icon from './images/club-rxCX8m8Y.png';
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -76,7 +78,7 @@ function Home() {
                 
 
                 <div className="Event1">
-                <Card sx={{ maxWidth: 1000}}>
+                <Card sx={{ maxWidth: 1000, maxHeight: 800}}>
                     <CardActionArea>
                         <CardMedia
                         component="img"
@@ -86,18 +88,11 @@ function Home() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                        Panel Discussion: The Future of AI Ethics
-                        </Typography>
+                        Compete, Learn, and Outsmart AI Models in this Exciting Challenge!                        </Typography>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        Explore the ethical challenges of artificial intelligence in this engaging panel discussion featuring experts from academia and industry. Discuss topics such as AI bias, data privacy, and the societal impact of automation. Gain insights into the responsibilities of AI practitioners in shaping a fair and equitable future.
-                        </Typography>
+                        The Decoy Challenge focuses on generating adversarial examples that can mislead a machine learning model trained on the CIFAR-10 dataset. Participants will receive a pre-trained, robust classifier and a set of test examples from the CIFAR-10 dataset. Your objective is to create subtle perturbations to these test examples that can fool the classifier while maintaining the images' visual integrity.                        </Typography>
                         </CardContent>
                     </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary">
-                        Show More
-                        </Button>
-                    </CardActions>
                     </Card>
                 </div>
 
@@ -119,16 +114,11 @@ function Home() {
                         </Typography>
                         </CardContent>
                     </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary">
-                        Show More
-                        </Button>
-                    </CardActions>
                     </Card>
                 </div>
 
                 <div className="Event3">
-            <Card sx={{ maxWidth: 1000, maxHeight: 800 }}>
+                    <Card sx={{ maxWidth: 1000, maxHeight: 800 }}>
                     <CardActionArea>
                         <CardMedia
                         component="img"
@@ -138,24 +128,15 @@ function Home() {
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                         Workshop: Introduction to Neural Networks
+                            Workshop: Introduction to Neural Networks
                         </Typography>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        Dive into the fascinating world of neural networks in this beginner-friendly workshop. Learn the basics of how neural networks function, explore their applications, and build your first AI model using Python and TensorFlow. No prior experience is required—just curiosity and enthusiasm!
-
-
+                            Dive into the fascinating world of neural networks in this beginner-friendly workshop. Learn the basics of how neural networks function, explore their applications, and build your first AI model using Python and TensorFlow. No prior experience is required—just curiosity and enthusiasm!
                         </Typography>
                         </CardContent>
                     </CardActionArea>
-                    <CardActions >
-                        <Button size="small" color="primary" >
-                        Show More
-                        </Button>
-                    </CardActions>
                     </Card>
-                
                 </div>
-                
             </div>
             
            

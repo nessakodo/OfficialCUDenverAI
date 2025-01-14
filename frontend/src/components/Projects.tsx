@@ -5,7 +5,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CgProfile } from "react-icons/cg";
 
 function Projects() {
-    <h1></h1>
+        ///////////////////////////
+        //States
+        ///////////////////////////
+
+        
+        ///////////////////////////
+        //Functions
+        ///////////////////////////
+    
+    
+        ///////////////////////////
+        //TSX Rendering
+        ///////////////////////////
+        return (
+            <div className="ProjectsPage" >
+                        
+            </div>
+        );
 }
 
 
