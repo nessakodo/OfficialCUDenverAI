@@ -9,6 +9,8 @@ import Events from './components/Events';
 import AboutUs from './components/AboutUs';
 import Nav from './components/Navbar';
 import Footer from './components/Footer.tsx';
+import Profile from './components/Profile.tsx'
+import News from './components/News.tsx'
 
 const allowedOrigins = ["http://localhost:3000", "http://localhost:8080"];
 
@@ -28,6 +30,8 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </div>

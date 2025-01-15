@@ -84,11 +84,38 @@ app.get('/about-us', (req, res) => {
 //////////////////////////
 // BLOG
 //////////////////////////
+// Displaying news
+app.get('/news', async (req, res) => {
+  try {
+    let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
+
+    const [rows] = await connection.execute(
+      'SELECT * FROM NEWS'
+    );
+    console.log(rows)
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error('Error fetching news:', error.message);
+    res.status(500).send('Failed to news');
+  }
+  });
 
 
 // Displaying blogs
-app.get('/blog', (req, res) => {
-  res.send('Blog page')
+app.get('/blogs', async (req, res) => {
+  try {
+    let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
+
+    const [rows] = await connection.execute(
+      'SELECT * FROM research_papers WHERE category = ?',
+      [req.params.category]
+    );
+
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error('Error fetching research papers:', error.message);
+    res.status(500).send('Failed to fetch research papers');
+  }
   });
 
 app.get('/research/:category', async (req, res) => {

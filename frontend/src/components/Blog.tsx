@@ -11,24 +11,28 @@ function Blog() {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [researchPapers, setResearchPapers] = useState([]);
     const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    
+
+      
     const categories = [
-      "CV",
-      "NLP",
-      "RL",
+      "Computer-Vision",
+      "Natural-Language-Processing",
+      "Reinforcement-learning",
       "GenAI",
       "Robotics",
-      "AI Ethics",
-      "Multi-agent systems",
+      "AI-Ethics",
+      "Multi-agent-systems",
       "EdgeAI",
-      "Healthcare and AI",
-      "Theoretical AI",
-      "Human-centered AI",
-      "LLMs",
-      "AI in Finance and Economics",
-    ];
+      "Healthcare-and-AI",
+      "Theoritical-AI",
+      "Human-centered-AI",
+      "LLMs-and-AI-in-Finance-and-economics"  ];
     ///////////////////////////
     //Functions
     ///////////////////////////
+    
     const handleCategoryClick = async (category) => {
         // Randomly get 3 research papers and set them as the state
         setSelectedCategory(category);
@@ -36,11 +40,35 @@ function Blog() {
         setResearchPapers(papers);
       };
     
+ 
+    /* This function allows us to fetch research papers from our API */
     const fetchResearchPapers = async (category) => {
-        return [
-          { id: 1, title: `Research Paper 1 in ${category}`, description: "Abstract here..." },
-          { id: 2, title: `Research Paper 2 in ${category}`, description: "Abstract here..." },
-        ];
+      try {
+          const response = await fetch(`http://localhost:8080/research/${category}`);
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return await response.json(); 
+      } catch (error) {
+          setError(error.message);
+          setLoading(false);
+          return []; 
+      }
+  };
+
+      /* This function allows us to fetch blogs from our API */
+    const fetchBlogs = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/blogs`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return await response.json(); 
+        } catch (error) {
+            setError(error.message);
+            setLoading(false);
+            return []; 
+        }
     };
 
     ///////////////////////////
@@ -52,6 +80,7 @@ function Blog() {
         
               {/* Research Section */}
               <section>
+              <div className="ResearchSection">
                 <h2>Research Categories</h2>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
                   {categories.map((category) => (
@@ -75,30 +104,41 @@ function Blog() {
                   {researchPapers.length > 0 ? (
                     <ul>
                       {researchPapers.map((paper) => (
-                        <li key={paper.id}>
+                        <li key={paper.paper_id}>
                           <strong>{paper.title}</strong>
-                          <p>{paper.description}</p>
+                          <p>{paper.abstract}</p>
+                          <button 
+                          onClick={() => window.open(paper.url, '_blank')} 
+                          style={{ 
+                            backgroundColor: 'black', 
+                            color: 'white', 
+                            padding: '10px 15px', 
+                            border: 'none', 
+                            borderRadius: '5px', 
+                            cursor: 'pointer',
+                            transition: 'background-color 0.3s ease'
+                          }}
+                        >
+                          Read More
+                      </button>
                         </li>
+
                       ))}
+                      
                     </ul>
                   ) : (
                     <p>No papers available for this category.</p>
                   )}
                 </div>
+                </div>
               </section>
         
               {/* Community Blog Section */}
               <section>
+                <div className="CommunitySection">
                 <h2>Community Blogs</h2>
-                <div>
-                  <p>Have a blog to share? Submit it here:</p>
-                  <form>
-                    <button type="submit">Submit Blog</button>
-                  </form>
-                </div>
-                <div>
-                  <h3>Community Blogs</h3>
-                  {blogs.length > 0 ? (
+                <div className="CommunityBlogs">
+                {blogs.length > 0 ? (
                     <ul>
                       {blogs.map((blog, index) => (
                         <li key={index}>
@@ -110,11 +150,20 @@ function Blog() {
                   ) : (
                     <p>No blogs submitted yet.</p>
                   )}
+                  </div>
+                <div>
+                  <p>Have a blog to share? Submit it here:</p>
+                  <form>
+                    <button type="submit">Submit Blog</button>
+                  </form>
+                </div>
                 </div>
               </section>
         
               {/* YouTube Section */}
               <section>
+              <div className="CommunitySection">
+
                 <h2>Educational Videos</h2>
                 <div>
                   <iframe
@@ -135,6 +184,7 @@ function Blog() {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
+                </div>
                 </div>
               </section>
             </div>
