@@ -36,6 +36,7 @@ const Nav = () => {
           <button onClick={() => navigate('/events')}>Events</button>
           <button onClick={() => navigate('/blog')}>Resources</button>
           <button onClick={() => navigate('/about-us')}>About Us</button>
+          <button onClick={() => navigate('/news')}>News</button>
           <div className='Join-Us'>
             <button onClick={() => navigate('/signup')}>Join Us</button>
           </div>

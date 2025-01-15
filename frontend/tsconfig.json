@@ -2,12 +2,14 @@
     "compilerOptions": {
       "target": "es6",
       "module": "commonjs",
+      "rootDir": "./src",
       "moduleResolution": "node",
       "noImplicitAny": false,
       "removeComments": true,
       "preserveConstEnums": true,
       "sourceMap": true,
       "forceConsistentCasingInFileNames": true,
+      "noEmitOnError": true,
       "outDir": "dist",
       "declaration": true
     },
