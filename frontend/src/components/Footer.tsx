@@ -1,6 +1,6 @@
 import React from 'react';
 import icon from './images/club-rxCX8m8Y.png';
-import './footer.css'; 
+import './Footer.css'; 
 
 function Footer() {
   return (
