@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 import './events.css';
 
 function Events() {
@@ -39,7 +40,7 @@ function Events() {
     // Render the list of events
     return (
         <div className="events-container">
-            <h1>Upcoming Events</h1>
+            <h1>Upcoming Events to day</h1>
             <div className="events-list">
                 {events.length === 0 ? (
                     <div>No events available.</div>
@@ -60,3 +61,4 @@ function Events() {
 }
 
 export default Events;
+

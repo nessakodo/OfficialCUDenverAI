@@ -10,7 +10,7 @@ import AboutUs from './components/AboutUs';
 import Nav from './components/Navbar';
 import Footer from './components/Footer.tsx';
 
-const allowedOrigins = ["http://localhost:3000", "http://localhost:8080"];
+const allowedOrigins = [ "http://127.0.0.1:8080/"];
 
 
 
