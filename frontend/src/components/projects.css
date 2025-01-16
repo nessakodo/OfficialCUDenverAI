@@ -1,133 +1,78 @@
-html, body {
-  width: 100%;
-}
-
+/* Consolidated Styles */
 .ProjectsPage {
-  text-align: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.ProjectGrid {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: stretch;
-  padding: 20px;
-}
-
-.ProjectsHeader {
-  background: 
-    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
-    url("images/projects-header.jpg");
-  background-size: cover;
-  background-position: center;
-  min-height: 600px; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  text-align: center;
-}
-
-.ProjectsHeader h1 {
-  font-size: 64px;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 20px;
-}
-
-.ProjectsHeader h2 {
-  font-size: 28px;
-  line-height: 1.5;
-  color: #444;
-  max-width: 800px;
-  margin: 0 auto 20px;
-}
-
-.ProjectsHeader p {
-  font-size: 16px;
-  line-height: 28px;
-  color: #666;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.ProjectsPlaceholder {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.ProjectsPlaceholder img {
-  max-width: 400px; 
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  margin-bottom: 20px;
-}
-
-.ProjectsPlaceholder p {
-  font-size: 18px;
-  color: #757575;
-}
-
-.ProjectCardContainer {
-  display: flex;
-  justify-content: space-between;
+  gap: 1.5rem;
   flex-wrap: wrap;
-  gap: 20px;
-  margin: 40px 160px;
+  margin-top: 2rem;
 }
 
 .ProjectCard {
-  flex: 1 1 calc(33.33% - 20px);
-  background: #fff;
+  width: 300px;
+  background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .ProjectCard:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.ProjectCard img {
+.ProjectImage {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
-.ProjectCardContent {
-  padding: 20px;
+.ProjectDetails {
+  padding: 1rem;
+  text-align: center;
 }
 
-.ProjectCardContent h3 {
-  font-size: 20px;
-  font-weight: 700;
-  color: #444;
-  margin-bottom: 10px;
+.ShowMoreButton {
+  background-color: #007bff;
+  color: hwb(0 0% 100%);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.ProjectCardContent p {
-  font-size: 14px;
-  line-height: 24px;
-  color: #666;
+.ShowMoreButton:hover {
+  background-color: #ffffff;
+  transform: scale(1.05);
 }
-
-.ProjectCardButton {
+.LearnMoreButton {
   margin-top: 20px;
-  background: linear-gradient(90deg, #ffffff, #ffffff); 
-  color: #000;
-  font-size: 14px; 
-  padding: 10px 20px; 
-  border: none; 
-  border-radius: 8px; 
-  cursor: pointer; 
-  transition: all 0.3s ease; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(90deg, #fdfdfd, #ffffff); /* Blue gradient */
+  color: #000000; /* White text */
+  font-size: 14px; /* Font size */
+  padding: 10px 20px; /* Button padding */
+  border: none; /* No border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  transition: all 0.3s ease; /* Smooth hover effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.ProjectCardButton:hover {
-  background: linear-gradient(90deg, #a7a7a7, #acacac); 
-  transform: scale(1.05); 
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+.LearnMoreButton:hover {
+  background: linear-gradient(90deg,#ffffff, #ffffff); /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly enlarge */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+.LearnMoreButton:active {
+  transform: scale(0.95); /* Shrinks slightly on click */
 }
