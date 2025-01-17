@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './events.css';
+import './Events.css';
 
 function Events() {
     // States for managing events, loading state, and errors

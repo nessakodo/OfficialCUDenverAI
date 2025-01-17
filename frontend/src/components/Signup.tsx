@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
-import './signup.css'; 
+import './Signup.css'; 
 
 function AuthPage() {
   const navigate = useNavigate(); // Initialize useNavigate hook

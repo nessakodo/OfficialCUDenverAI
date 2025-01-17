@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import './blog.css';
+import './Blog.css';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { CgProfile } from "react-icons/cg";
 
@@ -27,8 +27,7 @@ function Blog() {
       "EdgeAI",
       "Healthcare-and-AI",
       "Theoritical-AI",
-      "Human-centered-AI",
-      "LLMs-and-AI-in-Finance-and-economics"  ];
+      "Human-centered-AI" ];
     ///////////////////////////
     //Functions
     ///////////////////////////

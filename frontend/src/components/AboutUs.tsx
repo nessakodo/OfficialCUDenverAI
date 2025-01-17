@@ -5,7 +5,7 @@ import img from './images/group.jpg';
 import icon from './images/club-rxCX8m8Y.png';
 
 // CSS imports
-import './aboutus.css';
+import './AboutUs.css';
 import "slick-carousel/slick/slick.css";
 
 // Carousel imports

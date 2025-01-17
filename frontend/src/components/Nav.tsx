@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './nav.css'; 
+import './Nav.css'; 
 import { useSelector, useDispatch } from 'react-redux'; 
-import { logoutUser } from '../actions/authActions'; 
+import { logoutUser } from '../actions/AuthActions'; 
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
 import icon from './images/club-rxCX8m8Y.png';
