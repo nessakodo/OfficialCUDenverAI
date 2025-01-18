@@ -36,7 +36,7 @@ const requireAuth = (req, res, next) => {
   if (req.session.userId) {
       next(); // User is authenticated, continue to next middleware
   } else {
-      res.redirect('/login'); // User is not authenticated, redirect to login page
+      res.redirect('/sign-in'); // User is not authenticated, redirect to login page
   }
 }
 
@@ -66,7 +66,7 @@ const CALENDAR_ID = process.env.CALENDAR_ID;
 /////////////////////////
 // HOME 
 //////////////////////////
-app.get('/', async (req, res) => {
+app.get('/', requireAuth , async (req, res) => {
   console.log(req.session)
   console.log(req.session.id)
   req.session.visited = true;
@@ -262,7 +262,7 @@ app.post('/sign-in', async (req, res) => {
 
 
 app.get('/profile', requireAuth, (req, res) => {
-  
+
 
 }
 );
