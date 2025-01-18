@@ -8,12 +8,15 @@ const axios = require('axios');
 const app = require('express')()
 const bcrypt = require('bcrypt');
 var bodyParser = require('body-parser');
-app.use(bodyParser.json())
 const PORT = 8080;
 const cors = require("cors");
 const allowedOrigins = ["http://localhost:3000"];
 const { v4: uuidv4 } = require('uuid');
 const session = require('express-session');
+
+///////////////////////
+// Middleware functions
+///////////////////////
 
 // Session authentication setup
 app.use(session({
@@ -21,10 +24,23 @@ app.use(session({
   resave: false,
   saveUninitialized: true,  
   cookie: {
-    maxAge: 60000 * 60
+    maxAge: 60000 * 60,
+    secure: true
   }
 
 }))
+
+
+// Verify session authentication
+const requireAuth = (req, res, next) => {
+  if (req.session.userId) {
+      next(); // User is authenticated, continue to next middleware
+  } else {
+      res.redirect('/login'); // User is not authenticated, redirect to login page
+  }
+}
+
+app.use(bodyParser.json())
 
 
 app.use(
@@ -54,6 +70,7 @@ app.get('/', async (req, res) => {
   console.log(req.session)
   console.log(req.session.id)
   req.session.visited = true;
+  console.log(req.session.authenticated)
 });
 
 
@@ -209,14 +226,23 @@ app.post('/sign-in', async (req, res) => {
   const { email, password } = req.body;
 
   try {
+
+    /**
+     * @typedef {list|null} rows
+     * @description a list of hashmaps storing user_id and password_hash
+     */
     const [rows] = await connection.execute(
       'SELECT user_id, password_hash FROM USERS WHERE email = ?',
       [email]
     );
 
+    // if no element in rows then the user doesn't exist
+
     if (rows.length === 0) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
+
+    // check if the password in our database matches the password entered
 
     const storedPasswordHash = rows[0].password_hash;
 
@@ -225,13 +251,21 @@ app.post('/sign-in', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-
-
+    // Set session Identifier
+    req.session.userId = rows[0].user_id
+  
     res.status(200).json({ message: 'Sign-in successful'});
   } catch (error) {
     res.status(500).json({ message: 'Error signing in', error: error.message });
   }
 });
+
+
+app.get('/profile', requireAuth, (req, res) => {
+  
+
+}
+);
 
 app.listen(PORT, async () => {
   try {

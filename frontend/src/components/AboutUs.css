@@ -36,6 +36,59 @@
     color: black;
 }
 
+.OurPillars {
+    text-align: center;
+    padding: 2rem;
+}
+
+.Pillars {
+    margin-right: 160px;
+    margin-left: 160px;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem; 
+}
+
+.PillarCard {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 6rem;
+    margin-left: 6rem;
+}
+
+.PillarImage {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.PillarCard h2 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.PillarCard p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #555;
+}
+.OurPillars h1 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    text-align: center;
+    font-size: 64px;
+    color: black;
+    font-weight: bold;
+}
+
 
 .OurOfficers h1 {
     margin-top: 60px;
