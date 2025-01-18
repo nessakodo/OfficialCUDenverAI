@@ -38,10 +38,9 @@ function Projects() {
     <div className="ProjectsPage">
       {/* Header Section */}
       <div className="HeroTitle">
-        <h1>Empowering the Next Generation of AI Innovators</h1>
+        <h1>What We’re Working On</h1>
         <h2>
-          Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver.
-        </h2>
+        Explore the projects, challenges, and initiatives that drive innovation and collaboration in AI, Data Science, and Machine Learning.        </h2>
         <button>
           <h3>Join Us</h3>
         </button>
