@@ -8,14 +8,30 @@ function News() {
     ///////////////////////////
     //States
     ///////////////////////////
+
+    /**
+    * @description React hook for dispatching actions to update states
+    */
     const dispatch = useDispatch();
+
+    /**
+     * gets the `news`, `loading`, and `error` from the Redux state
+     *
+     * @typedef {Array | null} news - The array of news articles fetched from the store, or null if not yet loaded
+     * @typedef {boolean} loading - Indicates whether the news data is currently being loaded
+     * @typedef {string | null} error - Error message if there was an issue fetching the news, or null if no error
+     */
     const { news, loading, error } = useSelector((state: any) => state.news);
     
     ///////////////////////////
     //Functions
     ///////////////////////////
  
-    /* This function allows us to fetch news from our backend API */
+    /**
+     * Fetches news from our backend API
+     * 
+     * @returns {Promise<Array<Object>>} - A promise resolving to a list of news
+     */    
     useEffect(() => {
         // Check if news is already in Redux state
         if (news.length === 0) {
@@ -41,6 +57,7 @@ function News() {
     ///////////////////////////
     
     return (
+
         <div className="news-container" style={{ padding: "20px" }}>
         <h1>Latest News</h1>
         {loading ? (

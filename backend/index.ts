@@ -1,17 +1,9 @@
-/*
-const User = require('./users');
-const Event = require('./events');
-const EventRegistration = require('./event_registration');
-const Resource = require('./research_retrieval');
-const Blog = require('./blogs');
-const ActivityLog = require('./activity_log');
-*/
-const Calendar = require('./calendar_auth.ts')
+const Calendar = require('./CalendarAuth.ts')
 const { google } = require('googleapis');
 const mysql = require('mysql2/promise');
-const { connectToDB , connection } = require('./database_connection.ts');
+const { connectToDB , connection } = require('./DatabaseConnection.ts');
 require('dotenv').config();
-const generateUserId = require('./utils.ts')
+const generateUserId = require('./Utils.ts')
 const axios = require('axios');
 const app = require('express')()
 const bcrypt = require('bcrypt');
@@ -19,7 +11,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json())
 const PORT = 8080;
 const cors = require("cors");
-const allowedOrigins = ["http://localhost:3000", "http://localhost:8080"];
+const allowedOrigins = ["http://localhost:3000"];
 const { v4: uuidv4 } = require('uuid');
 const session = require('express-session');
 
@@ -233,14 +225,6 @@ app.post('/sign-in', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    /*
-        const token = jwt.sign(
-      { userId: rows[0].user_id, email },
-      JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    */ 
 
 
     res.status(200).json({ message: 'Sign-in successful'});

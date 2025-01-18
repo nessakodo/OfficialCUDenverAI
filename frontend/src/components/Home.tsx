@@ -1,12 +1,16 @@
+/*Functionality imports*/
+
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import './Home.css'; 
+
+/*Image imports*/
 
 import img from './images/group.jpg';
 import neuralnetwork from './images/5-AI-Advancements-to-Expect-in-the-Next-10-Years-scaled.jpeg'
 import robotics from './images/sick-sponsored-featured-image-july2023-article1.jpg'
 import icon from './images/club-rxCX8m8Y.png';
+
+/*UI imports*/
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -23,11 +27,18 @@ function Home() {
     ///////////////////////////
     //States
     ///////////////////////////
-    const dispatch = useDispatch();
-    const history = useNavigate();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+
+    /**
+     * @typedef {boolean} loading
+     * @description Indicates whether the data is currently loading
+     */
+    const [loading, setLoading] = useState(true);
+
+    /**
+     * @typedef {string|null} Error
+     * @description Stores any error message encountered during API calls
+     */
+    const [error, setError] = useState(null);
     
     ///////////////////////////
     //Functions
@@ -35,28 +46,35 @@ function Home() {
 
 
     ///////////////////////////
-    //HTML Rendering
+    //TSX Rendering
     ///////////////////////////
     return (
             <div className="HomePage" >
+
+                {/*Hero section*/}
+                <section>
                 <div className="HeroTitle">
                         <h1> Empowering the Next Generation of AI Innovators </h1>
                         <h2> Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver. </h2>
                         
                         <button>
                             <h3> Join Us </h3>
-                        </button>
-
-                    
+                        </button>    
                 </div>
-
+                </section>
+                
+                {/*Who we are section*/}
+                <section>
                 <div className="WhoWeAre">
                     <h4> Who We Are </h4>
 
                     <p> The AI Student Association at CU Denver is a student-led organization dedicated to exploring the applications of artificial intelligence, data science, and machine learning. We provide a collaborative platform for students to connect, engage, and grow through hands-on projects, coding challenges, and research initiatives. Our mission is to bridge the gap between theory and practice by organizing events such as hackathons, workshops, and technical talks that equip students with the skills needed to excel in the AI industry. We focus on fostering an environment of innovation, collaboration, and professional development, ensuring that our members are prepared to tackle real-world challenges and contribute meaningfully to the field of AI. Whether you’re an experienced AI enthusiast or just getting started, the AI Student Association offers opportunities for learning, networking, and advancing your AI journey. </p>
                 </div>
+                </section>
 
 
+                {/*Featured projects section*/}
+                <section>
                 <div className="FeaturedProject">
                     <div className="FP-Text">
                         <h4> Featured Project </h4>                  
@@ -70,13 +88,16 @@ function Home() {
                     </div>
 
                 </div>
+                </section>
 
+                {/*Upcoming events section*/}
+                <section>
                 <div className="UpcomingEventsTitle">
                     <h4>Upcoming Events</h4>
                 </div>
-                <div className="UpcomingEvents">
-                
 
+                {/* Events in the form of cards (Check the ReactUI for the cards above for more documentation info)*/}
+                <div className="UpcomingEvents">
                 <div className="Event1">
                 <Card sx={{ maxWidth: 1000, maxHeight: 800}}>
                     <CardActionArea>
@@ -95,7 +116,7 @@ function Home() {
                     </CardActionArea>
                     </Card>
                 </div>
-
+               
                 <div className="Event2">
                 <Card sx={{ maxWidth: 1000, maxHeight: 800}}>
                     <CardActionArea>
@@ -139,7 +160,7 @@ function Home() {
                 </div>
             </div>
             
-           
+            </section>
 
                 
 

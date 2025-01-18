@@ -1,13 +1,40 @@
+/*Functionality imports*/
+
 import React, { useEffect, useState } from 'react';
 import './Events.css';
 
 function Events() {
-    // States for managing events, loading state, and errors
+    ///////////////////////////
+    // States
+    ///////////////////////////
+
+    /**
+     * @typedef {string} events
+     * @description Stores the events fetched from the backend
+     */
     const [events, setEvents] = useState([]);
+
+    /**
+     * @typedef {boolean} loading
+     * @description Indicates whether the data is currently loading
+     */
     const [loading, setLoading] = useState(true);
+
+    /**
+     * @typedef {string|null} Error
+     * @description Stores any error message encountered during API calls
+     */
     const [error, setError] = useState(null);
 
-    // Fetch events from the backend on component mount
+    ///////////////////////////
+    // Functions
+    ///////////////////////////
+
+    /**
+     * Fetches all future events from the backend API that's connected to our google calendar API
+     * 
+     * @returns {Promise<Array<Object>>} - A promise resolving to a list of events
+     */
     useEffect(() => {
         fetch('http://localhost:8080/events')
             .then((response) => {
@@ -26,17 +53,26 @@ function Events() {
             });
     }, []);
 
-    // Loading state
+    /**
+    * Renders a loading message when the loading state is true 
+    * @returns {JSX.Element} - A div element with a loading message (Can be cutomized)
+     */    
     if (loading) {
         return <div className="loading">Loading events...</div>;
     }
 
-    // Error state
+    /**
+    * Displays an error message when an error is found
+    * @returns {JSX.Element} - A div element with an error message
+     */    
     if (error) {
         return <div className="error">Error: {error}</div>;
     }
 
-    // Render the list of events
+    ///////////////////////////
+    // TSX Rendering
+    ///////////////////////////
+
     return (
         <div className="events-container">
             <h1>Upcoming Events</h1>
