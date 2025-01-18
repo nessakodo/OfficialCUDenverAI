@@ -19,7 +19,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json())
 const PORT = 8080;
 const cors = require("cors");
-const allowedOrigins = ["http://127.0.0.1:8080/"];
 const { v4: uuidv4 } = require('uuid');
 
 
