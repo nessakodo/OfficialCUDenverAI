@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./projects.css";
+  import "./Projects.css";
 import { useSelector, useDispatch } from "react-redux";
 import { CgProfile } from "react-icons/cg";
 
