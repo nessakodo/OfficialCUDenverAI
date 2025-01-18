@@ -5,7 +5,7 @@ import img from './images/group.jpg';
 import icon from './images/club-rxCX8m8Y.png';
 
 // CSS imports
-import './aboutus.css';
+import './AboutUs.css';
 import "slick-carousel/slick/slick.css";
 
 // Carousel imports
@@ -20,7 +20,11 @@ const AboutUs = () => {
 
     ///////////////////////////
     //Functions
-    ///////////////////////////
+    ///////////////////////////   
+
+    /**
+     * Settings for the Slider component
+     */
     var settings = {
         dots: true,
         infinite: true,
@@ -30,10 +34,12 @@ const AboutUs = () => {
       };
 
     ///////////////////////////
-    //HTML Rendering
+    //TSX Rendering
     ///////////////////////////
     return (
         <div className="Parent">
+        {/* Our Mission Section */}
+        <section>
         <div className="OurMission">
             <img
                             className="center"
@@ -51,7 +57,9 @@ const AboutUs = () => {
             <div className="hring">
                 <hr />
             </div>
-
+        </section>
+        {/* Officers Section */}
+        <section>
             <div className="OurOfficers">
                     <h1>Our Officers</h1>
                     <div className="Carousel">
@@ -101,7 +109,7 @@ const AboutUs = () => {
                         </Slider>
                     </div>
             </div>
-        
+        </section>
         </div>
 
        

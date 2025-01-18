@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^12.7.3",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.5",
+    "http-proxy-middleware": "^3.0.3",
     "install": "^0.13.0",
     "npm": "^10.7.0",
     "openai": "^4.38.5",
@@ -45,6 +46,10 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "options": {
+    "allowedHosts": ["localhost", ".localhost"],
+    "proxy": "https://localhost:3386/"
   },
   "browserslist": {
     "production": [

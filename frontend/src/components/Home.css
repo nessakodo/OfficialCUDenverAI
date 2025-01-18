@@ -207,3 +207,27 @@ html, body {
 .Event1, .Event2, .Event3 {
   flex: 1 1 calc(33.33% - 20px);
 }
+
+.ShowMoreButton {
+  margin: 20px auto; /* Center horizontally */
+  background: linear-gradient(90deg, #fffefe, #fffefe); /* White background */
+  color: #000; /* Black text */
+  font-size: 16px; /* Slightly larger font size */
+  padding: 14px 28px; /* Larger padding */
+  border: none; /* Remove border */
+  border-radius: 40px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  transition: all 0.3s ease; /* Smooth hover effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center; /* Align text */
+}
+
+.ShowMoreButton:hover {
+  background: linear-gradient(90deg, #a7a7a7, #acacac); /* Gray gradient on hover */
+  transform: scale(1.05); /* Slightly enlarge */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+.ShowMoreButton:active {
+  transform: scale(0.95); /* Shrink slightly on click */
+}

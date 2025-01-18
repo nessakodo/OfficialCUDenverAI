@@ -2,11 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./events.css";
 
-/**
- * The Events component renders the list of events, including a featured event
- * and a grid of upcoming events.
- * @return {JSX.Element} The rendered Events page.
- */
 
 function Events() {
       // Event data array containing information about each event
@@ -82,6 +77,7 @@ function Events() {
           </p>
           <button className="LearnMoreButton">Learn More</button>
           <button className="RegisterButton">Register</button>
+
         </div>
         <div className="FeaturedEventImage">
           <img src={events[0].image} alt={events[0].name} />

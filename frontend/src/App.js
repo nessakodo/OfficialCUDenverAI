@@ -7,11 +7,12 @@ import Projects from './components/Projects';
 import Blog from './components/Blog';
 import Events from './components/Events';
 import AboutUs from './components/AboutUs';
-import Nav from './components/Navbar';
+import Nav from './components/Nav.tsx';
 import Footer from './components/Footer.tsx';
+import Profile from './components/Profile.tsx'
+import News from './components/News.tsx'
 
 const allowedOrigins = [ "http://127.0.0.1:8080/"];
-
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </div>
