@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
-import './signup.css'; 
+import './Signup.css'; 
 
 function AuthPage() {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  ///////////////////////////
+  // States
+  ///////////////////////////
+
+  const navigate = useNavigate(); 
+
+  /**
+  * @typedef {Object} signupData
+  * @description Signup data set redux state
+  */
   const [signupData, setSignupData] = useState({
     fname: '',
     lname: '',
@@ -11,20 +20,43 @@ function AuthPage() {
     password: '',
   });
 
+  /**
+  * @typedef {Object} loginData
+  * @description Login data set redux state
+  */
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
+
+  ///////////////////////////
+  // Functions
+  ///////////////////////////
+
+  /**
+  * Handles the current signup form changes
+  * 
+  */
 
   const handleSignupChange = (e) => {
     const { name, value } = e.target;
     setSignupData({ ...signupData, [name]: value });
   };
 
+  /**
+  * Handles the current login form changes
+  * 
+  */
+
   const handleLoginChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
   };
+
+  /**
+  * POST signup information to the backend API
+  * 
+  */
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
@@ -52,6 +84,11 @@ function AuthPage() {
       });
   };
 
+  /**
+  * POST login information to the backend API
+  * 
+  */
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     console.log('Login Data:', loginData);
@@ -78,6 +115,10 @@ function AuthPage() {
       });
   };
 
+    ///////////////////////////
+    // TSX Rendering
+    ///////////////////////////
+
   return (
     <div
       style={{
@@ -89,6 +130,7 @@ function AuthPage() {
       }}
     >
       {/* Signup Form */}
+      <section>
       <div className= "SignUp" style={{ width: '35%', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
         <h2>Sign Up</h2>
         <form onSubmit={handleSignupSubmit}>
@@ -150,8 +192,10 @@ function AuthPage() {
           </button>
         </form>
       </div>
-
+      </section>
+      
       {/* Login Form */}
+      <section>
       <div className="Login" style={{ width:  '35%', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
         <h2>Log In</h2>
         <form onSubmit={handleLoginSubmit}>
@@ -191,6 +235,7 @@ function AuthPage() {
           </button>
         </form>
       </div>
+      </section>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { SET_NEWS, SET_LOADING, SET_ERROR } from "./../actions/newsActions";
+import { SET_NEWS, SET_LOADING, SET_ERROR } from "../actions/newsActions";
 
 const initialState = {
   news: [],

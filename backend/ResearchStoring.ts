@@ -1,4 +1,8 @@
-const { connectToDB , connection } = require('./database_connection.ts');
+/**
+ * This script allows us to store research retrieved from the API SEMANTIC SCHOLAR API into our SQL database for easy retrieval and avoiding API Limits
+ */
+
+const { connectToDB , connection } = require('./DatabaseConnection.ts');
 const axios = require('axios');
 require('dotenv').config();
 const mysql = require('mysql2/promise');

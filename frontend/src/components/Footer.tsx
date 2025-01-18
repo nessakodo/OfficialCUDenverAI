@@ -1,9 +1,30 @@
+/*Functionality imports*/
+
 import React from 'react';
-import icon from './images/club-rxCX8m8Y.png';
 import './Footer.css'; 
 
+/*Image imports*/
+
+import icon from './images/club-rxCX8m8Y.png';
+
+
+
+
 function Footer() {
-  return (
+    ///////////////////////////
+    // States
+    ///////////////////////////
+
+    
+    ///////////////////////////
+    // Functions
+    ///////////////////////////
+
+    ///////////////////////////
+    // TSX Rendering
+    ///////////////////////////
+    
+    return (
     <footer className="footer" style={{ backgroundColor: '#ffffff', padding: '40px 20px' }}>
       
       <div className="hring">
@@ -11,7 +32,7 @@ function Footer() {
       </div>
       <div className="container">
         
-        {/* Right Column */}
+        {/* Left Column - Contacts */}
         <div className="footer-col">
           <ul className="contact-list">
             <li>
@@ -34,7 +55,7 @@ function Footer() {
           
         </div>
 
-
+        {/* Right Column - Social Media */}
         <div className="footer-col">
           <img
             src={icon}
@@ -58,6 +79,8 @@ function Footer() {
         </div>
 
       </div>
+      
+      {/*The seperation line*/}
 
       <div className="hring">
         <hr />

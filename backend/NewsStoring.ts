@@ -1,4 +1,9 @@
-const { connectToDB , connection } = require('./database_connection.ts');
+/**
+ * This script allows us to store news events about AI from the newsapi in our SQL database for easy retrieval and avoiding API limits
+ */
+
+
+const { connectToDB , connection } = require('./DatabaseConnection.ts');
 const axios = require('axios');
 require('dotenv').config();
 const mysql = require('mysql2/promise');

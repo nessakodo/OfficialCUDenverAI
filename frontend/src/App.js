@@ -7,7 +7,7 @@ import Projects from './components/Projects';
 import Blog from './components/Blog';
 import Events from './components/Events';
 import AboutUs from './components/AboutUs';
-import Nav from './components/Navbar';
+import Nav from './components/Nav.tsx';
 import Footer from './components/Footer.tsx';
 import Profile from './components/Profile.tsx'
 import News from './components/News.tsx'

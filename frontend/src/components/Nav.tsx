@@ -1,10 +1,11 @@
+/*Functionality imports*/
+
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './nav.css'; 
-import { useSelector, useDispatch } from 'react-redux'; 
-import { logoutUser } from '../actions/authActions'; 
-import { CgProfile } from "react-icons/cg";
+import './Nav.css'; 
 import { useNavigate } from 'react-router-dom';
+
+/*Image imports*/
+
 import icon from './images/club-rxCX8m8Y.png';
 
 
@@ -13,23 +14,32 @@ const Nav = () => {
     //States
     ///////////////////////////
 
+    /**
+    * @description React Router hook for navigation
+    */
+    const navigate = useNavigate(); 
+
     ///////////////////////////
     //Functions
     ///////////////////////////
-    const navigate = useNavigate(); // React Router hook for navigation
+    
 
     ///////////////////////////
-    //HTML Rendering
+    //TSX Rendering
     ///////////////////////////
     return (
       <div className="parent">
       <nav>
+        {/*AI Club navigation bar logo*/}
 
         <img
-            src= {icon} // Relative path from public folder
+            src= {icon} 
             alt="AI Club Icon"
-            style={{ width: '50px', height: '50px' }} // Customize size
+            style={{ width: '50px', height: '50px' }} 
         />
+
+        {/*AI Club navigation bar buttons*/}
+
         <div className='Nav-Links'>
           <button onClick={() => navigate('/home')}>Home</button>
           <button onClick={() => navigate('/projects')}>Our Work</button>
@@ -41,10 +51,9 @@ const Nav = () => {
             <button onClick={() => navigate('/signup')}>Join Us</button>
           </div>
         </div>
-          
-
-        
       </nav>
+
+      {/*The seperation line*/}
 
       <div className="hring">
         <hr />

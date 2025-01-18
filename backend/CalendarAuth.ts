@@ -1,3 +1,7 @@
+/**
+ * This script allows us to access a google calendar API
+ */
+
 const { google } = require('googleapis');
 const path = require('path');
 

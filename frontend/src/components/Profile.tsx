@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './profile.css';
+import './Profile.css';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { CgProfile } from "react-icons/cg";
 
@@ -8,9 +8,20 @@ function Profile() {
     ///////////////////////////
     // States
     ///////////////////////////
+
+    /**
+     * gets the `profile` from the Redux state
+     *
+     * @typedef {Array | null} profile - profile information (fname, lname, email, bio, join_date, profile_picture and role)
+     */
     const profile = useSelector((state) => state.user.profile);
+    /**
+     * gets the `projects` that user is involved with from the Redux state
+     *
+     * @typedef {Array | null} projects - The array of projects that user is involved with
+     */
     const projects = useSelector((state) => state.user.projects); 
-    const dispatch = useDispatch();
+    
 
     ///////////////////////////
     // Functions
@@ -24,19 +35,24 @@ function Profile() {
     ///////////////////////////
     return (
         <div className="ProjectsPage">
-            {/* Profile Section */}
-            <div className="profile-section">
-                <div className="avatar">
-                    <CgProfile size={80} />
-                </div>
-                <div className="profile-details">
-                    <h2>{profile?.name || "John Doe"}</h2>
-                    <p>{profile?.email || "johndoe@example.com"}</p>
-                    <button onClick={handleEditProfile}>Edit Profile</button>
-                </div>
-            </div>
 
+            {/* Profile Section */}
+            <section>
+                <div className="profile-section">
+                    <div className="avatar">
+                        <CgProfile size={80} />
+                    </div>
+                    <div className="profile-details">
+                        <h2>{profile?.name || "John Doe"}</h2>
+                        <p>{profile?.email || "johndoe@example.com"}</p>
+                        <button onClick={handleEditProfile}>Edit Profile</button>
+                    </div>
+                </div>
+            </section>
+
+            
             {/* Projects Section */}
+            <section>
             <div className="projects-section">
                 <h3>Your Projects</h3>
                 <ul>
@@ -51,6 +67,8 @@ function Profile() {
                     )}
                 </ul>
             </div>
+            </section>
+
         </div>
     );
 }

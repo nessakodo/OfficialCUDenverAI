@@ -1,3 +1,7 @@
+/**
+ * This script allows us to connect to the SQL database remotely
+ */
+
 const mysql = require('mysql2/promise');
 
 // Declare the connection variable globally within the module

@@ -1,4 +1,4 @@
-import actionTypes from '../constants/actionTypes';
+import actionTypes from '../constants/ActionTypes';
 //import runtimeEnv from '@mars/heroku-js-runtime-env'
 const env = process.env;
 
