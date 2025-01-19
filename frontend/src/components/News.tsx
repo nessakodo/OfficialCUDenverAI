@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { setNews, setLoading, setError } from "../actions/NewsActions";
 import './News.css';
+import FadeInComponent from '../motion/Fading';
+import { motion } from "framer-motion";
+
+
 
 
 function News() {
@@ -56,63 +60,58 @@ function News() {
     //TSX Rendering
     ///////////////////////////
     
-    return (
+    const fadeInVariants = {
+      hidden: { opacity: 0, y: 50 }, 
+      visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
 
-        <div className="news-container" style={{ padding: "20px" }}>
-        <h1>Latest News</h1>
+  const rows = [];
+  for (let i = 0; i < news.length; i += 5) {
+      rows.push(news.slice(i, i + 5));
+  }
+
+  return (
+    <div className="news-container">
+        <h1 style={{color:"black"}}>Latest News</h1>
         {loading ? (
-          <p>Loading news...</p>
+            <p>Loading news...</p>
         ) : (
-          <div className="news-cards" style={{ display: "flex", flexWrap: "wrap" }}>
-            {news.map((article, index) => (
-              <div
-                key={index}
-                className="card"
-                style={{
-                  border: "1px solid #ccc",
-                  borderRadius: "8px",
-                  margin: "10px",
-                  width: "200px",
-                  overflow: "hidden",
-                  boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-                }}
-              >
-                <img
-                  src={article.urlToImage}
-                  alt={article.title}
-                  style={{
-                    width: "100%",
-                    height: "150px",
-                    objectFit: "cover",
-                  }}
-                />
-                <div className="card-content" style={{ padding: "10px" }}>
-                  <h3 style={{ fontSize: "16px", fontWeight: "bold" }}>{article.title}</h3>
-                  <p style={{ fontSize: "14px", color: "#555" }}>{article.description}</p>
-                  <a
-                    href={article.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "block",
-                      marginTop: "10px",
-                      fontSize: "14px",
-                      color: "#007BFF",
-                      textDecoration: "none",
-                    }}
-                  >
-                    Read more
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+            <div>
+                {rows.map((row, rowIndex) => (
+                    <motion.div
+                        key={rowIndex}
+                        className="NewsGrid"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }} // Ensures the animation triggers only once
+                        variants={fadeInVariants}
+                    >
+                        {row.map((article, index) => (
+                            <a
+                                key={index}
+                                href={article.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="NewsCard"
+                                style={{ textDecoration: "none", color: "inherit" }}
+                            >
+                                <img
+                                    src={article.urlToImage}
+                                    alt={article.title}
+                                    className="NewsImage"
+                                />
+                                <div className="NewsDetails">
+                                    <h3>{article.title}</h3>
+                                    <p>{article.description}</p>
+                                </div>
+                            </a>
+                        ))}
+                    </motion.div>
+                ))}
+            </div>
         )}
-      </div>
-          );
-        };
-    
-
-
+    </div>
+);
+}
 
 export default News;

@@ -5,7 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { CgProfile } from "react-icons/cg";
 
 import {motion} from "framer-motion"
-import transition from "../Transition";
+import transition from "../motion/Transition";
+import FadeInComponent from '../motion/Fading';
+
 
 
 function Projects() {
@@ -40,23 +42,26 @@ function Projects() {
 
   return (
     <div className="ProjectsPage">
+
+      <FadeInComponent>
       {/* Header Section */}
       <div className="HeroTitle">
-        <motion.h1  
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 3 }}> 
+        <h1>
         What We’re Working On
-        </motion.h1>
+        </h1>
         <h2>
         Explore the projects, challenges, and initiatives that drive innovation and collaboration in AI, Data Science, and Machine Learning.        </h2>
         <button>
           <h3>Join Us</h3>
         </button>
       </div>
+      </FadeInComponent>
 
+      <FadeInComponent>
       <div className="Impacts"></div>
+      </FadeInComponent>
 
+      <FadeInComponent>
       <div className="FeaturedProject">
   <div className="FP-Text">
     <h4>Featured Project</h4>
@@ -85,8 +90,9 @@ function Projects() {
     <img src={"./images/download.jpg"} alt="AI Club"></img>
   </div>
 </div>
+</FadeInComponent>
 
-
+<FadeInComponent>
     {/* Projects Grid */}
     <div className="ProjectGrid">
       {projects.map((project) => (
@@ -130,8 +136,9 @@ function Projects() {
         </motion.div>
       ))}
     </div>
+    </FadeInComponent>
     </div>
   );
 }
 
-export default transition(Projects);
+export default Projects;

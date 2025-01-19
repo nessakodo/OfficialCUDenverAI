@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import transition from "../Transition";
+import transition from "../motion/Transition";
+import FadeInComponent from '../motion/Fading';
 
 // Image imports
 import img from './images/group.jpg';
@@ -42,14 +43,13 @@ const AboutUs = () => {
     return (
         <div className="Parent">
 
+        <FadeInComponent>
         {/*Hero section*/}
         <section>
             <div className="HeroTitle">
-                <motion.h1  
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 3 }}>  About Us 
-                </motion.h1>
+                <h1>
+                    About Us 
+                </h1> 
                                         
                         
                 <button>
@@ -57,7 +57,9 @@ const AboutUs = () => {
                 </button>    
             </div>
         </section>
-
+        </FadeInComponent>
+        
+        <FadeInComponent>
         {/* Our Mission Section */}
         <section>
         <div className="OurMission">
@@ -72,7 +74,9 @@ const AboutUs = () => {
                 <hr />
             </div>
         </section>
-
+        </FadeInComponent>
+        
+        <FadeInComponent>
         {/* Pillars Section */}
         <section>
         <div className="OurPillars">
@@ -113,8 +117,9 @@ const AboutUs = () => {
                 <hr />
             </div>
         </section>
-        
+        </FadeInComponent>
 
+        <FadeInComponent>
         {/* Officers Section */}
         <section>
             <div className="OurOfficers">
@@ -167,6 +172,8 @@ const AboutUs = () => {
                     </div>
             </div>
         </section>
+        </FadeInComponent>
+
         </div>
 
        
@@ -174,4 +181,4 @@ const AboutUs = () => {
     );
 };
 
-export default transition(AboutUs);
+export default AboutUs;
