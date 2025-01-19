@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { CgProfile } from "react-icons/cg";
 
+import {motion} from "framer-motion"
+import transition from "../motion/Transition";
+import FadeInComponent from '../motion/Fading';
+import NeuralNetworkVisualization from '../motion/NeuralNetworkVisual';
+
+
+
 function Projects() {
   const projects = [
     {
@@ -36,71 +43,111 @@ function Projects() {
 
   return (
     <div className="ProjectsPage">
+
+      
       {/* Header Section */}
+      <section>
+
+      <FadeInComponent>
       <div className="HeroTitle">
-        <h1>Empowering the Next Generation of AI Innovators</h1>
+        <h1>
+        What We’re Working On
+        </h1>
         <h2>
-          Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver.
-        </h2>
+        Explore the projects, challenges, and initiatives that drive innovation and collaboration in AI, Data Science, and Machine Learning.        </h2>
         <button>
           <h3>Join Us</h3>
         </button>
       </div>
+      </FadeInComponent>
 
+      <FadeInComponent>
       <div className="Impacts"></div>
-
-      <div className="FeaturedProject">
-  <div className="FP-Text">
-    <h4>Featured Project</h4>
-    <h5>D.E.C.O.Y. Challenge</h5>
-    <p>
-      This challenge invites all Auraria Campus students to dive into the
-      intriguing world of adversarial machine learning by crafting
-      adversarial examples that can deceive a robust machine learning
-      classifier trained on the CIFAR-10 dataset. Your mission is to create
-      subtle but effective modifications to a set of test images, fooling
-      the classifier into making incorrect predictions. This challenge is a
-      perfect opportunity for students to explore model vulnerabilities,
-      gain hands-on experience with adversarial techniques, and contribute
-      to ongoing research in AI robustness and security.
-    </p>
-    <button
-  className="LearnMoreButton"
-  onClick={() => window.open("https://cudenver-ai.github.io/", "_blank")}
->
-  Learn More
-</button>
-
-  </div>
-
-  <div className="FP-Image">
-    <img src={"./images/download.jpg"} alt="AI Club"></img>
-  </div>
-</div>
+      </FadeInComponent>
+      </section>
 
 
-      {/* Projects Grid */}
-      <div className="ProjectGrid">
-        {projects.map((project) => (
-          <div className="ProjectCard" key={project.id}>
-            <img src={project.image} alt={project.title} className="ProjectImage" />
-            <div className="ProjectDetails">
-              <h3>{project.title}</h3>
-              <p>
-                {expanded === project.id
-                  ? project.description
-                  : `${project.description.substring(0, 50)}...`}
-              </p>
-              <button
-                className="ShowMoreButton"
-                onClick={() => handleToggleExpand(project.id)}
-              >
-                {expanded === project.id ? "Show Less" : "Show More"}
-              </button>
-            </div>
+      <section>
+      <FadeInComponent>
+      <div className="FeaturedProject" style = {{backgroundColor: "white"}}> 
+          <div className="FP-Text">
+          <h4>Featured Project</h4>
+          <h5>D.E.C.O.Y. Challenge</h5>
+          <p>
+            This challenge invites all Auraria Campus students to dive into the
+            intriguing world of adversarial machine learning by crafting
+            adversarial examples that can deceive a robust machine learning
+            classifier trained on the CIFAR-10 dataset. Your mission is to create
+            subtle but effective modifications to a set of test images, fooling
+            the classifier into making incorrect predictions. This challenge is a
+            perfect opportunity for students to explore model vulnerabilities,
+            gain hands-on experience with adversarial techniques, and contribute
+            to ongoing research in AI robustness and security.
+          </p>
+          <button
+        className="LearnMoreButton"
+        onClick={() => window.open("https://cudenver-ai.github.io/", "_blank")}
+      >
+        Learn More
+      </button>
+
+        </div>
+
+        <div className="FP-Image">
+          <img src={"./images/download.jpg"} alt="AI Club"></img>
+        </div>
+    </div>
+    </FadeInComponent>
+
+    {/* Projects Grid */}
+    <FadeInComponent>
+    <div className="ProjectGrid">
+      <div className="ProjectGridCards">
+      {projects.map((project) => (
+        <motion.div
+          className="ProjectCard"
+          key={project.id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.4 }}
+        >
+          <motion.img
+            src={project.image}
+            alt={project.title}
+            className="ProjectImage"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.4 }}
+          />
+          <div className="ProjectDetails">
+            <h3>{project.title}</h3>
+            <motion.p
+              initial={{ height: 50, overflow: "hidden" }}
+              animate={{
+                height: expanded === project.id ? "auto" : 50,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {expanded === project.id
+                ? project.description
+                : `${project.description.substring(0, 50)}...`}
+            </motion.p>
+            <motion.button
+              className="ShowMoreButton"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => handleToggleExpand(project.id)}
+            >
+              {expanded === project.id ? "Show Less" : "Show More"}
+            </motion.button>
           </div>
-        ))}
+        </motion.div>
+      ))}
       </div>
+    </div>
+    </FadeInComponent>
+    </section>
+
     </div>
   );
 }

@@ -35,21 +35,15 @@ function Footer() {
         {/* Left Column - Contacts */}
         <div className="footer-col">
           <ul className="contact-list">
-            <li>
             <a href="https://www.ucdenver.edu/" className="social-link">
               <i className="fas fa-home"></i> 
             </a>
-            </li>
-            <li>
             <a className="social-link" href="mailto:aisa@ucdenver.edu?subject=Your%20Subject%20Here&body=Your%20message%20here.">
               <i className="fas fa-envelope"></i>
             </a>
-            </li>
-            <li>
             <a href="" className="social-link">
               <i className="fas fa-phone" ></i> 
             </a>
-            </li>
 
           </ul>
           

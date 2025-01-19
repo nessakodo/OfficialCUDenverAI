@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import './Home.css'; 
+import transition from "../motion/Transition";
+import FadeInComponent from '../motion/Fading';
 
 /*Image imports*/
 
@@ -20,8 +22,7 @@ import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
 
-
-
+import {motion} from "framer-motion"
 
 function Home() {
     ///////////////////////////
@@ -50,11 +51,15 @@ function Home() {
     ///////////////////////////
     return (
             <div className="HomePage" >
+                <FadeInComponent>
 
                 {/*Hero section*/}
                 <section>
                 <div className="HeroTitle">
-                        <h1> Empowering the Next Generation of AI Innovators </h1>
+                        <h1> 
+                        Empowering the Next Generation of AI Innovators 
+                        </h1> 
+                        
                         <h2> Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver. </h2>
                         
                         <button>
@@ -62,18 +67,22 @@ function Home() {
                         </button>    
                 </div>
                 </section>
+                </FadeInComponent>
                 
                 {/*Who we are section*/}
                 <section>
+                <FadeInComponent>
                 <div className="WhoWeAre">
                     <h4> Who We Are </h4>
 
                     <p> The AI Student Association at CU Denver is a student-led organization dedicated to exploring the applications of artificial intelligence, data science, and machine learning. We provide a collaborative platform for students to connect, engage, and grow through hands-on projects, coding challenges, and research initiatives. Our mission is to bridge the gap between theory and practice by organizing events such as hackathons, workshops, and technical talks that equip students with the skills needed to excel in the AI industry. We focus on fostering an environment of innovation, collaboration, and professional development, ensuring that our members are prepared to tackle real-world challenges and contribute meaningfully to the field of AI. Whether you’re an experienced AI enthusiast or just getting started, the AI Student Association offers opportunities for learning, networking, and advancing your AI journey. </p>
                 </div>
+                </FadeInComponent>
                 </section>
 
 
                 {/*Featured projects section*/}
+                <FadeInComponent>
                 <section>
                 <div className="FeaturedProject">
                     <div className="FP-Text">
@@ -89,8 +98,10 @@ function Home() {
 
                 </div>
                 </section>
+                </FadeInComponent>
 
                 {/*Upcoming events section*/}
+                <FadeInComponent>
                 <section>
                 <div className="UpcomingEventsTitle">
                     <h4>Upcoming Events</h4>
@@ -161,6 +172,7 @@ function Home() {
             </div>
             
             </section>
+            </FadeInComponent>
 
                 
 

@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+import transition from "../motion/Transition";
+import FadeInComponent from '../motion/Fading';
 
 // Image imports
 import img from './images/group.jpg';
@@ -8,9 +10,11 @@ import icon from './images/club-rxCX8m8Y.png';
 import './AboutUs.css';
 import "slick-carousel/slick/slick.css";
 
-// Carousel imports
+// UI imports
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+
+import {motion} from "framer-motion"
 
 
 const AboutUs = () => {
@@ -38,15 +42,27 @@ const AboutUs = () => {
     ///////////////////////////
     return (
         <div className="Parent">
+
+        <FadeInComponent>
+        {/*Hero section*/}
+        <section>
+            <div className="HeroTitle">
+                <h1>
+                    About Us 
+                </h1> 
+                                        
+                        
+                <button>
+                    <h3> Join Us </h3>
+                </button>    
+            </div>
+        </section>
+        </FadeInComponent>
+        
+        <FadeInComponent>
         {/* Our Mission Section */}
         <section>
         <div className="OurMission">
-            <img
-                            className="center"
-                            src= {icon}
-                            alt="AI Club Icon"  
-                                
-            />
 
                 <div className="MissionText">
                     <h1>Our Mission</h1>
@@ -58,6 +74,52 @@ const AboutUs = () => {
                 <hr />
             </div>
         </section>
+        </FadeInComponent>
+        
+        <FadeInComponent>
+        {/* Pillars Section */}
+        <section>
+        <div className="OurPillars">
+                <div>
+                    <h1>Our Pillars</h1>
+                </div>
+                <div className="Pillars">
+                    <div className="PillarCard">
+                        <img src={img} alt="Innovation" className="PillarImage" />
+                        <h2>Innovation</h2>
+                        <p>
+                            Driving the exploration of artificial intelligence, machine learning, and data science through 
+                            groundbreaking projects, research, and real-world applications.
+                        </p>
+                    </div>
+
+                    <div className="PillarCard">
+                        <img src={img} alt="Community" className="PillarImage" />
+                        <h2>Community</h2>
+                        <p>
+                            Building a collaborative and supportive network of students, faculty, and industry professionals 
+                            united by a shared passion for AI and technology.
+                        </p>
+                    </div>
+
+                    <div className="PillarCard">
+                        <img src={img} alt="Diversity" className="PillarImage" />
+                        <h2>Diversity</h2>
+                        <p>
+                            Fostering inclusivity by embracing diverse perspectives, backgrounds, and ideas to enrich 
+                            learning and innovation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="hring">
+                <hr />
+            </div>
+        </section>
+        </FadeInComponent>
+
+        <FadeInComponent>
         {/* Officers Section */}
         <section>
             <div className="OurOfficers">
@@ -110,6 +172,8 @@ const AboutUs = () => {
                     </div>
             </div>
         </section>
+        </FadeInComponent>
+
         </div>
 
        

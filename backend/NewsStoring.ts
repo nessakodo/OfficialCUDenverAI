@@ -17,7 +17,6 @@ async function fetchAndStoreNews() {
 
         // NewsAPI
         const response = await axios.get(`https://newsapi.org/v2/everything?q=Artificial Intelligence&apiKey=${process.env.NEWS_ID}`);
-        
 
         // Extract the data and insert it into the database
         console.log(response.data)
@@ -32,14 +31,30 @@ async function fetchAndStoreNews() {
             const publishedAt = n.publishedAt.replace('T', ' ').replace('Z', '') || null;
             const url = n.url || 'No URL';
             const urlToImage = n.urlToImage || 'No Image';
-            
-            // Insert into the database
-            await connection.execute(
-            'INSERT INTO NEWS (id , title, author, content, description, publishedAt, url, urlToImage) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-            [id , title, author, content, description, publishedAt, url, urlToImage]
+        
+            // We don't want to display news without images and most of them are errors
+            if (urlToImage == 'No Image') {
+                continue;
+            }
+
+                    
+            // Check if the news article already exists based on its URL
+            const [existingNews] = await connection.execute(
+                'SELECT id FROM NEWS WHERE url = ? LIMIT 1',
+                [url]
             );
+
+            if (existingNews.length === 0) {
+                // Insert into the database only if the news does not exist
+                await connection.execute(
+                    'INSERT INTO NEWS (id, title, author, content, description, publishedAt, url, urlToImage) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                    [id, title, author, content, description, publishedAt, url, urlToImage]
+                );
+                console.log(`Inserted news: ${title}`);
+            } else {
+                console.log(`News already exists: ${title}`);
+            }
         }
-    
         // Close the database connection
         await connection.end();
     
