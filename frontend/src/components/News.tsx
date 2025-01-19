@@ -59,6 +59,12 @@ function News() {
     ///////////////////////////
     //TSX Rendering
     ///////////////////////////
+
+    const titleVariants = {
+      hidden: { opacity: 0, scale: 0.8 },
+      visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: 'easeOut' } },
+    };
+
     
     const fadeInVariants = {
       hidden: { opacity: 0, y: 50 }, 
@@ -72,7 +78,17 @@ function News() {
 
   return (
     <div className="news-container">
-        <h1 style={{color:"black"}}>Latest News</h1>
+        {/* Animated Title */}
+        <motion.h1
+            variants={titleVariants}
+            initial="hidden"
+            animate="visible"
+            style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold' }}
+            className="news-title"
+        >
+            Latest News
+        </motion.h1>
+
         {loading ? (
             <p>Loading news...</p>
         ) : (
@@ -83,7 +99,7 @@ function News() {
                         className="NewsGrid"
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true }} // Ensures the animation triggers only once
+                        viewport={{ once: true }}
                         variants={fadeInVariants}
                     >
                         {row.map((article, index) => (
@@ -93,7 +109,7 @@ function News() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="NewsCard"
-                                style={{ textDecoration: "none", color: "inherit" }}
+                                style={{ textDecoration: 'none', color: 'inherit' }}
                             >
                                 <img
                                     src={article.urlToImage}
