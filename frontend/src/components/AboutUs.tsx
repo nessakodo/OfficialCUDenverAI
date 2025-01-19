@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import transition from "../Transition";
 
 // Image imports
 import img from './images/group.jpg';
@@ -8,9 +9,11 @@ import icon from './images/club-rxCX8m8Y.png';
 import './AboutUs.css';
 import "slick-carousel/slick/slick.css";
 
-// Carousel imports
+// UI imports
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+
+import {motion} from "framer-motion"
 
 
 const AboutUs = () => {
@@ -42,7 +45,12 @@ const AboutUs = () => {
         {/*Hero section*/}
         <section>
             <div className="HeroTitle">
-                <h1> About Us </h1>
+                <motion.h1  
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 3 }}>  About Us 
+                </motion.h1>
+                                        
                         
                 <button>
                     <h3> Join Us </h3>
@@ -166,4 +174,4 @@ const AboutUs = () => {
     );
 };
 
-export default AboutUs;
+export default transition(AboutUs);

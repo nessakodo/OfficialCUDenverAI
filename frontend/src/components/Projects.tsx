@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { CgProfile } from "react-icons/cg";
 
+import {motion} from "framer-motion"
+import transition from "../Transition";
+
+
 function Projects() {
   const projects = [
     {
@@ -38,7 +42,12 @@ function Projects() {
     <div className="ProjectsPage">
       {/* Header Section */}
       <div className="HeroTitle">
-        <h1>What We’re Working On</h1>
+        <motion.h1  
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 3 }}> 
+        What We’re Working On
+        </motion.h1>
         <h2>
         Explore the projects, challenges, and initiatives that drive innovation and collaboration in AI, Data Science, and Machine Learning.        </h2>
         <button>
@@ -78,30 +87,51 @@ function Projects() {
 </div>
 
 
-      {/* Projects Grid */}
-      <div className="ProjectGrid">
-        {projects.map((project) => (
-          <div className="ProjectCard" key={project.id}>
-            <img src={project.image} alt={project.title} className="ProjectImage" />
-            <div className="ProjectDetails">
-              <h3>{project.title}</h3>
-              <p>
-                {expanded === project.id
-                  ? project.description
-                  : `${project.description.substring(0, 50)}...`}
-              </p>
-              <button
-                className="ShowMoreButton"
-                onClick={() => handleToggleExpand(project.id)}
-              >
-                {expanded === project.id ? "Show Less" : "Show More"}
-              </button>
-            </div>
+    {/* Projects Grid */}
+    <div className="ProjectGrid">
+      {projects.map((project) => (
+        <motion.div
+          className="ProjectCard"
+          key={project.id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.4 }}
+        >
+          <motion.img
+            src={project.image}
+            alt={project.title}
+            className="ProjectImage"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.4 }}
+          />
+          <div className="ProjectDetails">
+            <h3>{project.title}</h3>
+            <motion.p
+              initial={{ height: 50, overflow: "hidden" }}
+              animate={{
+                height: expanded === project.id ? "auto" : 50,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {expanded === project.id
+                ? project.description
+                : `${project.description.substring(0, 50)}...`}
+            </motion.p>
+            <motion.button
+              className="ShowMoreButton"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => handleToggleExpand(project.id)}
+            >
+              {expanded === project.id ? "Show Less" : "Show More"}
+            </motion.button>
           </div>
-        ))}
-      </div>
+        </motion.div>
+      ))}
+    </div>
     </div>
   );
 }
 
-export default Projects;
+export default transition(Projects);

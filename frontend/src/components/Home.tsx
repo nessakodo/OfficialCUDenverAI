@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import './Home.css'; 
+import transition from "../Transition";
 
 /*Image imports*/
 
@@ -20,8 +21,7 @@ import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
 
-
-
+import {motion} from "framer-motion"
 
 function Home() {
     ///////////////////////////
@@ -54,7 +54,12 @@ function Home() {
                 {/*Hero section*/}
                 <section>
                 <div className="HeroTitle">
-                        <h1> Empowering the Next Generation of AI Innovators </h1>
+                        <motion.h1  
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 3 }}> 
+                        Empowering the Next Generation of AI Innovators 
+                        </motion.h1>
                         <h2> Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver. </h2>
                         
                         <button>
@@ -168,4 +173,4 @@ function Home() {
         );
 }
 
-export default Home;
+export default transition(Home);
