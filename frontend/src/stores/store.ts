@@ -1,6 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import authReducer from "../reducers/AuthReducer";
 import newsReducer from "../reducers/NewsReducer";
 
 const middlewares = [thunk];
