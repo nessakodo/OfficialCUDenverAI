@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { setNews, setLoading, setError } from "../actions/newsActions";
+import { setNews, setLoading, setError } from "../actions/NewsActions";
 import './News.css';
 
 

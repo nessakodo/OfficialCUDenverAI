@@ -1,98 +1,109 @@
-/*Functionality imports*/
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Events.css";
 
-import React, { useEffect, useState } from 'react';
-import './Events.css';
 
 function Events() {
-    ///////////////////////////
-    // States
-    ///////////////////////////
+      // Event data array containing information about each event
+  const events = [
+    {
+      id: 1,
+      location: "Auraria Campus",
+      name: "Decoy Challenge",
+      date: "March 5, 2025",
+      time: "3 PM - 6 PM",
+      description:
+        "Dive into the world of adversarial machine learning with this hands-on challenge to fool robust classifiers.",
+      image: require("./images/vicente.jpg"),
+    },
+    {
+      id: 2,
+      location: "CU Denver",
+      name: "AI Research Symposium",
+      date: "March 10, 2025",
+      time: "10 AM - 4 PM",
+      description:
+        "Showcasing cutting-edge research in artificial intelligence and machine learning.",
+      image: require("./images/download.jpg"),
+    },
+    {
+      id: 3,
+      location: "Online",
+      name: "AI Ethics Workshop",
+      date: "March 15, 2025",
+      time: "1 PM - 3 PM",
+      description:
+        "Explore the ethical challenges and responsibilities associated with artificial intelligence.",
+      image: require("./images/download.jpg"),
+    },
+    {
+        id: 4,
+        location: "Online",
+        name: "AI Ethics Workshop",
+        date: "March 15, 2025",
+        time: "1 PM - 3 PM",
+        description:
+          "Explore the ethical challenges and responsibilities associated with artificial intelligence.",
+        image: require("./images/download.jpg"),
+      },
+  ];
 
-    /**
-     * @typedef {string} events
-     * @description Stores the events fetched from the backend
-     */
-    const [events, setEvents] = useState([]);
+  return (
+    <div className="EventsPage">
+      {/* Header Section */}
+      <header className="EventsHeader">
+        <h1>Upcoming Events</h1>
+        <h2>
+          Empowering the next generation of AI innovators through workshops,
+          challenges, and discussions.
+        </h2>
+        <button className="JoinUsButton">
+          <Link to="/join">Join Us</Link>
+        </button>
+      </header>
 
-    /**
-     * @typedef {boolean} loading
-     * @description Indicates whether the data is currently loading
-     */
-    const [loading, setLoading] = useState(true);
+      {/* Featured Event Section */}
+      <section className="FeaturedEvent">
+        <div className="FeaturedEventText">
+          <h2>Featured Event</h2>
+          <h3>{events[0].name}</h3>
+          <p>{events[0].description}</p>
+          <p>
+            <strong>Location:</strong> {events[0].location}
+          </p>
+          <p>
+            <strong>Date:</strong> {events[0].date} | <strong>Time:</strong>{" "}
+            {events[0].time}
+          </p>
+          <button className="LearnMoreButton">Learn More</button>
+          <button className="RegisterButton">Register</button>
 
-    /**
-     * @typedef {string|null} Error
-     * @description Stores any error message encountered during API calls
-     */
-    const [error, setError] = useState(null);
-
-    ///////////////////////////
-    // Functions
-    ///////////////////////////
-
-    /**
-     * Fetches all future events from the backend API that's connected to our google calendar API
-     * 
-     * @returns {Promise<Array<Object>>} - A promise resolving to a list of events
-     */
-    useEffect(() => {
-        fetch('http://localhost:8080/events')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setEvents(data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                setError(error.message);
-                setLoading(false);
-            });
-    }, []);
-
-    /**
-    * Renders a loading message when the loading state is true 
-    * @returns {JSX.Element} - A div element with a loading message (Can be cutomized)
-     */    
-    if (loading) {
-        return <div className="loading">Loading events...</div>;
-    }
-
-    /**
-    * Displays an error message when an error is found
-    * @returns {JSX.Element} - A div element with an error message
-     */    
-    if (error) {
-        return <div className="error">Error: {error}</div>;
-    }
-
-    ///////////////////////////
-    // TSX Rendering
-    ///////////////////////////
-
-    return (
-        <div className="events-container">
-            <h1>Upcoming Events</h1>
-            <div className="events-list">
-                {events.length === 0 ? (
-                    <div>No events available.</div>
-                ) : (
-                    events.map((event, index) => (
-                        <div key={index} className="event-item">
-                            <h2>{event.summary}</h2>
-                            <p>{event.description}</p>
-                            <p>
-                                <strong>Date:</strong> {event.start}
-                            </p>
-                        </div>
-                    ))
-                )}
-            </div>
         </div>
-    );
+        <div className="FeaturedEventImage">
+          <img src={events[0].image} alt={events[0].name} />
+        </div>
+      </section>
+
+      {/* Events Grid */}
+      <div className="EventsGrid">
+        {events.slice(1).map((event) => (
+          <div className="EventCard" key={event.id}>
+            <img src={event.image} alt={event.name} className="EventImage" />
+            <div className="EventDetails">
+              <h3>{event.name}</h3>
+              <p>{event.location}</p>
+              <p>
+                {event.date} | {event.time}
+              </p>
+              <p>{event.description.substring(0, 50)}...</p>
+              <button className="LearnMoreButton">Learn More</button>
+              <button className="RegisterButton">Register</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default Events;
