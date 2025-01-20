@@ -13,48 +13,38 @@ const cors = require("cors");
 const allowedOrigins = ["http://localhost:3000"];
 const { v4: uuidv4 } = require('uuid');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
 
 ///////////////////////
 // Middleware functions
 ///////////////////////
 
-// Session authentication setup
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,  
-  cookie: {
-    maxAge: 60000 * 60,
-    secure: true
-  }
+// Parsers
 
-}))
-
-
-// Verify session authentication
-const requireAuth = (req, res, next) => {
-  if (req.session.userId) {
-      next(); // User is authenticated, continue to next middleware
-  } else {
-      res.redirect('/sign-in'); // User is not authenticated, redirect to login page
-  }
-}
-
+app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(bodyParser.json())
 
 
+// Session authentication setup
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000 
+    },
+  })
+);
+
+// CORS setup
+
 app.use(
   cors({
-      origin: function(origin, callback) {
-          if (!origin) return callback(null, true);
-          if (allowedOrigins.indexOf(origin) === -1) {
-              var msg =
-                  "The CORS policy for this site does not " +
-                  "allow access from the specified Origin.";
-              return callback(new Error(msg), false);
-          }
-          return callback(null, true);
-      }
+      origin: true,
+      credentials: true
   })
 ); 
 
@@ -66,11 +56,10 @@ const CALENDAR_ID = process.env.CALENDAR_ID;
 /////////////////////////
 // HOME 
 //////////////////////////
-app.get('/', requireAuth , async (req, res) => {
-  console.log(req.session)
-  console.log(req.session.id)
-  req.session.visited = true;
-  console.log(req.session.authenticated)
+app.get('/' , (req, res) => {
+  console.log(req.session);
+  console.log(req.session.id);
+  res.send('This is the Projects Page');
 });
 
 
@@ -156,10 +145,10 @@ app.get('/events', async (req, res) => {
     // Retrieve events from the calendar
     const response = await calendar.events.list({
       calendarId: CALENDAR_ID,
-      timeMin: new Date().toISOString(), // Get events starting now
-      maxResults: 10,                   // Limit number of events
-      singleEvents: true,               // Expand recurring events
-      orderBy: 'startTime',             // Sort by start time
+      timeMin: new Date().toISOString(),
+      maxResults: 10,                   
+      singleEvents: true,               
+      orderBy: 'startTime',            
     });
 
     const events = response.data.items;
@@ -170,7 +159,7 @@ app.get('/events', async (req, res) => {
 
     // Format and return events
     const formattedEvents = events.map((event) => {
-      const start = event.start.dateTime || event.start.date; // Handle all-day events
+      const start = event.start.dateTime || event.start.date; 
       return {
         start,
         summary: event.summary,
@@ -209,7 +198,6 @@ app.post('/sign-up', async (req, res) => {
       [userId,email, fname, lname, hashedPassword, new Date(), 'member']
     );
 
-    console.log(new Date())
 
 
     await connection.end();
@@ -251,31 +239,51 @@ app.post('/sign-in', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Set session Identifier
-    req.session.userId = rows[0].user_id
-  
+    // Set session Identifier  
+    res.cookie("username", rows[0].user_id)
+
     res.status(200).json({ message: 'Sign-in successful'});
+
   } catch (error) {
     res.status(500).json({ message: 'Error signing in', error: error.message });
   }
 });
 
 
-app.get('/profile', requireAuth, (req, res) => {
+app.post('/sign-out', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send({ message: "Failed to log out" });
+    }
+    res.clearCookie('username');
+    res.clearCookie('connect.sid');
+    
+    res.status(200).send({ message: "Logged out successfully" });
+  });
+});
 
 
-}
-);
+app.get('/profile', async (req, res) => {
+  try {
+    let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
+    const userId = req.cookies['username'];
+
+    const [rows] = await connection.execute(
+      'SELECT user_id, fname, lname, email, role, bio, profile_picture FROM USERS WHERE user_id = ?',
+      [userId]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(rows[0]);
+
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching user profile', error: error.message });
+  }
+});
 
 app.listen(PORT, async () => {
-  try {
-    // testing database connection
-
-    await sequelize.authenticate();
-    console.log('Database connected successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error.message);
-  }
-
   console.log(`Server is running on http://localhost:${PORT}`);
 });

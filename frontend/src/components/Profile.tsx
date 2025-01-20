@@ -8,27 +8,48 @@ function Profile() {
     ///////////////////////////
     // States
     ///////////////////////////
+    /**
+    * @description React hook for dispatching actions to update states
+    */
+    const dispatch = useDispatch();
 
     /**
-     * gets the `profile` from the Redux state
+     * gets the `news`, `loading`, and `error` from the Redux state
      *
-     * @typedef {Array | null} profile - profile information (fname, lname, email, bio, join_date, profile_picture and role)
+     * @typedef {Array | null} news - The array of news articles fetched from the store, or null if not yet loaded
+     * @typedef {boolean} loading - Indicates whether the news data is currently being loaded
+     * @typedef {string | null} error - Error message if there was an issue fetching the news, or null if no error
      */
-    const profile = useSelector((state) => state.user.profile);
-    /**
-     * gets the `projects` that user is involved with from the Redux state
-     *
-     * @typedef {Array | null} projects - The array of projects that user is involved with
-     */
-    const projects = useSelector((state) => state.user.projects); 
+    const { news, loading, error } = useSelector((state: any) => state.news);
     
-
     ///////////////////////////
-    // Functions
+    //Functions
     ///////////////////////////
-    const handleEditProfile = () => {
-        console.log("Edit profile clicked!"); 
-    };
+ 
+    /**
+     * Fetches news from our backend API
+     * 
+     * @returns {Promise<Array<Object>>} - A promise resolving to a list of news
+     */    
+    useEffect(() => {
+        // Check if news is already in Redux state
+        if (news.length === 0) {
+          dispatch(setLoading(true));
+          fetch("http://localhost:8080/news")
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              dispatch(setNews(data));
+            })
+            .catch((error) => {
+              dispatch(setError(error.message));
+            });
+        }
+      }, [dispatch, news.length]);
 
     ///////////////////////////
     // TSX Rendering
