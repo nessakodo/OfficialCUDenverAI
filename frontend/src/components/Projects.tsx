@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+/*Functionality imports*/
+
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
   import "./Projects.css";
 import { useSelector, useDispatch } from "react-redux";
 import { CgProfile } from "react-icons/cg";
+
+/*Image imports*/
+
+import template_vid from "./images/20241010_235245000_iOS.mp4"
+import img from './images/group.jpg';
+
+/*UI imports*/
 
 import {motion} from "framer-motion"
 import transition from "../motion/Transition";
@@ -41,6 +50,13 @@ function Projects() {
     setExpanded(expanded === id ? null : id);
   };
 
+  useEffect(() => {
+    const video = document.querySelector(".video-background") as HTMLVideoElement;
+    if (video) {
+      video.playbackRate = 0.7; 
+    }
+  }, []);
+
   return (
     <div className="ProjectsPage">
 
@@ -49,7 +65,11 @@ function Projects() {
       <section>
 
       <FadeInComponent>
-      <div className="HeroTitle">
+      <div className="HeroTitle-Projects">
+      <video autoPlay loop muted className="video-background">
+        <source src={template_vid} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
         <h1>
         What We’re Working On
         </h1>
@@ -94,7 +114,7 @@ function Projects() {
         </div>
 
         <div className="FP-Image">
-          <img src={"./images/download.jpg"} alt="AI Club"></img>
+          <img src={img} alt="AI Club"></img>
         </div>
     </div>
     </FadeInComponent>
