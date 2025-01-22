@@ -105,8 +105,7 @@ app.get('/blogs', async (req, res) => {
     let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
 
     const [rows] = await connection.execute(
-      'SELECT * FROM research_papers WHERE category = ?',
-      [req.params.category]
+      'SELECT * FROM BLOGS'
     );
 
     res.status(200).json(rows);

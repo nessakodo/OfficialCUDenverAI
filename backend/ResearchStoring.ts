@@ -55,7 +55,8 @@ async function fetchAndStorePapers(category) {
         }
     }
 
-const categories = ["Computer-Vision", "Natural-Language-Processing", "Reinforcement-learning", "GenAI", "Robotics", "AI-Ethics", "Multi-agent-systems", "EdgeAI", "Healthcare-and-AI", "Theoritical-AI", "Human-centered-AI", "LLMs-and-AI-in-Finance-and-economics"]
+// Change to the categories you want to store
+const categories = [ "Theoretical-AI"]
   
 for (const cat of categories){
     // Call the function
