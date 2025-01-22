@@ -97,5 +97,27 @@
     font-size: 64px;
     color: black;
     font-weight: bold;
+    height: 100%;
 }
 
+.Carousel img {
+    width: 13%;
+}
+
+.Carousel p {
+    margin-right: 160px;
+    margin-left: 160px;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #34495e;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Carousel p:first-of-type {
+    margin-top: 0;
+  }

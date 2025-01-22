@@ -7,6 +7,11 @@
   margin-left: 160px;
 }
 
+.loading-container {
+  text-align: center;
+}
+
+
 .news-title {
   font-size: 3rem;   
   color: #000000;    
