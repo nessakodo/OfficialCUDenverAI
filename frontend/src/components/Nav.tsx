@@ -73,9 +73,9 @@ const Nav = () => {
                     <button onClick={() => navigate('/projects')}>Our Work</button>
                     <button onClick={() => navigate('/events')}>Events</button>
                     <button onClick={() => navigate('/blog')}>Resources</button>
-                    <button onClick={() => navigate('/about-us')}>About Us</button>
                     <button onClick={() => navigate('/news')}>News</button>
-                    
+                    <button onClick={() => navigate('/about-us')}>About Us</button>
+
                     <div className="Join-Us">
                         {isLoggedIn ? (
                             <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
