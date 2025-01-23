@@ -39,11 +39,20 @@ async function fetchAndStorePapers(category) {
             const year = paper.year || null;
             const url = paper.url || 'No URL';
             
+            const [existingResearch] = await connection.execute(
+                'SELECT paper_id FROM research_papers',
+                [paperid]
+            );
+
+            if (existingResearch.length === 0) {
             // Insert into the database
             await connection.execute(
             'INSERT INTO research_papers (paper_id, title, authors, abstract, year, url, category) VALUES (?, ?, ?, ?, ?, ?, ?)',
             [paperid, title, authors, abstract, year, url, category]
             );
+            console.log(`Inserted research: ${title}`);
+        } else {
+            console.log(`Research already exists: ${title}`);
         }
     
         // Close the database connection
