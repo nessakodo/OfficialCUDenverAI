@@ -38,7 +38,7 @@ const Nav = () => {
 
     const SignOut = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/sign-out', {}, {
+            const response = await axios.post('http://129.153.84.107:8080/sign-out', {}, {
                 withCredentials: true, // Ensures cookies are sent
             });
             if (response.status === 200) {

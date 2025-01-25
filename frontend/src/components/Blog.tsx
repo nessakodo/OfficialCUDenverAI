@@ -109,7 +109,7 @@ function Blog() {
      */
     const fetchResearchPapers = async (category) => {
         try {
-            const response = await fetch(`http://localhost:8080/research/${category}`);
+            const response = await fetch(`http://129.153.84.107:8080/research/${category}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -141,7 +141,7 @@ function Blog() {
               dispatch(setBlogs(data));
             })
             .catch((error) => {
-              dispatch(setError(error.message)); 
+              console.log("error"); 
             })
         };
       };

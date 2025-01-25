@@ -62,7 +62,7 @@ function AuthPage() {
     e.preventDefault();
     console.log('Signup Data:', signupData);
     
-    fetch('http://localhost:8080/sign-up', {
+    fetch('http://129.153.84.107:8080/sign-up', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ function AuthPage() {
     e.preventDefault();
     console.log('Login Data:', loginData);
 
-    fetch('http://localhost:8080/sign-in', {
+    fetch('http://129.153.84.107:8080/sign-in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

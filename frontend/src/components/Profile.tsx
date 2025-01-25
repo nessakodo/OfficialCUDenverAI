@@ -35,7 +35,7 @@ function Profile() {
         // Check if news is already in Redux state
         if (news.length === 0) {
           dispatch(setLoading(true));
-          fetch("http://localhost:8080/news")
+          fetch("http://129.153.84.107:8080/news")
             .then((response) => {
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
