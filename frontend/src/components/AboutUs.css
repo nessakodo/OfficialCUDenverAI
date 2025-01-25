@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .center {
     display: block;
     margin-left: auto;
