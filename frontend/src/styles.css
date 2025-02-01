@@ -165,15 +165,15 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1rem, 2.5vw, 2rem);
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 h4 {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 h5 {
@@ -182,4 +182,8 @@ h5 {
 
 h6 {
   font-size: 0.875rem;
+}
+
+p {
+  font-size: clamp(0.5rem, 1vw, 2rem);
 }
