@@ -1,10 +1,10 @@
 .NewsGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
   gap: 40px 20px; 
   padding: 20px;
-  margin-right: 160px;
-  margin-left: 160px;
+  margin-right: 7%;
+  margin-left: 7%;
 }
 
 .loading-container {
@@ -13,7 +13,6 @@
 
 
 .news-title {
-  font-size: 3rem;   
   color: #000000;    
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);  
   text-align: center; 
@@ -50,13 +49,11 @@
 }
 
 .NewsDetails h3 {
-  font-size: 18px;
   margin: 0;
   color: #333;
 }
 
 .NewsDetails p {
-  font-size: 14px;
   color: #555;
   margin: 10px 0;
 }
@@ -64,7 +61,6 @@
 .NewsDetails a {
   color: #007BFF;
   text-decoration: none;
-  font-size: 14px;
   font-weight: bold;
 }
 

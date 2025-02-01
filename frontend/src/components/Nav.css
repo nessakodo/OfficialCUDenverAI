@@ -1,11 +1,9 @@
 html, body {
   width: 100%;
-  background-color: #ffffff; 
 }
-
 nav {
-  margin-right: 160px;
-  margin-left: 160px;
+  margin-right: 7%;
+  margin-left: 7%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,13 +18,14 @@ nav img {
 
 .Nav-Links {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Adds space between buttons */
 }
 
 .Nav-Links button {
   margin: 20px;
   background: linear-gradient(90deg, #ffffff, #ffffff); 
   color: rgb(0, 0, 0);
-  font-size: 14px; 
   padding: 12px 24px; 
   border: none; 
   border-radius: 40px; 
@@ -56,27 +55,3 @@ nav img {
   border: none;
 }
 
-
-
-@media screen and (max-width: 1920px) {
-  nav {
-    margin-right: 160px;
-    margin-left: 160px;
-    padding: 8px 16px;
-  }
-
-  nav img {
-    margin: 5px;
-    width: 40px;
-    height: 40px;
-  }
-
-  .Nav-Links button, .Join-Us {
-    font-size: 12px;
-    padding: 10px 20px;
-  }
-
-  .hring {
-    width: calc(100% - 320px); 
-  }
-}

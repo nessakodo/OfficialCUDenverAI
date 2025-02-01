@@ -1,6 +1,4 @@
-body {
-  overflow-x: hidden;
-}
+
 
 .center {
     display: block;
@@ -10,33 +8,32 @@ body {
     border-radius: 20px;
 }
 
+.HeroTitle-Projects-Text h2 {
+    margin: 0px;
+}
 
 .OurMission {
     display: flex;
     margin-top: 70px;
-    margin-right: 160px;
-    margin-left: 160px;
+    margin-right: 7%;
+    margin-left: 7%;
     margin-bottom: 120px;
 
 }
 
 .MissionText {
     margin: auto;
-    width: 50%;
 }
 
 .OurMission h1 {
     margin-bottom: 70px;
     text-align: center;
-    font-size: 64px;
     color: black;
     font-weight: bold;
 }
 
-.OurMission h2 {
+.OurMission p {
     text-align: center;
-    font-size: 16px;
-    line-height: 28px;
     color: black;
 }
 
@@ -46,8 +43,8 @@ body {
 }
 
 .Pillars {
-    margin-right: 160px;
-    margin-left: 160px;
+    margin-right: 7%;
+    margin-left: 7%;
     display: flex;
     justify-content: center;
     gap: 2rem;
@@ -63,8 +60,18 @@ body {
     max-width: 300px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-right: 6rem;
-    margin-left: 6rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .Pillars {
+        flex-direction: column;
+        align-items: center; /* Center cards when stacked */
+    }
+
+    .PillarCard {
+        width: 90%; /* Make it more fluid on small screens */
+        max-width: 400px;
+    }
 }
 
 .PillarImage {
@@ -75,45 +82,31 @@ body {
 
 .PillarCard h2 {
     margin-top: 1rem;
-    font-size: 1.5rem;
     color: #333;
 }
 
 .PillarCard p {
     margin-top: 0.5rem;
-    font-size: 1rem;
     color: #555;
 }
 .OurPillars h1 {
     margin-top: 60px;
     margin-bottom: 60px;
     text-align: center;
-    font-size: 64px;
     color: black;
     font-weight: bold;
 }
 
 
-.OurOfficers h1 {
-    margin-top: 60px;
-    margin-bottom: 60px;
-    text-align: center;
-    font-size: 64px;
-    color: black;
-    font-weight: bold;
-    height: 100%;
-}
 
 .Carousel img {
     width: 13%;
 }
 
 .Carousel p {
-    margin-right: 160px;
-    margin-left: 160px;
+    margin-right: 7%;
+    margin-left: 7%;
     text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.8;
     color: #34495e;
     margin-bottom: 20px;
     padding: 10px 20px;

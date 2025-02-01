@@ -62,9 +62,7 @@ const Nav = () => {
 
                 <img
                     src={icon} 
-                    alt="AI Club Icon"
-                    style={{ width: '50px', height: '50px' }} 
-                />
+                    alt="AI Club Icon"                />
 
                 {/*AI Club navigation bar buttons*/}
 
@@ -78,45 +76,40 @@ const Nav = () => {
 
                     <div className="Join-Us">
                         {isLoggedIn ? (
-                            <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+                            <div >
                                
                                 <Menu> 
-                                {/* Profile Image */}
-                                <MenuButton >
-                                <img
-                                    src={profilePicture}
-                                    alt="Profile"
-                                    style={{
-                                        width: '40px',
-                                        height: '40px',
-                                        borderRadius: '50%',
-                                        cursor: 'pointer',
-                                        border: '2px solid #ddd',
-                                    }}
-                                />
-                                </MenuButton>
+                                    {/* Profile Image */}
+                                    <MenuButton >
+                                    <img
+                                        src={profilePicture}
+                                        alt="Profile"
+                                    />
+                                    </MenuButton>
                                     <MenuItems anchor="bottom">
-                                    <MenuItem>
-                                    <button className="block w-full text-left data-[focus]:bg-blue-100" onClick={() => navigate('/profile')} >
-                                        My Profile
-                                    </button>
-                                    </MenuItem>
-                                    <MenuItem>
-                                    <button className="block data-[focus]:bg-blue-100" onClick={() => navigate('/events')} >
-                                        My events
+                                        <MenuItem>
+                                        <button className="block w-full text-left data-[focus]:bg-blue-100" onClick={() => navigate('/profile')} >
+                                            My Profile
                                         </button>
-                                    </MenuItem>
-                                    <MenuItem>
-                                    <button className="block data-[focus]:bg-blue-100" onClick={SignOut} >
-                                        Sign Out
-                                        </button>
-                                    </MenuItem>
-                                </MenuItems>
+                                        </MenuItem>
+                                        <MenuItem>
+                                        <button className="block data-[focus]:bg-blue-100" onClick={() => navigate('/events')} >
+                                            My events
+                                            </button>
+                                        </MenuItem>
+                                        <MenuItem>
+                                        <button className="block data-[focus]:bg-blue-100" onClick={SignOut} >
+                                            Sign Out
+                                            </button>
+                                        </MenuItem>
+                                    </MenuItems>
 
                                 </Menu>
                             </div>
                         ) : (
-                            <button onClick={() => navigate('/signup')}>Join Us</button>
+                            <button onClick={() => {    
+                                navigate('/home', { state: { scrollTo: 'UpcomingEventsTitle' } }); // Replace with registration section
+                            }}>Join Us</button>
                         )}
                     </div>
                 </div>

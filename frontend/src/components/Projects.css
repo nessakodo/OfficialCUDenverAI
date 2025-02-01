@@ -1,22 +1,11 @@
 /* Consolidated Styles */
-.section {
-  height: 100vh;
-}
-
-.ProjectsPage {
-  background-color: #ffffff;
-}
 
 
-.ProjectGrid {
-  background-color: rgb(241, 241, 241);
-}
 
 .HeroTitle-Projects {
   position: relative;  
   z-index: 1;  
   height: 100vh;
-  min-height: 952px; 
   display: flex; 
   flex-direction: column; 
   justify-content: center;
@@ -37,21 +26,13 @@
 .HeroTitle-Projects h1,
 .HeroTitle-Projects h2,
 .HeroTitle-Projects h3 {
-  margin-right: 160px;
-  margin-left: 160px;
-  font-size: 72px;
-  font-weight: 700;
+  margin-right: 7%;
+  margin-left: 7%;
   color: #000000;
 }
 
-.HeroTitle-Projects h3 {
-  font-size: 16px;
-  font-weight: 700;
-}
 
 .HeroTitle-Projects h2 {
-  font-size: 32px;
-  line-height: 50px;
   color: #000000;
 }
 
@@ -59,7 +40,6 @@
   margin: 20px;
   background: linear-gradient(90deg, #ffffff, #ffffff);
   color: rgb(0, 0, 0);
-  font-size: 14px; 
   padding: 12px 24px; 
   border: none; 
   border-radius: 40px; 
@@ -76,20 +56,67 @@
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
 }
 
+.FeaturedProject {
+  background-color: rgb(241, 241, 241);
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 2vw;   
+}
+
+.FP-Text {
+  margin-left: 7%;
+  flex: 1; 
+  padding: 10px;
+  max-height: 662px;
+}
+
+.FP-Image {
+  margin-right: 7%;
+  flex: 1; 
+  text-align: right; 
+}
+
+.FP-Text h4 {
+  color: #444;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.FP-Text h5 {
+  color: #868686;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.FP-Text p {
+  word-wrap: break-word;
+  color: #666;
+  margin: 0 auto;
+  text-align: left;
+  max-height: inherit;
+}
+
+.FP-Image img {
+  max-width: 100%; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
 
 .ProjectGridCards {
-  margin-right: 160px;
-  margin-left: 160px;
+  margin-right: 7%;
+  margin-left: 7%;
   display: flex;
+  flex: wrap;
   justify-content: center;
   align-items: stretch;
-  gap: 20rem;
+  gap: 2vw;
   margin-top: 2rem;
-  padding: 100px;
 }
 
 .ProjectCard {
-  width: 700px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -103,10 +130,7 @@
 
 .ProjectImage {
   width: 100%;
-  height: 200px;
   object-fit: cover;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
 }
 
 .ProjectDetails {
@@ -119,7 +143,6 @@
   color: hwb(0 0% 100%);
   border: none;
   padding: 0.5rem 1rem;
-  font-size: 0.9rem;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -133,7 +156,6 @@
   margin-top: 20px;
   background: linear-gradient(90deg, #fdfdfd, #ffffff); /* Blue gradient */
   color: #000000; /* White text */
-  font-size: 14px; /* Font size */
   padding: 10px 20px; /* Button padding */
   border: none; /* No border */
   border-radius: 8px; /* Rounded corners */

@@ -1,13 +1,7 @@
 /* events.css */
 
 /* General Page Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
+
   .EventsPage {
     width: 100%;
     background-color: #f9f9f9;
@@ -24,13 +18,10 @@ body {
   }
   
   .EventsHeader h1 {
-    font-size: 2.2rem;
     margin: 0 0 10px;
   }
   
   .EventsHeader h2 {
-    font-size: 1.3rem;
-    font-weight: 300;
     margin: 0 0 20px;
   }
   
@@ -40,7 +31,6 @@ body {
     padding: 10px 20px;
     border: 2px solid black;
     border-radius: 5px;
-    font-size: 1rem;
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
@@ -74,27 +64,11 @@ body {
     margin-right: 15px;
   }
   
-  .FeaturedEventText h2 {
-    color: black;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .FeaturedEventText h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
-  .FeaturedEventText p {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
+
   
   .FeaturedEventImage img {
-    max-width: 50%;
-    height: auto;
+    max-width: 100%;
     border-radius: 8px;
-    max-width: 400px;
   }
   
   /* Buttons */
@@ -107,7 +81,6 @@ body {
     margin-right: 10px;
     border: 2px solid black;
     border-radius: 5px;
-    font-size: 0.9rem;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
   }
@@ -151,43 +124,6 @@ body {
     padding: 15px;
   }
   
-  .EventDetails h3 {
-    font-size: 1.2rem;
-    margin: 0 0 10px;
-  }
   
-  .EventDetails p {
-    font-size: 0.9rem;
-    margin: 5px 0;
-  }
   
-  /* Footer */
-  .EventsFooter {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-  }
-  
-  .EventsFooter nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .EventsFooter nav ul li {
-    display: inline-block;
-    margin: 0 15px;
-  }
-  
-  .EventsFooter nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1rem;
-    transition: color 0.3s;
-  }
-  
-  .EventsFooter nav ul li a:hover {
-    color: #4CAF50;
-  }
-  
+ 

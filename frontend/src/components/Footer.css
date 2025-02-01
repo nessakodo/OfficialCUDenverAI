@@ -2,8 +2,7 @@
   margin: 0 auto; 
   display: flex;
   justify-content: space-between; 
-  align-items: center;
-  width: calc(100% - 320px); 
+  align-items: center; 
 
 }
 
@@ -15,12 +14,12 @@
 }
 
 .footer-col:first-child {
-  margin-left: 160px;
+  margin-left: 7%;
   text-align: left; 
 }
 
 .footer-col:last-child {
-  margin-right: 160px;
+  margin-right: 7%;
   text-align: right; 
 }
 
@@ -29,7 +28,6 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 17px;
 }
 
 .hring {
@@ -38,19 +36,17 @@
 }
 
 .social-link i {
-  font-size: 44px; /* Increase the size of the social icons */
   margin: 0 10px; /* Add spacing between icons */
 }
 
 .contact-list i {
   color: black;
-  font-size: 20px; /* Adjust the size of the icons in the contact list */
   margin-right: 8px; /* Add spacing between icon and text */
   
 }
 
 .RightsReserved {
-  margin-right: 160px;
-  margin-left: 160px;
+  margin-right: 7%;
+  margin-left: 7%;
   text-align: center;
 }
