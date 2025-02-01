@@ -4,6 +4,7 @@
 }
 
 html,body {
+  overflow-x: hidden;
   margin: 0;
   font-family: 'Arial', sans-serif;
   font-size: var(--base-font-size);
@@ -150,9 +151,6 @@ html {
 
 
 
-button:active {
-  transform: scale(0.95);
-}
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
@@ -161,29 +159,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  text-align: center;
+  font-size: clamp(2.5rem, 6vw, 4rem);
 }
 
 h2 {
-  font-size: clamp(1rem, 2.5vw, 2rem);
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
 h4 {
-  font-size: 1rem;
+  font-size: clamp(1rem, 3vw, 1rem);
 }
 
 h5 {
-  font-size: 1rem;
-}
-
-h6 {
-  font-size: 0.875rem;
+  font-size: clamp(1rem, 3vw, 1rem);
 }
 
 p {
-  font-size: clamp(0.5rem, 1vw, 2rem);
+  font-size: clamp(0.7rem, 1vw, 1rem);
+}
+
+
+/* Section margins */
+
+section {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }

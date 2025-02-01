@@ -1,23 +1,11 @@
 /* Consolidated Styles */
-.section {
-  height: 100vh;
-}
-
-.ProjectsPage {
-  background-color: #ffffff;
-}
 
 
-.ProjectGrid {
-  background-color: rgb(241, 241, 241);
-}
 
 .HeroTitle-Projects {
-  flex-wrap: wrap;
   position: relative;  
   z-index: 1;  
   height: 100vh;
-  min-height: 952px; 
   display: flex; 
   flex-direction: column; 
   justify-content: center;

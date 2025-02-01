@@ -76,7 +76,7 @@ const AboutUs = () => {
 
                 <div className="MissionText">
                     <h1>Our Mission</h1>
-                    <h2> The AI Student Association at CU Denver is a student-led organization dedicated to exploring the applications of artificial intelligence, data science, and machine learning. We provide a collaborative platform for students to connect, engage, and grow through hands-on projects, coding challenges, and research initiatives. Our mission is to bridge the gap between theory and practice by organizing events such as hackathons, workshops, and technical talks that equip students with the skills needed to excel in the AI industry. We focus on fostering an environment of innovation, collaboration, and professional development, ensuring that our members are prepared to tackle real-world challenges and contribute meaningfully to the field of AI. Whether you’re an experienced AI enthusiast or just getting started, the AI Student Association offers opportunities for learning, networking, and advancing your AI journey.</h2>
+                    <p> The AI Student Association at CU Denver is a student-led organization dedicated to exploring the applications of artificial intelligence, data science, and machine learning. We provide a collaborative platform for students to connect, engage, and grow through hands-on projects, coding challenges, and research initiatives. Our mission is to bridge the gap between theory and practice by organizing events such as hackathons, workshops, and technical talks that equip students with the skills needed to excel in the AI industry. We focus on fostering an environment of innovation, collaboration, and professional development, ensuring that our members are prepared to tackle real-world challenges and contribute meaningfully to the field of AI. Whether you’re an experienced AI enthusiast or just getting started, the AI Student Association offers opportunities for learning, networking, and advancing your AI journey.</p>
                 </div>
             </div>
 
@@ -96,7 +96,7 @@ const AboutUs = () => {
                 <div className="Pillars">
                     <div className="PillarCard">
                         <img src={innovationimg} alt="Innovation" className="PillarImage" />
-                        <h2>Innovation</h2>
+                        <h3>Innovation</h3>
                         <p>
                             Driving the exploration of artificial intelligence, machine learning, and data science through 
                             groundbreaking projects, research, and real-world applications.
@@ -105,7 +105,7 @@ const AboutUs = () => {
 
                     <div className="PillarCard">
                         <img src={communityimg} alt="Community" className="PillarImage" />
-                        <h2>Community</h2>
+                        <h3>Community</h3>
                         <p>
                             Building a collaborative and supportive network of students, faculty, and industry professionals 
                             united by a shared passion for AI and technology.
@@ -114,7 +114,7 @@ const AboutUs = () => {
 
                     <div className="PillarCard">
                         <img src={diversityimg} alt="Diversity" className="PillarImage" />
-                        <h2>Diversity</h2>
+                        <h3>Diversity</h3>
                         <p>
                             Fostering inclusivity by embracing diverse perspectives, backgrounds, and ideas to enrich 
                             learning and innovation.
@@ -142,7 +142,7 @@ const AboutUs = () => {
                                     src= {pres}
                                     alt="AI Club Icon"        
                                 />
-                                <h1>President</h1>
+                                <h2>President</h2>
                                 <p>
                                 Vicente is a Ph.D. student in Computer Science at the University of Colorado Denver with a deep passion for AI and healthcare. His research focuses on using machine learning and deep learning to tackle complex biomedical data challenges. When he’s not diving into data, you can find him skiing, snowboarding, and camping in the Colorado outdoors. <br /> <br />
 
@@ -158,7 +158,7 @@ const AboutUs = () => {
                                 src= {vice_pres}
                                 alt="AI Club Icon"          
                                 />
-                                <h1>Vice President</h1>
+                                <h2>Vice President</h2>
                                 <p>
                                 Next up, say hello to Mohamed Abdel-Hafiz, AISA’s Vice President and a fourth-year Ph.D. student in Computer Science! Mohamed’s research focuses on graph segmentation and mining, but he’s also passionate about exploring real-world AI applications. <br /><br /> Outside the lab, Mohamed juggles life as a part-time Pharmacy Tech, a go-kart afficionado, and an avid hiker. Fun fact: he’s also the proud bird dad to Ziko, a cuddly little guy who loves head scratches!<br /> <br />
 
@@ -171,7 +171,7 @@ const AboutUs = () => {
                                 src= {outreach_off}
                                 alt="AI Club Icon"          
                                 />  
-                                <h1>Outreach Coordinator</h1>
+                                <h2>Outreach Coordinator</h2>
                                 <p>
                                 Say hello to Sumaiya Shrabony, AISA’s Outreach Coordinator! As a current Data Analyst with CU Denver CEDC and an MS student in Information Systems, Sumaiya brings a unique blend of analytical expertise and creative energy to the team. Outside her professional and academic pursuits, she enjoys immersing herself in the worlds of anime and manga—her latest favorite is the action-packed Haikyu!!<br /> <br />
 
@@ -186,7 +186,7 @@ const AboutUs = () => {
                                 src= {tech_off}
                                 alt="AI Club Icon"          
                                 />
-                                <h1>Technology Officer</h1>
+                                <h2>Technology Officer</h2>
                                 <p>
                                 Meet Elyas Larfi, AISA’s Technology Officer! A junior studying Computer Science at CU Denver, Elyas has a passion for AI and robotics as well as mixed martial arts, basketball, soccer, and first-person shooter gaming. His diverse interests fuel his innovative mindset and curiosity.<br /> <br />
 
@@ -203,7 +203,7 @@ const AboutUs = () => {
                                 src= {brand_off}
                                 alt="AI Club Icon"          
                                 />  
-                                <h1>Brand Officer</h1>
+                                <h2>Brand Officer</h2>
                                 <p>
                                 Meet Andy Tran, AISA’s Brand Strategist! Originally from Vietnam and raised in Colorado, Andy is a second-year Computer Science major at CU Denver with a passion for combining technology and creativity. In his free time, he enjoys DJing, attending music festivals, and exploring innovative ways to blend art and tech. <br /> <br />
 
@@ -218,7 +218,7 @@ const AboutUs = () => {
                                 src= {information_off}
                                 alt="AI Club Icon"          
                                 />
-                                <h1>Information Officer</h1>
+                                <h2>Information Officer</h2>
                                 <p>
                                 Meet Darya, AISA’s Informational Officer! Originally from Uzbekistan, Darya is a freshman majoring in Computer Science at CU Denver. Her journey in AI is just beginning, and she’s excited to build her pathway into the fields of AI and data science. When she’s not exploring the world of technology, she enjoys drawing and painting, finding inspiration in both art and innovation. <br /><br />
 

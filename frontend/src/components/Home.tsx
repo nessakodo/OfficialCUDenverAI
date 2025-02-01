@@ -1,9 +1,11 @@
 /*Functionality imports*/
 
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import './Home.css'; 
 import transition from "../motion/Transition";
 import FadeInComponent from '../motion/Fading';
+import { useLocation } from 'react-router-dom';
+
 
 /*Image imports*/
 
@@ -40,11 +42,21 @@ function Home() {
      * @description Stores any error message encountered during API calls
      */
     const [error, setError] = useState(null);
+
+
+    const location = useLocation();
     
     ///////////////////////////
     //Functions
     ///////////////////////////
-
+    useEffect(() => {
+        if (location.state?.scrollTo) {
+          const element = document.getElementById(location.state.scrollTo);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }, [location]);
 
     ///////////////////////////
     //TSX Rendering
@@ -102,7 +114,7 @@ function Home() {
 
                 {/*Upcoming events section*/}
                 <FadeInComponent>
-                <section>
+                <section id="UpcomingEventsTitle">
                 <div className="UpcomingEventsTitle">
                     <h4>Upcoming Events</h4>
                 </div>
