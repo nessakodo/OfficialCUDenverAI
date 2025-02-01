@@ -134,6 +134,8 @@
   .VideoContainer iframe {
     border-radius: 10px;
   }
+
+  
 /* Responsive design */
 @media (max-width: 768px) {
     section {

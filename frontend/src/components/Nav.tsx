@@ -62,9 +62,7 @@ const Nav = () => {
 
                 <img
                     src={icon} 
-                    alt="AI Club Icon"
-                    style={{ width: '50px', height: '50px' }} 
-                />
+                    alt="AI Club Icon"                />
 
                 {/*AI Club navigation bar buttons*/}
 
@@ -78,7 +76,7 @@ const Nav = () => {
 
                     <div className="Join-Us">
                         {isLoggedIn ? (
-                            <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+                            <div >
                                
                                 <Menu> 
                                 {/* Profile Image */}
@@ -86,13 +84,6 @@ const Nav = () => {
                                 <img
                                     src={profilePicture}
                                     alt="Profile"
-                                    style={{
-                                        width: '40px',
-                                        height: '40px',
-                                        borderRadius: '50%',
-                                        cursor: 'pointer',
-                                        border: '2px solid #ddd',
-                                    }}
                                 />
                                 </MenuButton>
                                     <MenuItems anchor="bottom">

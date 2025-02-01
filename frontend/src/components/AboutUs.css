@@ -1,6 +1,4 @@
-body {
-  overflow-x: hidden;
-}
+
 
 .center {
     display: block;
@@ -14,8 +12,8 @@ body {
 .OurMission {
     display: flex;
     margin-top: 70px;
-    margin-right: 160px;
-    margin-left: 160px;
+    margin-right: 7%;
+    margin-left: 7%;
     margin-bottom: 120px;
 
 }
@@ -46,8 +44,8 @@ body {
 }
 
 .Pillars {
-    margin-right: 160px;
-    margin-left: 160px;
+    margin-right: 7%;
+    margin-left: 7%;
     display: flex;
     justify-content: center;
     gap: 2rem;
@@ -63,8 +61,18 @@ body {
     max-width: 300px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-right: 6rem;
-    margin-left: 6rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .Pillars {
+        flex-direction: column;
+        align-items: center; /* Center cards when stacked */
+    }
+
+    .PillarCard {
+        width: 90%; /* Make it more fluid on small screens */
+        max-width: 400px;
+    }
 }
 
 .PillarImage {
@@ -109,8 +117,8 @@ body {
 }
 
 .Carousel p {
-    margin-right: 160px;
-    margin-left: 160px;
+    margin-right: 7%;
+    margin-left: 7%;
     text-align: center;
     font-size: 1.1rem;
     line-height: 1.8;

@@ -2,8 +2,7 @@
   margin: 0 auto; 
   display: flex;
   justify-content: space-between; 
-  align-items: center;
-  width: calc(100% - 320px); 
+  align-items: center; 
 
 }
 
@@ -15,12 +14,12 @@
 }
 
 .footer-col:first-child {
-  margin-left: 160px;
+  margin-left: 7%;
   text-align: left; 
 }
 
 .footer-col:last-child {
-  margin-right: 160px;
+  margin-right: 7%;
   text-align: right; 
 }
 
@@ -50,7 +49,7 @@
 }
 
 .RightsReserved {
-  margin-right: 160px;
-  margin-left: 160px;
+  margin-right: 7%;
+  margin-left: 7%;
   text-align: center;
 }

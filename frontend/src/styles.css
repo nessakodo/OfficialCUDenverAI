@@ -3,13 +3,19 @@
   box-sizing: border-box;
 }
 
-body {
+html,body {
   margin: 0;
   font-family: 'Arial', sans-serif;
   font-size: var(--base-font-size);
   line-height: 1.6;
   color: var(--primary-color);
+  width: 100%;
 }
+
+section {
+  width: 100%;
+}
+
 
 /* Global Variables */
 :root {
@@ -43,9 +49,27 @@ html {
   font-size: var(--base-font-size);
 }
 
+@media (max-width: 1440px) {
+  :root {
+    --base-font-size: 14px; /* Adjust for L laptops */
+    --container-margin: 5%;
+    --padding-small: 0.75rem;
+    --padding-large: 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --base-font-size: 14px; /* Adjust for laptops */
+    --container-margin: 5%;
+    --padding-small: 0.75rem;
+    --padding-large: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   :root {
-    --base-font-size: 14px; /* Adjust for tablets */
+    --base-font-size: 10px; /* Adjust for tablets */
     --container-margin: 5%;
     --padding-small: 0.75rem;
     --padding-large: 1.5rem;
@@ -82,15 +106,7 @@ html {
   box-shadow: var(--box-shadow-light);
 }
 
-/* Containers */
-.container {
-  margin: var(--container-margin);
-  padding: var(--padding-large);
-  background-color: var(--background-color);
-  border-radius: var(--border-radius-small);
-  box-shadow: var(--box-shadow-light);
-  text-align: center;
-}
+
 
 /* Navigation */
 .nav {
@@ -132,24 +148,7 @@ html {
   background-color: var(--accent-color);
 }
 
-/* Buttons */
-button {
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  font-size: clamp(0.875rem, 2.5vw, 1rem);
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: var(--border-radius-large);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: var(--box-shadow-light);
-}
 
-button:hover {
-  background: var(--accent-color);
-  transform: scale(1.05);
-  box-shadow: var(--box-shadow-hover);
-}
 
 button:active {
   transform: scale(0.95);
