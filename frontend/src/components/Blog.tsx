@@ -206,6 +206,7 @@ function Blog() {
                             >
                                 Research Papers
                             </motion.h1>
+                            
                     <div className="CategoryButtons">
                     {categories.map((category) => (
                         <button
@@ -217,6 +218,7 @@ function Blog() {
                         </button>
                     ))}
                     </div>
+
                     <div className="ResearchPapersSection">
                     <h3>Research Papers for {selectedCategory || "Select a Category"}</h3>
                     {researchPapers.length > 0 ? (
