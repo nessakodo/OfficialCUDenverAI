@@ -97,93 +97,10 @@ function Home() {
                 <FadeInComponent>
                 <section>
                 <div className="FeaturedProject">
-                    <div className="FP-Text">
-                        <h4> Featured Project </h4>                  
-                        <h5> D.E.C.O.Y. Challenge </h5>
-                        <p>This challenge invites all Auraria Campus students to dive into the intriguing world of adversarial machine learning by crafting adversarial examples that can deceive a robust machine learning classifier trained on the CIFAR-10 dataset. Your mission is to create subtle but effective modifications to a set of test images, fooling the classifier into making incorrect predictions. This challenge is a perfect opportunity for students to explore model vulnerabilities, gain hands-on experience with adversarial techniques, and contribute to ongoing research in AI robustness and security.</p>
-
-                    </div>
-                    
-                    <div className="FP-Image">
-                        <img src={img} alt="AI Club"></img>
-                    </div>
-
+ 
                 </div>
-                </section>
-                </FadeInComponent>
-
-                {/*Upcoming events section*/}
-                <FadeInComponent>
-                <section id="UpcomingEventsTitle">
-                <div className="UpcomingEventsTitle">
-                    <h4>Upcoming Events</h4>
-                </div>
-
-                {/* Events in the form of cards (Check the ReactUI for the cards above for more documentation info)*/}
-                <div className="UpcomingEvents">
-                <div className="Event1">
-                <Card sx={{ maxWidth: 1000, maxHeight: 800}}>
-                    <CardActionArea>
-                        <CardMedia
-                        component="img"
-                        height="240"
-                        image={img}
-                        alt=""
-                        />
-                        <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                        Compete, Learn, and Outsmart AI Models in this Exciting Challenge!                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        The Decoy Challenge focuses on generating adversarial examples that can mislead a machine learning model trained on the CIFAR-10 dataset. Participants will receive a pre-trained, robust classifier and a set of test examples from the CIFAR-10 dataset. Your objective is to create subtle perturbations to these test examples that can fool the classifier while maintaining the images' visual integrity.                        </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    </Card>
-                </div>
-               
-                <div className="Event2">
-                <Card sx={{ maxWidth: 1000, maxHeight: 800}}>
-                    <CardActionArea>
-                        <CardMedia
-                        component="img"
-                        height="240"
-                        image={robotics}
-                        alt=""
-                        />
-                        <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                        AI Hackathon: Innovate with Machine Learning
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        Join us for an exciting 24-hour hackathon where students collaborate to solve real-world problems using machine learning and AI. With mentorship from industry professionals, participants will create innovative solutions, compete for prizes, and gain valuable hands-on experience in AI development.
-                        </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    </Card>
-                </div>
-
-                <div className="Event3">
-                    <Card sx={{ maxWidth: 1000, maxHeight: 800 }}>
-                    <CardActionArea>
-                        <CardMedia
-                        component="img"
-                        height="240"
-                        image={neuralnetwork}
-                        alt=""
-                        />
-                        <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Workshop: Introduction to Neural Networks
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                            Dive into the fascinating world of neural networks in this beginner-friendly workshop. Learn the basics of how neural networks function, explore their applications, and build your first AI model using Python and TensorFlow. No prior experience is required—just curiosity and enthusiasm!
-                        </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    </Card>
-                </div>
-            </div>
             
-            </section>
+                </section>
             </FadeInComponent>
 
                 

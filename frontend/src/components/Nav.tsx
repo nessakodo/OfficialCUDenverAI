@@ -10,13 +10,7 @@ import defaultProfilePic from './images/Default_pfp.jpg';
 
 // UI Imports
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import {
-    ArchiveBoxXMarkIcon,
-    ChevronDownIcon,
-    PencilIcon,
-    Square2StackIcon,
-    TrashIcon,
-  } from '@heroicons/react/16/solid'
+
   
 
 const Nav = () => {
@@ -26,15 +20,63 @@ const Nav = () => {
 
     const [profilePicture, setProfilePicture] = useState(defaultProfilePic);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [bar, setBarClass] = useState("bar unclicked")
+    const [menu_class, setMenuClass] = useState("menu hidden")
+    const [isMenuClicked, setIsMenuClicked] = useState(false)
 
     const navigate = useNavigate();
+
+    const isLoggedIn = Cookies.get("username");
+
+
+    const menuDisplay = (
+        <div>
+          <button onClick={() => { updateMenu(); navigate('/home'); }}>Home</button>
+          <button onClick={() => { updateMenu(); navigate('/projects'); }}>Projects</button>
+          <button onClick={() => { updateMenu(); navigate('/events'); }}>Events</button>
+          <button onClick={() => { updateMenu(); navigate('/blog'); }}>Resources</button>
+          <button onClick={() => { updateMenu(); navigate('/news'); }}>News</button>
+          <button onClick={() => { updateMenu(); navigate('/about-us'); }}>About</button>
+          {isLoggedIn ? (
+            <Menu>
+              <MenuButton>
+                <img src={profilePicture} alt="Profile" />
+              </MenuButton>
+              <MenuItems anchor="bottom">
+                <MenuItem>
+                  <button onClick={() => { updateMenu(); navigate('/profile'); }}>MyProfile</button>
+                </MenuItem>
+                <MenuItem>
+                  <button onClick={() => { updateMenu(); navigate('/events'); }}>MyEvents</button>
+                </MenuItem>
+                <MenuItem>
+                  <button onClick={() => { updateMenu(); SignOut(); }}>SignOut</button>
+                </MenuItem>
+              </MenuItems>
+            </Menu>
+          ) : (
+            <button onClick={() => { updateMenu(); navigate('/home', { state: { scrollTo: 'FeaturedProject' } }); }}>
+              Join
+            </button>
+          )}
+        </div>
+      );
 
     ///////////////////////////
     //Functions
     ///////////////////////////
 
-    const isLoggedIn = Cookies.get("username");
-
+    const updateMenu = () => {
+        if(!isMenuClicked) {
+            setMenuClass("menu visible")
+            setBarClass("bar clicked")
+        }
+        else {
+            setMenuClass("menu hidden")
+            setBarClass("bar unclicked")
+        }
+        setIsMenuClicked(!isMenuClicked)
+    }
 
     const SignOut = async () => {
         try {
@@ -67,55 +109,23 @@ const Nav = () => {
                 {/*AI Club navigation bar buttons*/}
 
                 <div className="Nav-Links">
-                    <button onClick={() => navigate('/home')}>Home</button>
-                    <button onClick={() => navigate('/projects')}>Our Work</button>
-                    <button onClick={() => navigate('/events')}>Events</button>
-                    <button onClick={() => navigate('/blog')}>Resources</button>
-                    <button onClick={() => navigate('/news')}>News</button>
-                    <button onClick={() => navigate('/about-us')}>About Us</button>
+                    {menuDisplay}
+                </div>
 
-                    <div className="Join-Us">
-                        {isLoggedIn ? (
-                            <div >
-                               
-                                <Menu> 
-                                    {/* Profile Image */}
-                                    <MenuButton >
-                                    <img
-                                        src={profilePicture}
-                                        alt="Profile"
-                                    />
-                                    </MenuButton>
-                                    <MenuItems anchor="bottom">
-                                        <MenuItem>
-                                        <button className="block w-full text-left data-[focus]:bg-blue-100" onClick={() => navigate('/profile')} >
-                                            My Profile
-                                        </button>
-                                        </MenuItem>
-                                        <MenuItem>
-                                        <button className="block data-[focus]:bg-blue-100" onClick={() => navigate('/events')} >
-                                            My events
-                                            </button>
-                                        </MenuItem>
-                                        <MenuItem>
-                                        <button className="block data-[focus]:bg-blue-100" onClick={SignOut} >
-                                            Sign Out
-                                            </button>
-                                        </MenuItem>
-                                    </MenuItems>
-
-                                </Menu>
-                            </div>
-                        ) : (
-                            <button onClick={() => {    
-                                navigate('/home', { state: { scrollTo: 'UpcomingEventsTitle' } }); // Replace with registration section
-                            }}>Join Us</button>
-                        )}
+                <div className="Hamburger-menu">
+                    <div className="burger-menu" onClick={updateMenu}>
+                            <div className={bar} onClick={updateMenu}></div>
+                            <div className={bar} onClick={updateMenu}></div>
+                            <div className={bar} onClick={updateMenu}></div>
                     </div>
                 </div>
+                
             </nav>
 
-            
+            <div className={menu_class}>
+                {menuDisplay}
+            </div>
+                
 
             {/*The separation line*/}
 
