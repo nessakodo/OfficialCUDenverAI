@@ -26,6 +26,9 @@ const Nav = () => {
 
     const [profilePicture, setProfilePicture] = useState(defaultProfilePic);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [bar, setBarClass] = useState("bar unclicked")
+    const [menu_class, setMenuClass] = useState("menu hidden")
+    const [isMenuClicked, setIsMenuClicked] = useState(false)
 
     const navigate = useNavigate();
 
@@ -35,6 +38,17 @@ const Nav = () => {
 
     const isLoggedIn = Cookies.get("username");
 
+    const updateMenu = () => {
+        if(!isMenuClicked) {
+            setMenuClass("menu visible")
+            setBarClass("bar clicked")
+        }
+        else {
+            setMenuClass("menu hidden")
+            setBarClass("bar unclicked")
+        }
+        setIsMenuClicked(!isMenuClicked)
+    }
 
     const SignOut = async () => {
         try {
@@ -113,9 +127,47 @@ const Nav = () => {
                         )}
                     </div>
                 </div>
+
+                <div className="Hamburger-menu">
+                    <div className="burger-menu" onClick={updateMenu}>
+                            <div className={bar} onClick={updateMenu}></div>
+                            <div className={bar} onClick={updateMenu}></div>
+                            <div className={bar} onClick={updateMenu}></div>
+                    </div>
+                </div>
             </nav>
 
-            
+            <div className={menu_class}>
+                <button onClick={() => { updateMenu(); navigate('/home'); }}>Home</button>
+                <button onClick={() => { updateMenu(); navigate('/projects'); }}>Our Work</button>
+                <button onClick={() => { updateMenu(); navigate('/events'); }}>Events</button>
+                <button onClick={() => { updateMenu(); navigate('/blog'); }}>Resources</button>
+                <button onClick={() => { updateMenu(); navigate('/news'); }}>News</button>
+                <button onClick={() => { updateMenu(); navigate('/about-us'); }}>About Us</button>
+                {isLoggedIn ? (
+                    <Menu>
+                        <MenuButton>
+                            <img src={profilePicture} alt="Profile" />
+                        </MenuButton>
+                        <MenuItems anchor="bottom">
+                            <MenuItem>
+                                <button onClick={() => { updateMenu(); navigate('/profile'); }}>My Profile</button>
+                            </MenuItem>
+                            <MenuItem>
+                                <button onClick={() => { updateMenu(); navigate('/events'); }}>My Events</button>
+                            </MenuItem>
+                            <MenuItem>
+                                <button onClick={() => { updateMenu(); SignOut(); }}>Sign Out</button>
+                            </MenuItem>
+                        </MenuItems>
+                    </Menu>
+                ) : (
+                    <button onClick={() => { updateMenu(); navigate('/home', { state: { scrollTo: 'UpcomingEventsTitle' } }); }}>
+                        Join Us
+                    </button>
+                )}
+            </div>
+                
 
             {/*The separation line*/}
 
