@@ -28,23 +28,18 @@ function Projects() {
   const projects = [
     {
       id: 1,
-      title: "Decoy Challenge",
-      image: require("./images/download.jpg"), // Path relative to the current file
+      title: "Path To PhD",
+      image: require("./images/PathToPhd.jpg"), // Path relative to the current file
       description:
-        "Description of the Decoy Challenge project. Learn about AI robustness and security through adversarial techniques.",
+        "Path to PhD: Navigating your research journey. A guide to a successful research career",
     },
     {
       id: 2,
-      title: "Project #2",
-      image: require("./images/download.jpg"), // Path relative to the current file
-      description: "Description for project #2. Explore innovative AI applications.",
-    },
-    {
-      id: 3,
-      title: "Project #3",
-      image: require("./images/download.jpg"), // Path relative to the current file
-      description: "Description for project #3. Dive into AI-driven solutions.",
-    },
+      title: "Decoy Challenge Prep",
+      image: require("./images/GeneralMeeting.jpg"), // Path relative to the current file
+      description:
+        "Helping students prep for the D.E.C.O.Y challenge by offering some tutorials, answering questions and communicating objectives.",
+    }
   ];
 
   // State to track which projects are expanded
