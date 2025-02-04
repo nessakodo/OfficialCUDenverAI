@@ -89,7 +89,6 @@ function Projects() {
         <FadeInComponent>
         <div className="FeaturedProject" style = {{backgroundColor: "white"}}> 
             <div className="FP-Text">
-            <h2>Featured Project</h2>
             <h5>D.E.C.O.Y. Challenge</h5>
             <p>
               This challenge invites all Auraria Campus students to dive into the

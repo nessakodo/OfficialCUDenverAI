@@ -132,6 +132,10 @@
   .EventDetails {
     padding: 15px;
   }
+
+  .NoEventsMessage {
+    text-align: center;
+  }
   
   
   
