@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
   import "./Projects.css";
 import { useSelector, useDispatch } from "react-redux";
 import { CgProfile } from "react-icons/cg";
+import { useNavigate } from 'react-router-dom';
+
 
 /*Image imports*/
 
@@ -20,6 +22,9 @@ import NeuralNetworkVisualization from '../motion/NeuralNetworkVisual';
 
 
 function Projects() {
+
+  const navigate = useNavigate();
+  
   const projects = [
     {
       id: 1,
@@ -66,7 +71,7 @@ function Projects() {
           <h2>
           Explore the projects, challenges, and initiatives that drive innovation and collaboration in AI, Data Science, and Machine Learning.        
           </h2>
-          <button>
+          <button onClick={() => {navigate('/home', { state: { scrollTo: 'FeaturedProject' } }); }}>
             <h3>Join</h3>
           </button>
         </div>
