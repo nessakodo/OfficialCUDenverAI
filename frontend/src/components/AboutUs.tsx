@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import transition from "../motion/Transition";
 import FadeInComponent from '../motion/Fading';
+import { useNavigate } from 'react-router-dom';
+
 
 // Image imports
 import img from './images/group.jpg';
@@ -32,9 +34,12 @@ const AboutUs = () => {
     //States
     ///////////////////////////
 
+    const navigate = useNavigate();
+    
     ///////////////////////////
     //Functions
     ///////////////////////////   
+
 
     /**
      * Settings for the Slider component
@@ -62,7 +67,7 @@ const AboutUs = () => {
                 </h1> 
                                         
                         
-                <button>
+                <button onClick={() => {navigate('/home', { state: { scrollTo: 'FeaturedProject' } }); }}>
                     <h3> Join </h3>
                 </button>    
             </div>
