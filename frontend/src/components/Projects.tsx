@@ -8,7 +8,6 @@ import { CgProfile } from "react-icons/cg";
 
 /*Image imports*/
 
-import template_vid from "./images/20241010_235245000_iOS.mp4"
 import img from './images/group.jpg';
 
 /*UI imports*/
@@ -50,26 +49,16 @@ function Projects() {
     setExpanded(expanded === id ? null : id);
   };
 
-  useEffect(() => {
-    const video = document.querySelector(".video-background") as HTMLVideoElement;
-    if (video) {
-      video.playbackRate = 0.7; 
-    }
-  }, []);
 
   return (
     <div className="ProjectsPage">
 
-      
       {/* Header Section */}
       <section>
 
         <FadeInComponent>
         <div className="HeroTitle-Projects">
-        <video autoPlay loop muted className="video-background">
-          <source src={template_vid} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+
         <div className="HeroTitle-Projects-Text">
           <h1>
           What We’re Working On
@@ -78,7 +67,7 @@ function Projects() {
           Explore the projects, challenges, and initiatives that drive innovation and collaboration in AI, Data Science, and Machine Learning.        
           </h2>
           <button>
-            <h3>Join Us</h3>
+            <h3>Join</h3>
           </button>
         </div>
         </div>
@@ -95,7 +84,7 @@ function Projects() {
         <FadeInComponent>
         <div className="FeaturedProject" style = {{backgroundColor: "white"}}> 
             <div className="FP-Text">
-            <h4>Featured Project</h4>
+            <h2>Featured Project</h2>
             <h5>D.E.C.O.Y. Challenge</h5>
             <p>
               This challenge invites all Auraria Campus students to dive into the

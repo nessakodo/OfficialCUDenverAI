@@ -64,6 +64,12 @@ function Blog() {
     const [error, setError] = useState(null);
 
     /**
+     * @typedef {string|null} showPapers
+     * @description State of whether to show research papers
+     */
+    const [showPapers, setShowPapers] = useState(true);
+
+    /**
      * List of research categories available for selection.
      */
     const categories = [
@@ -174,8 +180,8 @@ function Blog() {
                             </motion.h1>
                     <div className="VideoContainer">
                     <iframe
-                        width="560"
-                        height="315"
+                        width="5vw"
+                        height="5vh"
                         src="https://www.youtube.com/embed/tF-SBS5PuQY"
                         title="The amazing, but unsettling future of technology..."
                         frameBorder="0"
@@ -183,8 +189,8 @@ function Blog() {
                         allowFullScreen
                     ></iframe>
                     <iframe
-                        width="560"
-                        height="315"
+                        width="5vw"
+                        height="5vh"
                         src="https://www.youtube.com/embed/v4H2fTgHGuc"
                         title="The 10 Most Cited AI Research Papers of 2024"
                         frameBorder="0"
@@ -208,37 +214,65 @@ function Blog() {
                             </motion.h1>
                             
                     <div className="CategoryButtons">
-                    {categories.map((category) => (
-                        <button
-                        key={category}
-                        onClick={() => handleCategoryClick(category)}
-                        className={`category-btn ${selectedCategory === category ? "selected" : ""}`}
+                        {categories.map((category) => (
+                            <button
+                            key={category}
+                            onClick={() => handleCategoryClick(category)}
+                            className={`category-btn ${selectedCategory === category ? "selected" : ""}`}
+                            >
+                            {category}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="CategoryButtonsDropDown">
+                    <select 
+                            onChange={(e) => handleCategoryClick(e.target.value)} 
+                            value={selectedCategory} 
+                            className="category-select"
                         >
-                        {category}
-                        </button>
-                    ))}
+                            {categories.map((category) => (
+                            <option key={category} value={category}>
+                                {category}
+                            </option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className="ResearchPapersSection">
                     <h3>Research Papers for {selectedCategory || "Select a Category"}</h3>
-                    {researchPapers.length > 0 ? (
-                        <ul>
-                        {researchPapers.map((paper) => (
-                            <li key={paper.paper_id} className="ResearchPaperItem">
-                            <strong>{paper.title}</strong>
-                            <p>{paper.abstract}</p>
+    
+                            {/* Toggle Button */}
                             <button 
-                                onClick={() => window.open(paper.url, '_blank')} 
-                                className="read-more-btn"
+                            onClick={() => setShowPapers(!showPapers)} 
+                            className="category-btn "
                             >
-                                Read More
+                            {showPapers ? "Hide Research Papers" : "Show Research Papers"}
                             </button>
-                            </li>
-                        ))}
-                        </ul>
-                    ) : (
-                        <p>No papers available for this category.</p>
-                    )}
+
+                            {/* Conditionally render research papers */}
+                            {showPapers && researchPapers.length > 0 ? (
+                            <ul>
+                                {researchPapers
+                                .sort(() => 0.5 - Math.random())
+                                .slice(0, 3)
+                                .map((paper) => (
+                                    <li key={paper.paper_id} className="ResearchPaperItem">
+                                    <strong>{paper.title}</strong>
+                                    <p>{paper.abstract}</p>
+                                    <button 
+                                        onClick={() => window.open(paper.url, '_blank')} 
+                                        className="read-more-btn"
+                                    >
+                                        Read More
+                                    </button>
+                                    </li>
+                                ))}
+                            </ul>
+                            ) : showPapers ? (
+                            <p>No papers available for this category.</p>
+                            ) : null}
+
                     </div>
                 </section>
 

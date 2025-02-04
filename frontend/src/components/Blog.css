@@ -27,6 +27,10 @@
     align-items: center;
   }
 
+  .CategoryButtonsDropDown {
+    display: none;
+  }
+
 
   
   .category-btn {
@@ -105,6 +109,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 20px;
   }
   
   .submit-blog-btn:hover {
@@ -136,26 +141,33 @@
   }
 
   iframe {
-    width: 100%;
-    height: 30vh;
+    width: 40vw;
+    height: 25vh;
   }
 
 
-/* Responsive design */
-@media (max-width: 1300px) {
-    section {
-      margin: 10px;
-      padding: 15px;
-    }
-  
-    button {
-      padding: 8px 12px;
-    }
-  
-    form input,
-    form textarea {
-      font-size: 12px;
-    }
-  
-}
+
+/* Drop down menu after 1511 width */
+
+@media screen and (max-width: 1511px) {
+  .CategoryButtonsDropDown {
+    display: block;
+    margin-bottom: 20px;
+
+  }
+
+  .CategoryButtons {
+    display: none;
+  }
+
+  .category-select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  }
 
