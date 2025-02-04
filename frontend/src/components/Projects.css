@@ -134,7 +134,8 @@
 }
 
 .ProjectImage {
-  width: 100%;
+  width: 40vw;
+  height: 30vh;
   object-fit: cover;
 }
 
