@@ -8,44 +8,34 @@ function Events() {
   const events = [
     {
       id: 1,
-      location: "Auraria Campus",
-      name: "Decoy Challenge",
-      date: "March 5, 2025",
-      time: "3 PM - 6 PM",
+      location: "CU Denver",
+      name: "DSAI Symposium",
+      date: "November 1, 2024",
+      time: "10 AM - 4 PM",
       description:
-        "Dive into the world of adversarial machine learning with this hands-on challenge to fool robust classifiers.",
-      image: require("./images/vicente.jpg"),
+        "Showcasing winners of the decoy challenge competition.",
+      image: require("./images/group.jpg"),
     },
     {
       id: 2,
       location: "CU Denver",
-      name: "AI Research Symposium",
-      date: "March 10, 2025",
+      name: "DSAI Symposium",
+      date: "November 1, 2024",
       time: "10 AM - 4 PM",
       description:
-        "Showcasing cutting-edge research in artificial intelligence and machine learning.",
+        "Showcasing winners of the decoy challenge competition.",
       image: require("./images/download.jpg"),
     },
     {
       id: 3,
-      location: "Online",
-      name: "AI Ethics Workshop",
-      date: "March 15, 2025",
-      time: "1 PM - 3 PM",
+      location: "CU Denver/Online",
+      name: "Path To PhD",
+      date: "November 20, 2024",
+      time: "5 PM - 7 PM MST",
       description:
-        "Explore the ethical challenges and responsibilities associated with artificial intelligence.",
-      image: require("./images/download.jpg"),
-    },
-    {
-        id: 4,
-        location: "Online",
-        name: "AI Ethics Workshop",
-        date: "March 15, 2025",
-        time: "1 PM - 3 PM",
-        description:
-          "Explore the ethical challenges and responsibilities associated with artificial intelligence.",
+        "Get answers to your questions, discover resources, and connect with students and experts who’ve walked the path to academic success.",
         image: require("./images/download.jpg"),
-      },
+    }
   ];
 
   return (
@@ -58,7 +48,7 @@ function Events() {
           challenges, and discussions.
         </h2>
         <button className="JoinUsButton">
-          <Link to="/join">Join Us</Link>
+          <Link to="/join">Join</Link>
         </button>
       </header>
 

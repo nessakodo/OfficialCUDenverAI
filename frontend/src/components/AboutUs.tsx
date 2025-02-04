@@ -63,7 +63,7 @@ const AboutUs = () => {
                                         
                         
                 <button>
-                    <h3> Join Us </h3>
+                    <h3> Join </h3>
                 </button>    
             </div>
         </section>
