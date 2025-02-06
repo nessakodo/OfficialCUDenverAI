@@ -62,7 +62,7 @@ function Home() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:8080/new_registration', {
+        fetch('http://129.153.84.107:8080/new_registration', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
