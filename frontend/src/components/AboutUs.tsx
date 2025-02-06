@@ -127,12 +127,14 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
-
             <div className="hring">
                 <hr />
             </div>
+
         </section>
         </FadeInComponent>
+
+
 
         <FadeInComponent>
         {/* Officers Section */}

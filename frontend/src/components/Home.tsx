@@ -1,50 +1,141 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+/* Functionality imports */
+import React, { useState, useEffect } from 'react';
 import './Home.css'; 
+import transition from "../motion/Transition";
+import FadeInComponent from '../motion/Fading';
+import { useLocation, useNavigate } from 'react-router-dom';
 
+/* Image imports */
 import img from './images/group.jpg';
 import neuralnetwork from './images/5-AI-Advancements-to-Expect-in-the-Next-10-Years-scaled.jpeg';
 import robotics from './images/sick-sponsored-featured-image-july2023-article1.jpg';
 import icon from './images/club-rxCX8m8Y.png';
 
+/* UI imports */
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
+import CardActions from '@mui/material/CardActions';
+
+import { motion } from "framer-motion";
 
 function Home() {
-    const dispatch = useDispatch();
-    const history = useNavigate();
+    ///////////////////////////
+    // States
+    ///////////////////////////
+
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [signupData, setSignupData] = useState({
+        member_name: "",
+        email: "",
+        attendance_time: "",
+        questions: ""
+    });
+
+    const navigate = useNavigate();
+    const location = useLocation();
     
+    ///////////////////////////
+    // Functions
+    ///////////////////////////
+
+    useEffect(() => {
+        if (location.state?.scrollTo) {
+          const element = document.getElementById(location.state.scrollTo);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+    }, [location]);
+
+    const handleChange = (e) => {
+        setSignupData({
+            ...signupData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        fetch('http://localhost:8080/new_registration', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(signupData),
+        })
+        .then((response) => {
+          navigate('/about');
+            
+        })
+        .then((data) => {
+            navigate('/home'); // Redirect to home page on successful signup
+        })
+        .catch((error) => {
+            setError(error.message);
+        });
+    };
+
+    ///////////////////////////
+    // TSX Rendering
+    ///////////////////////////
     return (
         <div className="HomePage">
-            <div className="HeroTitle">
-                <h1> Empowering the Next Generation of AI Innovators </h1>
-                <h2> Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver. </h2>
-                <button>
-                    <h3> Join Us </h3>
-                </button>
-            </div>
+            <FadeInComponent>
 
-            {/* AI Student Association Signup Section */}
-            <div className="SignupSection">
-                <img src={icon} alt="AI Student Association Logo" className="signup-logo" />
-                <h2>AI STUDENT ASSOCIATION</h2>
-                <p>Join our community to get notified about events and hackathons, and gain exclusive access to participate!</p>
-                <form className="signup-form">
-                    <input type="email" placeholder="Enter Your Email" required />
-                    <button type="submit">Apply</button>
-                </form>
-            </div>
+                {/* Hero section */}
+                <section>
+                    <div className="HeroTitle">
+                        <div className="SignupSection">
+                            <img src={icon} alt="AI Student Association Logo" className="signup-logo" />
+                            <h2>Join our community to get notified about events and hackathons, and gain exclusive access to participate!</h2>
 
-            <div className="WhoWeAre">
-                <h4> Who We Are </h4>
-                <p> The AI Student Association at CU Denver is a student-led organization dedicated to exploring the applications of artificial intelligence, data science, and machine learning...</p>
-            </div>
+                            <form className="signup-form" onSubmit={handleSubmit}>
+                                <input 
+                                    type="text" 
+                                    name="member_name" 
+                                    placeholder="Enter Your Name" 
+                                    value={signupData.member_name} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                                <input 
+                                    type="email" 
+                                    name="email" 
+                                    placeholder="Enter Your Email" 
+                                    value={signupData.email} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                                <input 
+                                    type="text" 
+                                    name="attendance_time" 
+                                    placeholder="When would you be able to attend (~1 hour, monthly) meetings? (e.g. 'Monday, midday')" 
+                                    value={signupData.attendance_time} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                                <input 
+                                    type="text" 
+                                    name="questions" 
+                                    placeholder="Any questions or comments for us?" 
+                                    value={signupData.questions} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                                <button type="submit">Apply</button>
+                            </form>
 
-            {/* Other sections remain unchanged */}
+                        </div>
+                    </div>
+                </section>
+
+            </FadeInComponent>
         </div>
     );
 }

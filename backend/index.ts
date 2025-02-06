@@ -261,6 +261,31 @@ app.post('/sign-out', (req, res) => {
   });
 });
 
+app.post('/new_registration', async (req, res) => { 
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
+
+  const { attendance_time, email, member_name, questions} = req.body;
+  console.log(attendance_time, email, member_name, questions)
+  try {
+    // Generate a unique id
+    const id = parseInt(uuidv4().replace(/-/g, '').slice(0, 6), 16);
+
+    // Insert into the database
+    await connection.execute(
+      'INSERT INTO SIGNUP_FORMS (attendance_time, email, id, name, questions, submitted_at) VALUES (?, ?, ?, ?, ?, ?)',
+      [attendance_time, email, id, member_name, questions,  new Date()]
+    );
+
+    // End the connection
+    await connection.end();
+
+    // Send a success response
+    res.status(200).send('Registration successful!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error in registration.');
+  }
+});
 
 app.get('/profile', async (req, res) => {
   try {

@@ -1,45 +1,89 @@
 .HomePage {
   text-align: center;
   font-family: Arial, sans-serif;
-  padding: 20px;
 }
 
 .HeroTitle {
-  background: #f4f4f4;
-  padding: 40px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  height: 100vh;
+  background: 
+      linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),       
+      url("images/vicente.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 952px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center; 
+  text-align: center; 
 }
 
-.HeroTitle h1 {
-  font-size: 2.5em;
-  color: #333;
-}
 
-.HeroTitle h2 {
-  font-size: 1.5em;
-  color: #666;
-  margin-top: 10px;
-}
 
 .HeroTitle button {
-  background: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1.2em;
+  margin: 20px;
+  background: linear-gradient(90deg, #ffffff, #ffffff);
+  color: rgb(0, 0, 0);
+  padding: 12px 24px; 
+  border: none; 
+  border-radius: 40px; 
   cursor: pointer;
-  border-radius: 5px;
-  margin-top: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  text-align: center;
+}
+
+.HeroTitle button:hover {
+  background: linear-gradient(90deg, #a7a7a7, #acacac);
+  transform: scale(1.05); 
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .SignupSection {
-  background: #f8f8f8;
-  padding: 30px;
-  margin: 20px auto;
-  max-width: 500px;
+  max-width: 50vw;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.SignupSection img {
+  width: 20vw;
+}
+
+.signup-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.signup-form input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.signup-form input:focus {
+  border-color: #4A90E2;
+}
+
+.signup-form button {
+  font-size: clamp(0.5rem, 6vw, 1rem);
+  padding: 12px;
+  background-color: #000000;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signup-form button:hover {
+  background-color: #000000;
 }
 
 .SignupLogo {
@@ -89,9 +133,4 @@
   max-width: 600px;
   text-align: left;
   padding: 20px;
-}
-
-.FP-Image img {
-  width: 300px;
-  border-radius: 10px;
 }

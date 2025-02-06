@@ -82,6 +82,11 @@
   flex: 1; 
   text-align: right; 
 }
+.FP-Image img {
+  max-width: 40vw; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
 
 .FP-Text h4 {
   color: #444;
@@ -103,12 +108,10 @@
   max-height: inherit;
 }
 
-.FP-Image img {
-  max-width: 100%; 
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-}
 
+.ProjectGrid {
+  margin-top: 20vh;
+}
 
 .ProjectGridCards {
   margin-right: 7%;
@@ -145,19 +148,25 @@
 }
 
 .ShowMoreButton {
-  background-color: #007bff;
-  color: hwb(0 0% 100%);
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  margin: 20px;
+  background: linear-gradient(90deg, #ffffff, #ffffff);
+  color: rgb(0, 0, 0);
+  padding: 12px 24px; 
+  border: none; 
+  border-radius: 40px; 
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  text-align: center;
 }
 
 .ShowMoreButton:hover {
-  background-color: #ffffff;
-  transform: scale(1.05);
+  background: linear-gradient(90deg, #a7a7a7, #acacac);
+  transform: scale(1.05); 
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
 }
+
 .LearnMoreButton {
   margin-top: 20px;
   background: linear-gradient(90deg, #fdfdfd, #ffffff); /* Blue gradient */

@@ -167,39 +167,7 @@ function Blog() {
     return (
 <div className="BlogPage">
 
-                    {/* Educational Videos Section */}
-                    <section className="VideosSection">
-                            <motion.h1
-                                variants={titleVariants}
-                                initial="hidden"
-                                animate="visible"
-                                style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold' }}
-                                className="news-title"
-                            >
-                                Educational Videos
-                            </motion.h1>
-                    <div className="VideoContainer">
-                    <iframe
-                        width="5vw"
-                        height="5vh"
-                        src="https://www.youtube.com/embed/tF-SBS5PuQY"
-                        title="The amazing, but unsettling future of technology..."
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                    <iframe
-                        width="5vw"
-                        height="5vh"
-                        src="https://www.youtube.com/embed/v4H2fTgHGuc"
-                        title="The 10 Most Cited AI Research Papers of 2024"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
 
-                    </div>
-                </section>
 
                  {/* Research Section */}
                 <section className="ResearchSection">
@@ -251,34 +219,45 @@ function Blog() {
                             </button>
 
                             {/* Conditionally render research papers */}
-                            {showPapers && researchPapers.length > 0 ? (
-                            <ul>
-                                {researchPapers
-                                .sort(() => 0.5 - Math.random())
-                                .slice(0, 3)
-                                .map((paper) => (
-                                    <li key={paper.paper_id} className="ResearchPaperItem">
-                                    <strong>{paper.title}</strong>
-                                    <p>{paper.abstract}</p>
-                                    <button 
-                                        onClick={() => window.open(paper.url, '_blank')} 
-                                        className="read-more-btn"
-                                    >
-                                        Read More
-                                    </button>
-                                    </li>
-                                ))}
-                            </ul>
-                            ) : showPapers ? (
-                            <p>No papers available for this category.</p>
-                            ) : null}
+                            <div className="PaperGrid">
+                                {showPapers && researchPapers.length > 0 ? (
+                                <ul>
+                                    {researchPapers
+                                    .sort(() => 0.5 - Math.random())
+                                    .slice(0, 3)
+                                    .map((paper) => (
+                                        <li key={paper.paper_id} className="ResearchPaperItem">
+                                        <strong>{paper.title}</strong>
+                                        <p>{paper.abstract}</p>
+                                        <button 
+                                            onClick={() => window.open(paper.url, '_blank')} 
+                                            className="read-more-btn"
+                                        >
+                                            Read More
+                                        </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                                ) : showPapers ? (
+                                <p>No papers available for this category.</p>
+                                ) : null}
+
+                            </div>
 
                     </div>
                 </section>
 
                 {/* Community Blog Section */}
                 <section className="CommunitySection">
-                    <h2>Community Blogs</h2>
+                <motion.h1
+                                variants={titleVariants}
+                                initial="hidden"
+                                animate="visible"
+                                style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold' }}
+                                className="news-title"
+                            >
+                                Community Blogs
+                </motion.h1>
                     <div className="CommunityBlogs">
                     {blogs.length > 0 ? (
                         <ul>
@@ -290,14 +269,45 @@ function Blog() {
                         ))}
                         </ul>
                     ) : (
-                        <p>No blogs submitted yet.</p>
+                        <p></p>
                     )}
                     </div>
                     <div className="SubmitBlog">
-                    <p>Have a blog to share? Submit it here:</p>
-                    <form>
-                        <button type="submit" className="submit-blog-btn">Submit Blog</button>
-                    </form>
+                        <h2>Have a blog to share? Email it to us at aisa@ucdenver.edu. We'll format it and publish.</h2>
+                    </div>
+                </section>
+
+                                    {/* Educational Videos Section */}
+                                    <section className="VideosSection">
+                            <motion.h1
+                                variants={titleVariants}
+                                initial="hidden"
+                                animate="visible"
+                                style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold' }}
+                                className="news-title"
+                            >
+                                Educational Videos
+                            </motion.h1>
+                    <div className="VideoContainer">
+                    <iframe
+                        width="5vw"
+                        height="5vh"
+                        src="https://www.youtube.com/embed/tF-SBS5PuQY"
+                        title="The amazing, but unsettling future of technology..."
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                    <iframe
+                        width="5vw"
+                        height="5vh"
+                        src="https://www.youtube.com/embed/v4H2fTgHGuc"
+                        title="The 10 Most Cited AI Research Papers of 2024"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+
                     </div>
                 </section>
 

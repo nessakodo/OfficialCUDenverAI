@@ -25,7 +25,7 @@ function Footer() {
     ///////////////////////////
     
     return (
-    <footer className="footer" style={{ backgroundColor: '#ffffff', padding: '40px 20px' }}>
+    <footer className="footer" style={{ padding: '40px 20px' }}>
       
       <div className="hring">
         <hr />
