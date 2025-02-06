@@ -1,14 +1,7 @@
-
-
-
 .HomePage {
   text-align: center;
-  display: flex;
-  flex-direction: column; 
-  align-items: stretch; 
+  font-family: Arial, sans-serif;
 }
-
-
 
 .HeroTitle {
   height: 100vh;
@@ -27,33 +20,9 @@
 
 
 
-.WhoWeAre, .FeaturedProject, .UpcomingEvents {
-  padding: 20px;
-}
-
-.HeroTitle h1 {
-  margin-right: 7%;
-  margin-left: 7%;
-  color: #000000;
-  text-align: center;
-}
-
-.HeroTitle h3 {
-  text-align: center;
-  color: #000000;
-  text-align: center;
-}
-
-.HeroTitle h2 {
-  margin-right: 7%;
-  margin-left: 7%;
-  color: #000000;
-}
-
-
 .HeroTitle button {
   margin: 20px;
-  background: linear-gradient(90deg, #ffffff, #ffffff); 
+  background: linear-gradient(90deg, #ffffff, #ffffff);
   color: rgb(0, 0, 0);
   padding: 12px 24px; 
   border: none; 
@@ -71,112 +40,97 @@
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
 }
 
-.WhoWeAre{
-  margin-right: 7%;
-  margin-left: 7%;
-  padding: 80px;
+.SignupSection {
+  max-width: 50vw;
+  border-radius: 10px;
 }
 
-
-.WhoWeAre h4 {
-  margin-right: 7%;
-  margin-left: 7%;
-  font-weight: 700;
-  color: #444;
-  text-align: center;
+.SignupSection img {
+  width: 20vw;
 }
 
-.WhoWeAre p {
-  margin-right: 7%;
-  margin-left: 7%;
-  line-height: 28px;
-  color: #666;
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-.UpcomingEvents {
-  margin-right: 7%;
-  margin-left: 7%;
+.signup-form {
+  margin-top: 20px;
   display: flex;
-  justify-content: space-between;
-  gap: 20px; 
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
 }
 
-
-
-.UpcomingEventsTitle h4{
-  margin-top: 60px;
-  font-weight: 700;
-  color: #444;
-  text-align: center;
+.signup-form input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+  width: 100%;
 }
 
+.signup-form input:focus {
+  border-color: #4A90E2;
+}
 
-
-.UpcomingEvents button {
-  margin: 10px;
-  margin-top: 30px;
-  background: linear-gradient(90deg, #ffffff, #ffffff); 
+.signup-form button {
+  font-size: clamp(0.5rem, 6vw, 1rem);
+  padding: 12px;
+  background-color: #000000;
   color: rgb(0, 0, 0);
-  padding: 12px 24px; 
-  border: none; 
-  border-radius: 8px; 
-  cursor: pointer; 
-  transition: all 0.3s ease; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.UpcomingEvents button:hover {
-  background: linear-gradient(90deg, #a7a7a7, #acacac); 
-  transform: scale(1.05); 
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+.signup-form button:hover {
+  background-color: #000000;
 }
 
- 
-.Event1, .Event2, .Event3 {
-  flex: 1 1 calc(33.33% - 20px);
+.SignupLogo {
+  width: 100px;
+  margin-bottom: 15px;
 }
 
-.ShowMoreButton {
-  margin: 20px auto; /* Center horizontally */
-  background: linear-gradient(90deg, #fffefe, #fffefe); /* White background */
-  color: #000; /* Black text */
-  padding: 14px 28px; /* Larger padding */
-  border: none; /* Remove border */
-  border-radius: 40px; /* Rounded corners */
-  cursor: pointer; /* Pointer on hover */
-  transition: all 0.3s ease; /* Smooth hover effect */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  text-align: center; /* Align text */
+.SignupSection p {
+  font-size: 1.2em;
+  color: #333;
 }
 
-.ShowMoreButton:hover {
-  background: linear-gradient(90deg, #a7a7a7, #acacac); /* Gray gradient on hover */
-  transform: scale(1.05); /* Slightly enlarge */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+.SignupInput {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
 }
 
-.ShowMoreButton:active {
-  transform: scale(0.95); /* Shrink slightly on click */
+.SignupButton {
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.slide-in {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: black ;
-  transform-origin: bottom;
+.SignupButton:hover {
+  background: #444;
 }
 
-.slide-out {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: black ;
-  transform-origin: top;
+.WhoWeAre {
+  margin-top: 40px;
+}
+
+.FeaturedProject {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.FP-Text {
+  max-width: 600px;
+  text-align: left;
+  padding: 20px;
 }

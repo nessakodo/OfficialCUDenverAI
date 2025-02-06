@@ -19,24 +19,24 @@
   
   /* Research Section */
   .ResearchSection {
-    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center; 
     align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
   }
 
   .CategoryButtonsDropDown {
     display: none;
   }
 
-
   
   .category-btn {
     padding: 10px 20px;
     border: none;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     color: #333;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -64,7 +64,7 @@
     padding: 10px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
   
   .read-more-btn {
@@ -83,10 +83,11 @@
   
   /* Community Section */
   .CommunitySection {
-    background-color: #ffffff;
-    margin-top: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     text-align: center;
-  }
+    
+  }    
+
   
   .CommunityBlogs ul {
     list-style: none;
@@ -98,31 +99,20 @@
     padding: 15px;
     margin: 10px 0;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
   
-  .submit-blog-btn {
-    padding: 10px 20px;
-    background-color: #000000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 20px;
+  .SubmitBlog {
+    background-color: white;   
+    margin-top: 5vh; 
   }
-  
-  .submit-blog-btn:hover {
-    background-color: #218838;
-  }
-  
-  /* Educational Videos Section */
+  /* Educational Vi
+  deos Section */
   .VideosSection {
     margin-top: 30px;
-    background-color: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
 
   .VideosSection h1 {
@@ -142,7 +132,7 @@
 
   iframe {
     width: 40vw;
-    height: 25vh;
+    height: 35vh;
   }
 
 

@@ -1,21 +1,17 @@
-/*Functionality imports*/
-
-import React, { useState, useEffect} from 'react';
+/* Functionality imports */
+import React, { useState, useEffect } from 'react';
 import './Home.css'; 
 import transition from "../motion/Transition";
 import FadeInComponent from '../motion/Fading';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-
-/*Image imports*/
-
+/* Image imports */
 import img from './images/group.jpg';
-import neuralnetwork from './images/5-AI-Advancements-to-Expect-in-the-Next-10-Years-scaled.jpeg'
-import robotics from './images/sick-sponsored-featured-image-july2023-article1.jpg'
+import neuralnetwork from './images/5-AI-Advancements-to-Expect-in-the-Next-10-Years-scaled.jpeg';
+import robotics from './images/sick-sponsored-featured-image-july2023-article1.jpg';
 import icon from './images/club-rxCX8m8Y.png';
 
-/*UI imports*/
-
+/* UI imports */
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -24,31 +20,29 @@ import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
 
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 
 function Home() {
     ///////////////////////////
-    //States
+    // States
     ///////////////////////////
 
-    /**
-     * @typedef {boolean} loading
-     * @description Indicates whether the data is currently loading
-     */
     const [loading, setLoading] = useState(true);
-
-    /**
-     * @typedef {string|null} Error
-     * @description Stores any error message encountered during API calls
-     */
     const [error, setError] = useState(null);
+    const [signupData, setSignupData] = useState({
+        member_name: "",
+        email: "",
+        attendance_time: "",
+        questions: ""
+    });
 
-
+    const navigate = useNavigate();
     const location = useLocation();
     
     ///////////////////////////
-    //Functions
+    // Functions
     ///////////////////////////
+
     useEffect(() => {
         if (location.state?.scrollTo) {
           const element = document.getElementById(location.state.scrollTo);
@@ -56,57 +50,94 @@ function Home() {
             element.scrollIntoView({ behavior: 'smooth' });
           }
         }
-      }, [location]);
+    }, [location]);
+
+    const handleChange = (e) => {
+        setSignupData({
+            ...signupData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        fetch('http://localhost:8080/new_registration', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(signupData),
+        })
+        .then((response) => {
+          navigate('/about');
+            
+        })
+        .then((data) => {
+            navigate('/home'); // Redirect to home page on successful signup
+        })
+        .catch((error) => {
+            setError(error.message);
+        });
+    };
 
     ///////////////////////////
-    //TSX Rendering
+    // TSX Rendering
     ///////////////////////////
     return (
-            <div className="HomePage" >
-                <FadeInComponent>
+        <div className="HomePage">
+            <FadeInComponent>
 
-                {/*Hero section*/}
+                {/* Hero section */}
                 <section>
-                <div className="HeroTitle">
-                        <h1> 
-                        Empowering the Next Generation of AI Innovators 
-                        </h1> 
-                        
-                        <h2> Fostering collaboration, innovation, and hands-on opportunities in AI, Data Science, and Machine Learning at CU Denver. </h2>
-                        
-                        <button>
-                            <h3> Join </h3>
-                        </button>    
-                </div>
-                </section>
-                </FadeInComponent>
-                
-                {/*Who we are section*/}
-                <section>
-                <FadeInComponent>
-                <div className="WhoWeAre">
-                    <h2> Who We Are </h2>
+                    <div className="HeroTitle">
+                        <div className="SignupSection">
+                            <img src={icon} alt="AI Student Association Logo" className="signup-logo" />
+                            <h2>Join our community to get notified about events and hackathons, and gain exclusive access to participate!</h2>
 
-                    <p> The AI Student Association at CU Denver is a student-led organization dedicated to exploring the applications of artificial intelligence, data science, and machine learning. We provide a collaborative platform for students to connect, engage, and grow through hands-on projects, coding challenges, and research initiatives. Our mission is to bridge the gap between theory and practice by organizing events such as hackathons, workshops, and technical talks that equip students with the skills needed to excel in the AI industry. We focus on fostering an environment of innovation, collaboration, and professional development, ensuring that our members are prepared to tackle real-world challenges and contribute meaningfully to the field of AI. Whether you’re an experienced AI enthusiast or just getting started, the AI Student Association offers opportunities for learning, networking, and advancing your AI journey. </p>
-                </div>
-                </FadeInComponent>
+                            <form className="signup-form" onSubmit={handleSubmit}>
+                                <input 
+                                    type="text" 
+                                    name="member_name" 
+                                    placeholder="Enter Your Name" 
+                                    value={signupData.member_name} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                                <input 
+                                    type="email" 
+                                    name="email" 
+                                    placeholder="Enter Your Email" 
+                                    value={signupData.email} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                                <input 
+                                    type="text" 
+                                    name="attendance_time" 
+                                    placeholder="When would you be able to attend (~1 hour, monthly) meetings? (e.g. 'Monday, midday')" 
+                                    value={signupData.attendance_time} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                                <input 
+                                    type="text" 
+                                    name="questions" 
+                                    placeholder="Any questions or comments for us?" 
+                                    value={signupData.questions} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                                <button type="submit">Apply</button>
+                            </form>
+
+                        </div>
+                    </div>
                 </section>
 
-
-                {/*Featured projects section*/}
-                <FadeInComponent>
-                <section>
-                <div className="FeaturedProject">
- 
-                </div>
-            
-                </section>
             </FadeInComponent>
-
-                
-
-            </div>
-        );
+        </div>
+    );
 }
 
 export default Home;
