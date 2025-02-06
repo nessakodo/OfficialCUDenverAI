@@ -55,7 +55,7 @@ const Nav = () => {
               </MenuItems>
             </Menu>
           ) : (
-            <button onClick={() => { updateMenu(); navigate('/home', { state: { scrollTo: 'FeaturedProject' } }); }}>
+            <button className="JoinButton" onClick={() => { updateMenu(); navigate('/home', { state: { scrollTo: 'FeaturedProject' } }); }}>
               Join
             </button>
           )}

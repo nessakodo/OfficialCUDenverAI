@@ -65,9 +65,12 @@ nav img {
   display: none;
 }
 
+
+
 /* Hamburger menu for navigation bar (Both menus exist in DOM but media queries only display in mobile devices)*/
 
 @media screen and (max-width: 1171px) {
+  
   .Nav-Links {
     display: none;
   }
