@@ -17,6 +17,7 @@ import outreach_off from './images/Officers/outreach_off.png'
 import pres from './images/Officers/pres.png'
 import tech_off from './images/Officers/tech_off.png'
 import vice_pres from './images/Officers/vice_pres.png'
+import treasurer from './images/Officers/treasurer.png'
 
 // CSS imports
 import './AboutUs.css';
@@ -149,7 +150,7 @@ const AboutUs = () => {
                                     src= {pres}
                                     alt="AI Club Icon"        
                                 />
-                                <h2>President</h2>
+                                <h1>President</h1>
                                 <p>
                                 Vicente is a Ph.D. student in Computer Science at the University of Colorado Denver with a deep passion for AI and healthcare. His research focuses on using machine learning and deep learning to tackle complex biomedical data challenges. When he’s not diving into data, you can find him skiing, snowboarding, and camping in the Colorado outdoors. <br /> <br />
 
@@ -165,7 +166,7 @@ const AboutUs = () => {
                                 src= {vice_pres}
                                 alt="AI Club Icon"          
                                 />
-                                <h2>Vice President</h2>
+                                <h1>Vice President</h1>
                                 <p>
                                 Next up, say hello to Mohamed Abdel-Hafiz, AISA’s Vice President and a fourth-year Ph.D. student in Computer Science! Mohamed’s research focuses on graph segmentation and mining, but he’s also passionate about exploring real-world AI applications. <br /><br /> Outside the lab, Mohamed juggles life as a part-time Pharmacy Tech, a go-kart afficionado, and an avid hiker. Fun fact: he’s also the proud bird dad to Ziko, a cuddly little guy who loves head scratches!<br /> <br />
 
@@ -178,7 +179,7 @@ const AboutUs = () => {
                                 src= {outreach_off}
                                 alt="AI Club Icon"          
                                 />  
-                                <h2>Outreach Coordinator</h2>
+                                <h1>Outreach Coordinator</h1>
                                 <p>
                                 Say hello to Sumaiya Shrabony, AISA’s Outreach Coordinator! As a current Data Analyst with CU Denver CEDC and an MS student in Information Systems, Sumaiya brings a unique blend of analytical expertise and creative energy to the team. Outside her professional and academic pursuits, she enjoys immersing herself in the worlds of anime and manga—her latest favorite is the action-packed Haikyu!!<br /> <br />
 
@@ -193,7 +194,7 @@ const AboutUs = () => {
                                 src= {tech_off}
                                 alt="AI Club Icon"          
                                 />
-                                <h2>Technology Officer</h2>
+                                <h1>Technology Officer</h1>
                                 <p>
                                 Meet Elyas Larfi, AISA’s Technology Officer! A junior studying Computer Science at CU Denver, Elyas has a passion for AI and robotics as well as mixed martial arts, basketball, soccer, and first-person shooter gaming. His diverse interests fuel his innovative mindset and curiosity.<br /> <br />
 
@@ -210,7 +211,7 @@ const AboutUs = () => {
                                 src= {brand_off}
                                 alt="AI Club Icon"          
                                 />  
-                                <h2>Brand Officer</h2>
+                                <h1>Brand Officer</h1>
                                 <p>
                                 Meet Andy Tran, AISA’s Brand Strategist! Originally from Vietnam and raised in Colorado, Andy is a second-year Computer Science major at CU Denver with a passion for combining technology and creativity. In his free time, he enjoys DJing, attending music festivals, and exploring innovative ways to blend art and tech. <br /> <br />
 
@@ -225,7 +226,7 @@ const AboutUs = () => {
                                 src= {information_off}
                                 alt="AI Club Icon"          
                                 />
-                                <h2>Information Officer</h2>
+                                <h1>Information Officer</h1>
                                 <p>
                                 Meet Darya, AISA’s Informational Officer! Originally from Uzbekistan, Darya is a freshman majoring in Computer Science at CU Denver. Her journey in AI is just beginning, and she’s excited to build her pathway into the fields of AI and data science. When she’s not exploring the world of technology, she enjoys drawing and painting, finding inspiration in both art and innovation. <br /><br />
 
@@ -234,7 +235,23 @@ const AboutUs = () => {
                                 Darya joined AISA to improve organization and create a streamlined communication system, skills she believes are essential for her future career in technology and information management. In the coming year, she envisions AISA hosting larger events, reaching more students, and becoming the university’s most recognized and go-to AI club on campus. Let’s see how Darya and AISA will thrive and grow this year! <br />
                                 </p>
                             </div>
-    
+                            <div>
+                                <img
+                                className = "center"
+                                src= {treasurer}
+                                alt="AI Club Icon"          
+                                />
+                                <h1>Treasurer</h1>
+                                <p>
+                                Meet Hung Nguyen, AISA’s Treasurer! Originally from Vietnam, he is a master's student in Business Analytics at the University of Colorado Denver. A self-described “data enthusiast with a curiosity for problem-solving,” Hung balances rigorous academic pursuits with a love for adventure—whether road-tripping through the US, carving fresh tracks on ski slopes, or having laid-back movie and game nights with friends. For Hung, data science isn’t just a career path—it’s a mindset that transforms challenges into opportunities. <br /> <br />
+
+                                He dedicates time outside the classroom to sharpen his technical expertise through hands-on projects. From optimizing machine learning models to tackling real-world datasets, he is passionate about translating raw data into actionable insights. “It’s an amazing way for me to refine my ability to think critically and creatively,” he says. <br /> <br />
+
+                                As Treasurer of CU Denver’s AI Student Association (AISA), he ensures the organization’s financial health, meticulously tracking budgets and funding to support the association’s events and initiatives. His journey with AISA began as a participant in the Decoy Challenge, where he learned about the club’s mission of making AI and data science accessible to students of all backgrounds. “AISA isn’t just about technical skills—it’s about empowering peers to see their potential,” he explains. Transitioning from intern to Treasurer, Hung embraced the role to learn organizational management and collaborative leadership. <br /> <br />
+
+                                Looking ahead, Hung aspires to leverage data science as a strategic consultant in his career, helping businesses solve problems through analytics-driven solutions. He sees AISA as a cornerstone of this journey, teaching him skills that will help him succeed professionally. His vision for AISA mirrors his own ambitions as he hopes to see the organization become a recognized community for students exploring AI and data science, offering not just education but mentorship, networking, and career opportunities. With Hung’s leadership, AISA is set for an exciting year of growth and new opportunities!   <br /> <br />
+                                </p>
+                            </div>
                         </Slider>
                     </div>
             </div>
