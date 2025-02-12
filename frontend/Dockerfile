@@ -26,4 +26,3 @@ EXPOSE 3000
 
 # Serve the build folder
 CMD ["serve", "-s", "build", "-l", "3000"]
-
