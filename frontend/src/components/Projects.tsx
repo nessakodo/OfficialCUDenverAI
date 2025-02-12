@@ -98,7 +98,7 @@ function Projects() {
             </p>
             <button
           className="LearnMoreButton"
-          onClick={() => window.open("https://cudenver-ai.github.io/", "_blank")}
+          onClick={() => window.open("s://cudenver-ai.github.io/", "_blank")}
         >
           Learn More
         </button>
