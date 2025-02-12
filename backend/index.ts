@@ -5,6 +5,7 @@ const { connectToDB , connection } = require('./DatabaseConnection.ts');
 require('dotenv').config();
 const generateUserId = require('./Utils.ts')
 const axios = require('axios');
+const https = require('https');
 const app = require('express')()
 const bcrypt = require('bcrypt');
 var bodyParser = require('body-parser');
@@ -43,10 +44,11 @@ app.use(
 
 app.use(
   cors({
-      origin: true,
+      origin: allowedOrigins,
       credentials: true
   })
 ); 
+
 
 
 // Setting up hidden keys
@@ -56,7 +58,7 @@ const CALENDAR_ID = process.env.CALENDAR_ID;
 /////////////////////////
 // HOME 
 //////////////////////////
-app.get('/' , (req, res) => {
+app.get('/api/' , (req, res) => {
   console.log(req.session);
   console.log(req.session.id);
   res.send('This is the Projects Page');
@@ -83,7 +85,7 @@ app.get('/about-us', (req, res) => {
 // BLOG
 //////////////////////////
 // Displaying news
-app.get('/news', async (req, res) => {
+app.get('/api/get-news', async (req, res) => {
   try {
     let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
 
@@ -100,7 +102,7 @@ app.get('/news', async (req, res) => {
 
 
 // Displaying blogs
-app.get('/blogs', async (req, res) => {
+app.get('/api/get-blogs', async (req, res) => {
   try {
     let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
 
@@ -115,7 +117,7 @@ app.get('/blogs', async (req, res) => {
   }
   });
 
-app.get('/research/:category', async (req, res) => {
+app.get('/api/get-research/:category', async (req, res) => {
     try {
       let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
   
@@ -136,7 +138,7 @@ app.get('/research/:category', async (req, res) => {
 ///////////////////
 
 // Route to fetch calendar events
-app.get('/events', async (req, res) => {
+app.get('/api/get-events', async (req, res) => {
   try {
     const auth = Calendar();
     const calendar = google.calendar({ version: 'v3', auth });
@@ -178,7 +180,7 @@ app.get('/events', async (req, res) => {
 //////////////////////////
 // Signing in / Signing up
 //////////////////////////
-app.post('/sign-up', async (req, res) => {
+app.post('/api/get-sign-up', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD)
 
   const {fname, lname, email, password } = req.body
@@ -207,7 +209,7 @@ app.post('/sign-up', async (req, res) => {
 });
 
 // Sign-in Route
-app.post('/sign-in', async (req, res) => {
+app.post('/api/get-sign-in', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD)
 
   const { email, password } = req.body;
@@ -249,7 +251,7 @@ app.post('/sign-in', async (req, res) => {
 });
 
 
-app.post('/sign-out', (req, res) => {
+app.post('/api/get-sign-out', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).send({ message: "Failed to log out" });
@@ -261,7 +263,7 @@ app.post('/sign-out', (req, res) => {
   });
 });
 
-app.post('/new_registration', async (req, res) => { 
+app.post('/api/get-new_registration', async (req, res) => { 
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
 
   const { attendance_time, email, member_name, questions} = req.body;
@@ -287,7 +289,7 @@ app.post('/new_registration', async (req, res) => {
   }
 });
 
-app.get('/profile', async (req, res) => {
+app.get('/get-profile', async (req, res) => {
   try {
     let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
     const userId = req.cookies['username'];
@@ -308,6 +310,6 @@ app.get('/profile', async (req, res) => {
   }
 });
 
-app.listen(PORT, async () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

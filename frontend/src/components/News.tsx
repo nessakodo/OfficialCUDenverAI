@@ -20,7 +20,7 @@ function News() {
     useEffect(() => {
       if (news.length === 0) {
         dispatch(setLoading(true));
-        fetch("https://129.153.84.107:8080/news")
+        fetch("https://129.153.84.107:8080/get-news")
           .then((response) => {
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
