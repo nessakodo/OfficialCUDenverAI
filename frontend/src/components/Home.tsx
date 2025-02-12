@@ -62,7 +62,7 @@ function Home() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch('https://129.153.84.107:8080/new_registration', {
+        fetch('https://cudenver-ai.tech/api/new_registration', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

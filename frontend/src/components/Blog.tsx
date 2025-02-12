@@ -115,7 +115,7 @@ function Blog() {
      */
     const fetchResearchPapers = async (category) => {
         try {
-            const response = await fetch(`http://129.153.84.107:8080/research/${category}`);
+            const response = await fetch(`https://cudenver-ai.tech/api/research/${category}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -136,7 +136,7 @@ function Blog() {
     const fetchBlogs = () => {
         return (dispatch) => {
           console.log("test")
-          fetch("http://localhost:8080/blogs")
+          fetch("https://cudenver-ai.tech/api/blogs")
             .then((response) => {
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
