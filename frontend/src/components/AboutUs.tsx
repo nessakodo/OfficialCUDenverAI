@@ -10,6 +10,7 @@ import icon from './images/club-rxCX8m8Y.png';
 import communityimg from './images/community.jpg'
 import innovationimg from './images/innovation.jpeg'
 import diversityimg from'./images/diversity.jpeg'
+import officerTreeChart from './images/AISA_ORG_Chart.png'
 
 import brand_off from './images/Officers/brand_off.png'
 import information_off from './images/Officers/information_off.png'
@@ -258,10 +259,20 @@ const AboutUs = () => {
         </section>
         </FadeInComponent>
 
-        </div>
-
+        <FadeInComponent>
+        {/* Officers Tree */}
+        <section>
+            <div>
+                <img
+                    className = "center"
+                    src= {officerTreeChart}
+                    style = {{width:"65%"}}          
+                    />
+            </div>
+        </section>
+        </FadeInComponent>
        
-
+        </div>
     );
 };
 
