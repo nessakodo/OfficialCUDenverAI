@@ -259,8 +259,15 @@ const AboutUs = () => {
         </section>
         </FadeInComponent>
 
+
         <FadeInComponent>
-        {/* Officers Tree */}
+        <section>
+            <div className="hring">
+                <hr />
+            </div>
+        </section>
+        {/* Officers Tree Chart */}
+            <h1>Organization Chart</h1>
         <section>
             <div>
                 <img
