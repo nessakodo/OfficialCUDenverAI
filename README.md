@@ -59,6 +59,12 @@ You can now set up both the back-end and front-end automatically using the provi
 ./setup.sh
 ```
 
+**For Mac User**
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
 This script will:
 - Set up `nvm` and install Node.js version 22.
 - Install front-end and back-end dependencies.
