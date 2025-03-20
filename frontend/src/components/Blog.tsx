@@ -14,6 +14,8 @@ import './Blog.css'
 /* UI Imports */
 import { motion } from "framer-motion";
 
+/* Image Imports */
+import OllamaPic from './images/Ollama.png'
 
 function Blog() {
     ///////////////////////////
@@ -249,32 +251,38 @@ function Blog() {
 
                 {/* Community Blog Section */}
                 <section className="CommunitySection">
-                <motion.h1
-                                variants={titleVariants}
-                                initial="hidden"
-                                animate="visible"
-                                style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold' }}
-                                className="news-title"
-                            >
-                                Community Blogs
-                </motion.h1>
-                    <div className="CommunityBlogs">
-                    {blogs.length > 0 ? (
-                        <ul>
-                        {blogs.map((blog, index) => (
-                            <li key={index} className="CommunityBlogItem">
-                            <strong>{blog.title}</strong>
-                            <p>{blog.content}</p>
-                            </li>
-                        ))}
-                        </ul>
-                    ) : (
-                        <p></p>
-                    )}
+                    <motion.h1
+                                    variants={titleVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold' }}
+                                    className="news-title"
+                                >
+                                    Community Blogs
+                    </motion.h1>
+
+
+                    <div className="BlogTitle">
+                        <div className="BlogContent">
+                            <div className="BlogContentCard">
+                                    <a href="https://funky-cathedral-ca3.notion.site/Ollama-Tutorial-1b30549cb63e805d9adcf59cfc5006d9?pvs=4.com" className="BlogContentCardLink">
+                                    <img src={OllamaPic} alt="Intro To Ollama" className="BlogContentImage" />
+                                    <h3>Intro To Ollama</h3>
+                                    <p>
+                                        A tutorial on how to set up a local AI large language model on your device.
+                                    </p>
+                                    </a>
+                            </div>
+
+
+                        </div>
+                        
                     </div>
+
                     <div className="SubmitBlog">
                         <h2>Have a blog to share? Email it to us at aisa@ucdenver.edu. We'll format it and publish.</h2>
                     </div>
+
                 </section>
 
                                     {/* Educational Videos Section */}

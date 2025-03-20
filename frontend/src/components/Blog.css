@@ -88,23 +88,73 @@
     
   }    
 
-  
-  .CommunityBlogs ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .CommunityBlogItem {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  }
-  
   .SubmitBlog {
     background-color: white;   
-    margin-top: 5vh; 
+  }
+
+  .BlogTitle{
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 5vh;
+  }
+
+  .BlogContent {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .BlogContentCard{
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1rem;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .BlogContentCardLink {
+    text-decoration: none;
+    color: inherit; 
+    display: block;        
+  }
+  
+
+  @media screen and (max-width: 1200px) {
+      .BlogContent {
+          flex-direction: row;
+          align-items: center; /* Center cards when stacked */
+      }
+
+      .BlogContentCard {
+          width: 90%; /* Make it more fluid on small screens */
+          max-width: 400px;
+      }
+  }
+
+  .BlogContentImage {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+  }
+
+  .BlogContentCard h2 {
+      margin-top: 1rem;
+      color: #333;
+  }
+
+  .BlogContentCard p {
+      margin-top: 0.5rem;
+      color: #555;
+  }
+  .BlogTitle h1 {
+      margin-top: 60px;
+      margin-bottom: 60px;
+      text-align: center;
+      color: black;
+      font-weight: bold;
   }
   /* Educational Vi
   deos Section */
