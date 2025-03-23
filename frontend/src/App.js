@@ -11,6 +11,7 @@ import Nav from './components/Nav.tsx';
 import Footer from './components/Footer.tsx';
 import Profile from './components/Profile.tsx'
 import News from './components/News.tsx'
+import Hackathon from './components/Hackathon.tsx'
 
 const allowedOrigins = [ "https://127.0.0.1:8080/"];
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/news" element={<News />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/events/hackathon2025" element={<Hackathon />} />
         </Routes>
         <Footer />
       </div>

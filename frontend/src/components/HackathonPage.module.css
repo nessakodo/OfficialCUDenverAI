@@ -1,0 +1,96 @@
+.container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  /* Timeline Section */
+  .timelineSection h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .highlight {
+    color: red;
+  }
+  
+  .timelineGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+  
+  .eventBox {
+    background: #f3f3f3;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Prize Section */
+  .prizeSection {
+    margin-top: 40px;
+  }
+  
+  .prizeBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .prizeImage {
+    width: 80px;
+  }
+  
+  .prizeAmount {
+    font-size: 24px;
+    font-weight: bold;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .prizeNote {
+    font-size: 14px;
+    color: gray;
+    margin-top: 10px;
+  }
+  
+  /* Sitemap Section */
+  .sitemapSection {
+    margin-top: 50px;
+    background: #222;
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+  }
+  
+  .sitemapContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .sitemapLinks {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .sitemapItem {
+    background: #444;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .sitemapItem:hover {
+    background: #666;
+  }
