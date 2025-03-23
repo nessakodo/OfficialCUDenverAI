@@ -267,14 +267,17 @@ const AboutUs = () => {
             </div>
         </section>
         {/* Officers Tree Chart */}
-            <h1>Organization Chart</h1>
         <section>
-            <div>
-                <img
-                    className = "center"
-                    src= {officerTreeChart}
-                    style = {{width:"65%"}}          
-                    />
+            <div className="OrganizationChart">
+                <h1>Organization Chart</h1>
+        
+                <div>
+                    <img
+                        className = "center"
+                        src= {officerTreeChart}
+                        style = {{width:"60%"}}          
+                        />
+                </div>
             </div>
         </section>
         </FadeInComponent>

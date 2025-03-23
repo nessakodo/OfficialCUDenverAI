@@ -96,8 +96,15 @@
     font-weight: bold;
 }
 
+.OrganizationChart h1 {
+    margin-bottom: 20px;
+}
 
-
+@media screen and (max-width: 800px) {
+.OrganizationChart img {
+    width: 75%;
+}
+}
 
 .Carousel img {
     width: 15vw;
