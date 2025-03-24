@@ -134,3 +134,37 @@
   text-align: left;
   padding: 20px;
 }
+
+.hackathon-announcement {
+  background-color: #ffd900; /* Sunset Orange */
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 40px; /* Space between the announcement and form */
+  border-radius: 8px;
+}
+
+.announcement-container h2 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.announcement-container p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.event-cta {
+  background-color: #000000; /* Emerald Green */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.event-cta:hover {
+  background-color: rgb(58, 58, 58); /* Darker Green */
+}

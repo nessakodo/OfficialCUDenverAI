@@ -94,3 +94,33 @@
   .sitemapItem:hover {
     background: #666;
   }
+
+  .timelineContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Space between columns */
+    padding: 20px;
+  }
+  
+  .dayColumn {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dayColumn h3 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .eventBox {
+    background: white;
+    padding: 10px;
+    border-left: 5px solid #007bff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  }
