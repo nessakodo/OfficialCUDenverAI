@@ -1,4 +1,3 @@
-/* Functionality imports */
 import React, { useState, useEffect } from 'react';
 import './Home.css'; 
 import transition from "../motion/Transition";
@@ -38,7 +37,7 @@ function Home() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    
+
     ///////////////////////////
     // Functions
     ///////////////////////////
@@ -71,7 +70,6 @@ function Home() {
         })
         .then((response) => {
           navigate('/about');
-            
         })
         .then((data) => {
             navigate('/home'); // Redirect to home page on successful signup
@@ -88,7 +86,16 @@ function Home() {
         <div className="HomePage">
             <FadeInComponent>
 
-                {/* Hero section */}
+                {/* Hackathon Announcement Section */}
+                <section className="hackathon-announcement">
+                    <div className="announcement-container">
+                        <h2>🚨 Auraria Hack 2025: The Main Event of the Year! 🚨</h2>
+                        <p>Don't miss out on our upcoming hackathon! Join us for an exciting challenge with prizes, learning, and networking opportunities!</p>
+                        <button className="event-cta" onClick={() => navigate('/events')}>Learn More & Sign Up</button>
+                    </div>
+                </section>
+
+                {/* Hero section with registration form */}
                 <section>
                     <div className="HeroTitle">
                         <div className="SignupSection">
