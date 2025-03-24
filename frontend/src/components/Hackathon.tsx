@@ -277,9 +277,6 @@ function Hackathon() {
   
 
   
-        <footer>
-          <p>Powered by AI Club | Contact us at <a href="mailto:ai-club@ucdenver.edu">ai-club@ucdenver.edu</a></p>
-        </footer>
       </div>
     );
 }
