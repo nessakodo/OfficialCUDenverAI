@@ -129,6 +129,14 @@
     max-height: 30vh;
     border-radius: 16px;
   }
+
+  .EventImage {
+    max-height: 20vh;
+
+  }
+
+  .EventImage img{
+  }
   
   /* Buttons */
   .LearnMoreButton,

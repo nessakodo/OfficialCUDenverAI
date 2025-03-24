@@ -82,7 +82,7 @@ function Hackathon() {
               </Link>
             </li>
             <li>
-              <Link to="schedule" smooth={true} duration={500}>
+              <Link to="timeline" smooth={true} duration={500}>
                 Timeline
               </Link>
             </li>
@@ -138,7 +138,7 @@ function Hackathon() {
         </section>
 
                 {/* Event Details Section */}
-                <Element name="details">
+              <Element name="details">
             <section className="details">
             <div className="details-container">
                     <h2>Auraria Hack 2025</h2>
@@ -176,6 +176,7 @@ function Hackathon() {
             </section>
         </Element>
 
+    <Element name="timeline">
     <div className={styles.container}>
       {/* Timeline Section */}
       <section className={styles.timelineSection}>
@@ -225,9 +226,8 @@ function Hackathon() {
         </div>
       </section>
 
-
     </div>
-  
+    </Element>
 
 
         {/* Rules Section */}
@@ -263,6 +263,17 @@ function Hackathon() {
                 width={250}
                 height={250}
                 />
+          </section>
+        </Element>
+
+        {/* Rules Section */}
+        <Element name="resources">
+          <section className="resources">
+          <h3>Explore Our Resources</h3>
+          <p>Find guides, tutorials, and AI learning materials.</p>
+          <Link to="/resources">
+              <button className="resources-btn">Go to Resources</button>
+          </Link>
           </section>
         </Element>
   

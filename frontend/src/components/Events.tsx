@@ -38,10 +38,10 @@ function Events() {
       id: "githubevent",
       location: "CU Denver",
       name: "Github Event",
-      date: "November 1, 2024",
-      time: "10 AM - 4 PM",
+      date: "March 31, 2025",
+      time: "5 PM - 7 PM",
       description:
-        "Showcasing winners of the decoy challenge competition.",
+        "Github Foundations Certifications Workshop",
       image: GithubEvent,
     }
     
