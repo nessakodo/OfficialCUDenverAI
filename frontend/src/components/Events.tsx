@@ -1,9 +1,17 @@
+/*Functionality imports*/
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { TypeAnimation } from "react-type-animation";
 import "./Events.css";
+
+
+/* UI Imports */
 import Particles from "react-tsparticles";
+import { TypeAnimation } from "react-type-animation";
+
+/* Image Imports */
+import AurariaHack from './images/Hackathon/AurariaHack.png'
+import GithubEvent from './images/Hackathon/GithubEvent.png'
 
 function Events() {
   const navigate = useNavigate();
@@ -24,17 +32,17 @@ function Events() {
       time: "10 AM - 4 PM",
       description:
         "Auraria Hack 2025 is a hackathon where students identify problems within areas such as healthcare, climate, transportation, finance and develop innovative solutions leveraging AI and machine learning. Whether you're a beginner or an experienced coder, this event provides a platform to build, compete, and showcase your skills. ",
-      image: require("./images/group.jpg"),
+      image: AurariaHack,
     },
     {
       id: "githubevent",
       location: "CU Denver",
       name: "Github Event",
-      date: "November 1, 2024",
-      time: "10 AM - 4 PM",
+      date: "March 31, 2025",
+      time: "5 PM - 7 PM",
       description:
-        "Showcasing winners of the decoy challenge competition.",
-      image: require("./images/group.jpg"),
+        "Github Foundations Certifications Workshop",
+      image: GithubEvent,
     }
     
     
