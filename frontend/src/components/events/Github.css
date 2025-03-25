@@ -19,3 +19,172 @@
     color: #ffffff;
   }
 
+
+  .agenda-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f8f3ea;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .agenda-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .agenda-list {
+    border-left: 4px solid #555;
+    padding-left: 20px;
+  }
+  
+  .agenda-item {
+    margin-bottom: 15px;
+  }
+  
+  .agenda-time {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .agenda-topic {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .agenda-description {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+  }
+
+  .workshop-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f8f3ea;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .workshop-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Sections */
+  .prerequisites, .goals, .agenda {
+    margin-bottom: 30px;
+  }
+  
+  h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    padding-left: 20px;
+  }
+  
+  li {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  /* Agenda */
+  .agenda-list {
+    border-left: 4px solid #555;
+    padding-left: 20px;
+  }
+  
+  .agenda-item {
+    margin-bottom: 15px;
+  }
+  
+  .agenda-time {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .agenda-topic {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .agenda-description {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .exercise-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #eef6fd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .exercise-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .exercise-description {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .exercise-steps, .exercise-benefits {
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  ol, ul {
+    padding-left: 20px;
+  }
+  
+  li {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  a {
+    color: #0366d6;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .exercise-note {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+  }

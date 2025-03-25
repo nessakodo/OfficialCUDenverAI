@@ -60,6 +60,73 @@ function GithubEvent() {
       }
     };
   
+    const agendaItems = [
+        {
+          time: "5:00 - 5:10 PM",
+          title: "Registration & Welcome",
+          description:
+            "Participants check in, receive name tags, and enjoy light refreshments.",
+        },
+        {
+          time: "5:10 - 5:20 PM",
+          title: "Opening Remarks",
+          description:
+            "A brief introduction outlining the event’s goals and the value of GitHub Foundations Certifications.",
+        },
+        {
+          time: "5:20 - 5:40 PM",
+          title: "Presentation & Overview",
+          description:
+            "An informative session covering the fundamentals of GitHub Foundations Certifications, including how-to, benefits, and career impact.",
+        },
+        {
+          time: "5:40 - 5:55 PM",
+          title: "Live Demonstration",
+          description:
+            "A step-by-step walkthrough of the certification process and a showcase of key GitHub tools and features.",
+        },
+        {
+          time: "5:55 - 6:10 PM",
+          title: "Q&A Session",
+          description:
+            "Participants ask questions and clarify details about the certification process.",
+        },
+        {
+          time: "6:10 - 6:20 PM",
+          title: "Break + Networking",
+          description:
+            "A short break to refresh and allow attendees to network.",
+        },
+        {
+          time: "6:20 - 6:50 PM",
+          title: "Hands-on Exercises",
+          description:
+            "Breakout sessions where participants explore GitHub functionalities and work on sample tasks related to the certifications.",
+        },
+        {
+          time: "6:50 - 7:00 PM",
+          title: "Wrap Up + Next Steps",
+          description:
+            "Closing remarks, feedback collection, and guidance on accessing additional resources or starting the certification journey.",
+        },
+      ];
+
+
+    
+    const prerequisites = [
+        "A GitHub account (Sign up at github.com if you don’t have one).",
+        "Basic knowledge of Git and repositories.",
+        "A laptop with Git installed (or access to GitHub Codespaces).",
+        "The GitHub Student Developer Pack activated (optional but recommended).",
+    ];
+
+    const goals = [
+        "Understand the importance of GitHub certifications.",
+        "Learn how to register and prepare for the certification exam.",
+        "Gain hands-on experience with key GitHub tools.",
+        "Network with other participants and industry professionals.",
+        "Complete at least one certification-related task.",
+    ];
 
 
     ///////////////////////////
@@ -88,7 +155,90 @@ function GithubEvent() {
         />
       </section>
 
-    {/* Video Section */}
+      <section className="workshop-container">
+
+      {/* Schedule Section */}
+
+      <section className="agenda-container">
+      <h2 className="agenda-title">GitHub Certificate Workshop Agenda</h2>
+      <div className="agenda-list">
+        {agendaItems.map((item, index) => (
+          <div key={index} className="agenda-item">
+            <h3 className="agenda-time">{item.time}</h3>
+            <h4 className="agenda-topic">{item.title}</h4>
+            <p className="agenda-description">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Prerequisites Section */}
+    <div className="prerequisites">
+        <h3>Prerequisites</h3>
+        <ul>
+          {prerequisites.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+    </div>
+
+          {/* Goals Section */}
+          <div className="goals">
+        <h3>Goals for the Day</h3>
+        <ul>
+          {goals.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+      </section>
+
+      <section className="exercise-container">
+      <h2 className="exercise-title">Hands-on Exercise: Introduction to GitHub</h2>
+      <p className="exercise-description">
+        This interactive exercise will help you learn the basics of GitHub, including repositories, branches, commits, and pull requests. Complete the official **GitHub Skills: Introduction to GitHub** module to gain practical experience.
+      </p>
+
+      <div className="exercise-steps">
+        <h3>How to Complete the Exercise:</h3>
+        <ol>
+          <li>
+            <strong>Go to the GitHub Skills course:</strong>  
+            <a href="https://github.com/skills/introduction-to-github" target="_blank" rel="noopener noreferrer">
+              GitHub Skills: Introduction to GitHub
+            </a>
+          </li>
+          <li>Click **"Start Course"** to create your own repository.</li>
+          <li>Follow the instructions to make commits and open a pull request.</li>
+          <li>Merge the pull request once you complete the steps.</li>
+          <li>Celebrate! 🎉 You’ve completed your first GitHub workflow.</li>
+        </ol>
+      </div>
+
+      <div className="exercise-benefits">
+        <h3>What You'll Learn:</h3>
+        <ul>
+          <li>Creating and managing repositories</li>
+          <li>Making commits and tracking changes</li>
+          <li>Branching and merging pull requests</li>
+          <li>Understanding GitHub collaboration workflows</li>
+        </ul>
+      </div>
+
+      <p className="exercise-note">
+        📝 **Note:** This hands-on exercise is self-paced. If you have any questions, feel free to ask during the workshop!
+      </p>
+    </section>
+
+    {/* Github Profile Section */}
+
+      <section className="GithubVideo">
+      <h2> How to setup profile on github</h2>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/9A8sQZDRn5o?si=r60xXFIZgy8WMWqN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+
+
+    {/* Github Certification Exam Tutorial Section */}
     <section className="GithubVideo">
         <h2> How to book Github Certification Exam for free with student developer pack!</h2>
         <motion.div
@@ -102,6 +252,9 @@ function GithubEvent() {
                     </video>
         </motion.div>
     </section>
+
+
+
 
   
       </div>
