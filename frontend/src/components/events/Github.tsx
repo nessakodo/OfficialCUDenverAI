@@ -193,6 +193,35 @@ function GithubEvent() {
       </div>
       </section>
 
+      <section className="resources-container">
+      <h2 className="resources-title">📚 Learning Resources</h2>
+      <p className="resources-description">
+        Continue your GitHub learning with these resources. Whether you're just starting or want to level up, these guides will help you master GitHub!
+      </p>
+      <ul className="resources-list">
+        <li>
+          <a href="https://docs.github.com/en/get-started" target="_blank" rel="noopener noreferrer">
+            🚀 GitHub Docs - Get Started
+          </a>
+        </li>
+        <li>
+          <a href="https://app.datacamp.com/learn/skill-tracks/github-foundations" target="_blank" rel="noopener noreferrer">
+            🏆 Github Foundations Skill Track
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/c/GitHub" target="_blank" rel="noopener noreferrer">
+            🎥 GitHub YouTube Channel
+          </a>
+        </li>
+        <li>
+          <a href="https://education.github.com/" target="_blank" rel="noopener noreferrer">
+            🎓 GitHub Education Pack (Free for Students!)
+          </a>
+        </li>
+      </ul>
+    </section>
+
       <section className="exercise-container">
       <h2 className="exercise-title">Hands-on Exercise: Introduction to GitHub</h2>
       <p className="exercise-description">
