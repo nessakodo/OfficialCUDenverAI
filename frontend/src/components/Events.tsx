@@ -25,7 +25,7 @@ function Events() {
 
   const events = [
     {
-      id: "hackathon2025",
+      id: "home",
       location: "CU Denver",
       name: "Auraria Hack 2025",
       date: "April 16-18, 2025",
