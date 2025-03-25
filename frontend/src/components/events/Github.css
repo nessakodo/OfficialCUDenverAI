@@ -1,0 +1,21 @@
+.GithubVideo video {
+    width: 50vw; 
+    height: auto;
+    display: block;
+    margin: 0 auto; 
+}
+
+
+
+.GithubEventHero {
+    background: url('../images/GithubEventImg.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 100px 20px;
+    height: 50vh;
+  }
+
+  .GithubEventHero h2 {
+    color: #ffffff;
+  }
+
