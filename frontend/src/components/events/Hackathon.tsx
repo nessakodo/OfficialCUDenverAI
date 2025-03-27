@@ -16,6 +16,7 @@ import styles from "./HackathonPage.module.css";
 /* UI Imports */
 import { motion } from "framer-motion";
 import { PieChart } from '@mui/x-charts/PieChart';
+import Box from '@mui/material/Box';
 import Countdown from 'react-countdown';
 
 /* Image Imports */
@@ -248,27 +249,52 @@ function Hackathon() {
         <Element name="judgingcriteria">
           <section className="judgingcriteria">
           <h2>Judging Criteria</h2>
+          </section>
+        </Element>
+          <section className="pieChart">
           <PieChart
                 series={[
                     {
                     arcLabel: (item) => `${item.value}%`,
+                    arcLabelRadius: 150,
 
                     data: [
-                        { id: 0, value: 20, label: "Problem & Solution" },
-                        { id: 1, value: 20, label: "Impact & Feasibility" },
-                        { id: 2, value: 20, label: "Technical Depth" },
-                        { id: 3, value: 15, label: "Innovation & Creativity" },
-                        { id: 4, value: 10, label: "Q&A Responses" },
-                        { id: 5, value: 10, label: "Presentation & Clarity" },
-                        { id: 6, value: 5, label: "User-Centered Design & UX" },
+                        { id: 0, value: 20, 
+                          label: "Problem & Solution",
+                          color: "#ED9898",
+                        },
+                        { id: 1, value: 20, label: "Impact & Feasibility", color: "#BBE394" },
+                        { id: 2, value: 20, label: "Technical Depth", color: "#FFD700" },
+                        { id: 3, value: 15, label: "Innovation & Creativity" , color: "#800080"},
+                        { id: 4, value: 10, label: "Q&A Responses" , color: "#FFA500"},
+                        { id: 5, value: 10, label: "Presentation & Clarity" , color: "#008080"},
+                        { id: 6, value: 5, label: "User-Centered Design & UX" , color: "#4169E1"},
                     ],
+                    highlightScope: { fade: 'global', highlight: 'item' },
+                    faded: { innerRadius: 80, additionalRadius: -80, color: 'gray' },
                     },
                 ]}
-                width={250}
-                height={250}
+                height={500}
+                width={1200}
+                margin={{ right: 0, top: 0 }}
+                sx={{
+                  fontWeight: 'bold',
+                   fontSize: "1.5em" ,
+                }}
+                slotProps={{
+                  legend: {
+
+                    direction: 'column',
+                    position: {
+                      horizontal: 'right',
+                      vertical: 'bottom',
+                    },
+                  },
+                }}
                 />
-          </section>
-        </Element>
+              </section>
+        
+        
 
         {/* Resources Section */}
         <Element name="resources">
