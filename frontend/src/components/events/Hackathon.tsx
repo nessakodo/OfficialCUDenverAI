@@ -13,15 +13,21 @@ import './Hackathon.css'
 import styles from "./HackathonPage.module.css";
 
 
+
 /* UI Imports */
 import { motion } from "framer-motion";
 import { PieChart } from '@mui/x-charts/PieChart';
 import Box from '@mui/material/Box';
 import Countdown from 'react-countdown';
+import { useMediaQuery } from '@mui/material';
 
 /* Image Imports */
 import BagPrize from '../images/Hackathon/bag.png'
+import { Autocomplete } from "@mui/material";
 
+export const useIsMobile = () => {
+  return useMediaQuery('(max-width:500px)');
+};
 
 function Hackathon() {
     ///////////////////////////
@@ -32,7 +38,7 @@ function Hackathon() {
     * @description React hook for dispatching actions to update states
     */
     const dispatch = useDispatch();
-
+    const isMobile = useIsMobile();
       
     /**
      * Options for the title transition
@@ -251,12 +257,14 @@ function Hackathon() {
           <h2>Judging Criteria</h2>
           </section>
         </Element>
-          <section className="pieChart">
+        <section className="pieChart">
           <PieChart
                 series={[
                     {
                     arcLabel: (item) => `${item.value}%`,
                     arcLabelRadius: 150,
+                    innerRadius: 0,
+                    outerRadius: 250,
 
                     data: [
                         { id: 0, value: 20, 
@@ -274,8 +282,8 @@ function Hackathon() {
                     faded: { innerRadius: 80, additionalRadius: -80, color: 'gray' },
                     },
                 ]}
-                height={500}
-                width={1200}
+                height={isMobile ? 800:500}
+                width={isMobile ? 800:1200}
                 margin={{ right: 0, top: 0 }}
                 sx={{
                   fontWeight: 'bold',
@@ -283,18 +291,17 @@ function Hackathon() {
                 }}
                 slotProps={{
                   legend: {
-
-                    direction: 'column',
-                    position: {
-                      horizontal: 'right',
-                      vertical: 'bottom',
-                    },
+                    labelStyle: {fontSize: 14,fill: 'blue',},
+                    direction: isMobile ? 'row' : 'column',
+                    position: isMobile ? {horizontal: 'middle',vertical: 'bottom',}
+                                          :{horizontal: 'right',vertical: 'bottom',},
                   },
                 }}
-                />
-              </section>
+          />
+        </section>
+
         
-        
+
 
         {/* Resources Section */}
         <Element name="resources">

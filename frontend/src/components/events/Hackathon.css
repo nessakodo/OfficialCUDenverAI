@@ -149,6 +149,16 @@ body {
   .pieChart{
     display: flex;
     align-items: center;
+    height: auto;
+  }
+
+  @media (max-width: 500px) {
+    .pieChart {
+      max-width: 2000px;
+      height: 250px;
+      margin: 0 auto;
+      /* increase width/height or any other styling */
+    }
   }
   
 
