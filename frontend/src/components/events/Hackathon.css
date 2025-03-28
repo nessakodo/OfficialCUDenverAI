@@ -4,8 +4,10 @@ body {
   }
   
   .navbar {
-    background-color: #333;
-    padding: 10px;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
   
   .navbar ul {
@@ -15,15 +17,16 @@ body {
   }
   
   .navbar ul li {
-    display: inline;
+    justify-content: center;
+    display: inline-block;
     margin: 0 15px;
   }
   
   .navbar a {
-    color: white;
+    color: rgb(0, 0, 251);
     text-decoration: none;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
   }
   
   .navbar a:hover {
@@ -148,6 +151,74 @@ body {
     font-size: 14px;
     color: gray;
     margin-top: 10px;
+  }
+
+  .judgeCardCover{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 100px;
+
+  }
+
+
+  .judgeCard {
+    margin: 0 auto;
+    max-width: 300px;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;              
+    flex-direction: column;   
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .judgeCard p {
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  
+  .judgeImage {
+    margin: 0 auto;
+    max-width: 265px;
+    height: 300px; 
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  
+  .judgeName {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 0.75rem;
+  }
+
+
+  .pieChart{
+    display: flex;
+    align-items: center;
+    height: auto;
+  }
+
+  @media (max-width: 500px) {
+    .pieChart {
+      max-width: 2000px;
+      height: 250px;
+      margin: 0 auto;
+      /* increase width/height or any other styling */
+    }
+
+    .judgeCardCover{
+      flex-direction: row; 
+    }
+
+    .navbar {
+      flex-direction: row;
+    }
   }
   
 

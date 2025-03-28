@@ -13,14 +13,23 @@ import './Hackathon.css'
 import styles from "./HackathonPage.module.css";
 
 
+
 /* UI Imports */
 import { motion } from "framer-motion";
 import { PieChart } from '@mui/x-charts/PieChart';
+import Box from '@mui/material/Box';
 import Countdown from 'react-countdown';
+import { Slider, useMediaQuery } from '@mui/material';
+import Paper from '@mui/material/Paper';
 
 /* Image Imports */
 import BagPrize from '../images/Hackathon/bag.png'
+import { Autocomplete } from "@mui/material";
+import OllamaPic from '../images/Ollama.png'
 
+export const useIsMobile = () => {
+  return useMediaQuery('(max-width:500px)');
+};
 
 function Hackathon() {
     ///////////////////////////
@@ -31,7 +40,7 @@ function Hackathon() {
     * @description React hook for dispatching actions to update states
     */
     const dispatch = useDispatch();
-
+    
       
     /**
      * Options for the title transition
@@ -42,7 +51,7 @@ function Hackathon() {
       };
 
     const navigate = useNavigate();
-      
+
 
     ///////////////////////////
     // Functions
@@ -58,7 +67,14 @@ function Hackathon() {
         );
       }
     };
-  
+    
+
+    //check the screen size, if it's mobile < 500px, return ture
+    const useIsMobile = () => {
+      return useMediaQuery('(max-width:500px)');
+    };
+
+    const isMobile = useIsMobile();
 
 
     ///////////////////////////
@@ -67,8 +83,29 @@ function Hackathon() {
 
     return (
         <div className="hackathon-container">
-        {/* Navbar with Links to Sections */}
-        <nav className="navbar">
+  
+        {/* Hero Section */}
+        <Element name="hero">
+        <section className="hero">
+            <h1>AI Club Hackathon 2025</h1>
+            <p>Innovate, Build, and Compete with the Best!</p>
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
+            
+        </section>
+        </Element>
+
+
+      {/* Countdown Section */}
+      <section className="Countdown">
+        <h2>Countdown to Hackathon</h2>
+        <Countdown
+          date={new Date('2025-04-16T09:00:00')} // set the target date here
+          renderer={renderer}
+        />
+      </section>
+
+      {/* Navbar with Links to Sections */}
+      <nav className="navbar">
           <ul>
             <li>
               <Link to="hero" smooth={true} duration={500}>
@@ -127,6 +164,7 @@ function Hackathon() {
         />
       </section>
 
+
         <section className="HackathonVideo">
         {/* Video Section */}
         <motion.div
@@ -142,7 +180,7 @@ function Hackathon() {
         </section>
 
                 {/* Event Details Section */}
-              <Element name="details">
+            <Element name="details">
             <section className="details">
             <div className="details-container">
                     <h2>Auraria Hack 2025</h2>
@@ -235,6 +273,95 @@ function Hackathon() {
           </ul>
         </section>
         </Element>
+          <section className="rules">
+            <h2>Event Rules</h2>
+            <p></p>
+          </section>
+        </Element>
+
+
+        {/* Hackathon Judges */}
+        <h2>Judges</h2>
+      <div className="judgeCardCover">
+      <div className="judgeCard">
+        <img src={OllamaPic} className="judgeImage" />
+        <h2 className="judgeName">Judge1</h2>
+        <p className="judgeCard">
+        Judge description
+        </p>
+      </div>
+      <div className="judgeCard">
+        <img src={OllamaPic} className="judgeImage" />
+        <h2 className="judgeName">Judge2</h2>
+        <p className="judgeCard">
+        Judge description<br />
+        </p>
+      </div>
+      <div className="judgeCard">
+        <img src={OllamaPic} className="judgeImage" />
+        <h2 className="judgeName">Judge3</h2>
+        <p className="judgeCard">
+          Judge description<br />
+        </p>
+      </div>
+      </div>
+
+
+
+        {/* Judging Criteria */}
+        <Element name="judgingcriteria">
+          <section className="judgingcriteria">
+          <h2>Judging Criteria</h2>
+          </section>
+        </Element>
+        <section className="pieChart">
+          <PieChart
+                series={[
+                    {
+                    arcLabel: (item) => `${item.value}%`, /* show value on each piece of pie chart */
+                    arcLabelRadius: 150,
+                    innerRadius: 80,
+                    outerRadius: 240,
+
+                    data: [
+                        { id: 0, value: 20, label: "Problem & Solution", color: "#ED9898",},
+                        { id: 1, value: 20, label: "Impact & Feasibility", color: "#BBE394" }, 
+                        { id: 2, value: 20, label: "Technical Depth", color: "#FFD700" },
+                        { id: 3, value: 15, label: "Innovation & Creativity" , color: "#800080"},
+                        { id: 4, value: 10, label: "Q&A Responses" , color: "#FFA500"},
+                        { id: 5, value: 10, label: "Presentation & Clarity" , color: "#008080"},
+                        { id: 6, value: 5, label: "User-Centered Design & UX" , color: "#4169E1"},
+                    ],
+                    highlightScope: { fade: 'global', highlight: 'item' },
+                    faded: { innerRadius: 80, additionalRadius: -80, color: 'gray' },
+                    },
+                ]}
+                height={isMobile ? 800:500} /* identify screen size to adjust layout */
+                width={isMobile ? 800:1200} /* identify screen size to adjust layout */
+                margin={{ right: 0, top: 0 }}
+
+                /* font format in the piechart, not the legend*/
+                sx={{
+                  fontWeight: 'bold',
+                   fontSize: "1.5em" ,
+                }}
+
+                /* font format in the legend, not the piechart*/
+                slotProps={{
+                  legend: {
+                    labelStyle: {fontSize: 20,fill: 'blue',},
+                    direction: isMobile ? 'row' : 'column', /* identify screen size to adjust layout */
+
+                    /* identify screen size to adjust layout */
+                    position: isMobile ? {horizontal: 'middle',vertical: 'bottom',}
+                                          :{horizontal: 'right',vertical: 'bottom',},
+                  },
+                }}
+          />
+        </section>
+
+        
+
 
         {/* Resources Section */}
         <Element name="resources">
