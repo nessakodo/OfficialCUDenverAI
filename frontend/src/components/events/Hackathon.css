@@ -43,6 +43,10 @@ body {
     padding: 100px 20px;
     height: 50vh;
   }
+
+  .hero h2 {
+    color: white;
+  }
   
   .register-btn {
     background-color: #686868;

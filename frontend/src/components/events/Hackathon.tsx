@@ -112,7 +112,7 @@ function Hackathon() {
         <Element name="hero">
         <section className="hero">
             <h1>AI Club Hackathon 2025</h1>
-            <p>Innovate, Build, and Compete with the Best!</p>
+            <h2>Innovate, Build, and Compete with the Best!</h2>
             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
             
         </section>
@@ -157,7 +157,7 @@ function Hackathon() {
 
                     <div className="content-box">
                         <h3>Target Audience</h3>
-                        <p>60-80 students from CU Denver.</p>
+                        <p>Any major is welcomed and no expereince is needed.</p>
                     </div>
 
                     <div className="content-box">
