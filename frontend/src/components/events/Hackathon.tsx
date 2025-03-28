@@ -157,13 +157,13 @@ function Hackathon() {
 
                     <div className="content-box">
                         <h3>Target Audience</h3>
-                        <p>60-80 students from Auraria Campus (CU Denver, MSU Denver, CCD).</p>
+                        <p>60-80 students from CU Denver.</p>
                     </div>
 
                     <div className="content-box">
                         <h3>Event Description</h3>
                         <p>
-                            This is a hackathon competition for students on Auraria campus. The hackathon focuses on four big areas that are seeing significant impacts from AI development. Participants will collaborate in teams of four to solve a problem within these fields, which serve as hackathon tracks.
+                            This is a hackathon competition for students in CU Denver. The hackathon focuses on four big areas that are seeing significant impacts from AI development. Participants will collaborate in teams of four to solve a problem within these fields, which serve as hackathon tracks.
                         </p>
                     </div>
 
@@ -188,35 +188,18 @@ function Hackathon() {
         <div className={styles.timelineContainer}>
             <div className={styles.dayColumn}>
                 <h3>Day 1 - April 16 </h3>
-                <div className={styles.eventBox}>Check-in + Breakfast<br /><span>9:00 - 9:30 AM</span></div>
-                <div className={styles.eventBox}>Opening Keynote + Hackathon Intro<br /><span>9:30 - 10:00 AM</span></div>
-                <div className={styles.eventBox}>Brainstorming Session<br /><span>10:00 AM - 12:00 PM</span></div>
-                <div className={styles.eventBox}>Lunch + Networking<br /><span>12:00 - 1:00 PM</span></div>
-                <div className={styles.eventBox}>Conceptualization<br /><span>1:00 - 3:00 PM</span></div>
-                <div className={styles.eventBox}>Midday Check-ins<br /><span>3:00 - 4:00 PM</span></div>
-                <div className={styles.eventBox}>Pitch Practice Workshop<br /><span>4:00 - 5:00 PM</span></div>
-                <div className={styles.eventBox}>Challenge Owner Session<br /><span>All Day</span></div>
-                <div className={styles.eventBox}>Mentor Session<br /><span>All Day</span></div>
-                <div className={styles.eventBox}>Hacking Time<br /><span>1:00 - 6:00 PM</span></div>
+                <div className={styles.eventBox}>Opening Ceremony<br /><span>5:00 PM - 7:00 PM</span></div>
             </div>
 
             <div className={styles.dayColumn}>
                 <h3>Day 2 - April 17 </h3>
-                <div className={styles.eventBox}>Check-in + Breakfast<br /><span>9:00 - 9:30 AM</span></div>
-                <div className={styles.eventBox}>Prototype Development<br /><span>9:30 AM - 12:00 PM</span></div>
-                <div className={styles.eventBox}>Lunch + Networking<br /><span>12:00 - 1:00 PM</span></div>
-                <div className={styles.eventBox}>User Testing<br /><span>1:00 - 2:00 PM</span></div>
-                <div className={styles.eventBox}>Prototype Development (Iterations)<br /><span>2:00 - 4:00 PM</span></div>
-                <div className={styles.eventBox}>Pitch Practice<br /><span>4:00 - 5:00 PM</span></div>
-                <div className={styles.eventBox}>Hacking Time<br /><span>11:00 AM - 6:00 PM</span></div>
+                <div className={styles.eventBox}> No scheduled event. Our team will be on standby to provide assistance to teams on a needs-based basis."<br /></div>
             </div>
 
             <div className={styles.dayColumn}>
                 <h3>Day 3 - April 18</h3>
-                <div className={styles.eventBox}>Pitch Deadline<br /><span>12:00 PM CET</span></div>
-                <div className={styles.eventBox}>Final Presentations + Videotaping<br /><span>5:00 - 7:00 PM</span></div>
-                <div className={styles.eventBox}>Pitch Event<br /><span>12:00 - 4:00 PM</span></div>
-                <div className={styles.eventBox}>Celebration<br /><span>4:00 - 6:00 PM</span></div>
+                <div className={styles.eventBox}>Presentation<br /><span>12 PM - 4 PM</span></div>
+                <div className={styles.eventBox}>Closing Ceremony<br /><span>4 PM - 5 PM</span></div>
             </div>
         </div>
 
@@ -252,15 +235,11 @@ function Hackathon() {
           </ul>
         </section>
         </Element>
-  
-
-
-
 
         {/* Resources Section */}
         <Element name="resources">
           <section className="resources">
-          <h3>Explore Our Resources</h3>
+          <h2 className="rules-title">Explore Our Resources</h2>
           <p>Find guides, tutorials, and AI learning materials.</p>
           <button onClick={() => {navigate('/events/hackathon2025/resources'); }} className="resources-btn">Go to Resources</button>
           </section>
@@ -270,8 +249,7 @@ function Hackathon() {
         <Element name="faq">
           <section className="faq">
             <h2>FAQ</h2>
-            <p><strong>Who can participate?</strong> Anyone interested in AI & coding!</p>
-            <p><strong>How much does it cost?</strong> It’s free!</p>
+            <button onClick={() => {navigate('/events/hackathon2025/faq'); }} className="resources-btn">Go to FAQ Section</button>
           </section>
         </Element>
   
