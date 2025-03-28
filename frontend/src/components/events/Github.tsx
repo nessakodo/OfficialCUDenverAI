@@ -121,11 +121,11 @@ function GithubEvent() {
     ];
 
     const goals = [
-        "Understand the importance of GitHub certifications.",
-        "Learn how to register and prepare for the certification exam.",
+        "Setting up SSH key. ",
+        "Understand the importance of GitHub.",
         "Gain hands-on experience with key GitHub tools.",
-        "Network with other participants and industry professionals.",
-        "Complete at least one certification-related task.",
+        "Learn how to register and prepare for the certification exam.",
+        "Network with other participants.",
     ];
 
 
@@ -199,6 +199,11 @@ function GithubEvent() {
         Continue your GitHub learning with these resources. Whether you're just starting or want to level up, these guides will help you master GitHub!
       </p>
       <ul className="resources-list">
+      <li>
+          <a href="https://github.com/javedali99/git-tutorial?tab=readme-ov-file" target="_blank" rel="noopener noreferrer">
+            🚀 Github Slides
+          </a>
+        </li>
         <li>
           <a href="https://docs.github.com/en/get-started" target="_blank" rel="noopener noreferrer">
             🚀 GitHub Docs - Get Started
