@@ -144,6 +144,26 @@ function Hackathon() {
             </li>
           </ul>
         </nav>
+  
+        {/* Hero Section */}
+        <Element name="hero">
+        <section className="hero">
+            <h1>AI Club Hackathon 2025</h1>
+            <h2>Innovate, Build, and Compete with the Best!</h2>
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
+            
+        </section>
+        </Element>
+
+      {/* Countdown Section */}
+      <section className="Countdown">
+        <h2>Countdown to Hackathon</h2>
+        <Countdown
+          date={new Date('2025-04-16T09:00:00')} // set the target date here
+          renderer={renderer}
+        />
+      </section>
+
 
         <section className="HackathonVideo">
         {/* Video Section */}
@@ -175,13 +195,13 @@ function Hackathon() {
 
                     <div className="content-box">
                         <h3>Target Audience</h3>
-                        <p>60-80 students from Auraria Campus (CU Denver, MSU Denver, CCD).</p>
+                        <p>Any major is welcomed and no expereince is needed.</p>
                     </div>
 
                     <div className="content-box">
                         <h3>Event Description</h3>
                         <p>
-                            This is a hackathon competition for students on Auraria campus. The hackathon focuses on four big areas that are seeing significant impacts from AI development. Participants will collaborate in teams of four to solve a problem within these fields, which serve as hackathon tracks.
+                            This is a hackathon competition for students in CU Denver. The hackathon focuses on four big areas that are seeing significant impacts from AI development. Participants will collaborate in teams of four to solve a problem within these fields, which serve as hackathon tracks.
                         </p>
                     </div>
 
@@ -206,54 +226,53 @@ function Hackathon() {
         <div className={styles.timelineContainer}>
             <div className={styles.dayColumn}>
                 <h3>Day 1 - April 16 </h3>
-                <div className={styles.eventBox}>Check-in + Breakfast<br /><span>9:00 - 9:30 AM</span></div>
-                <div className={styles.eventBox}>Opening Keynote + Hackathon Intro<br /><span>9:30 - 10:00 AM</span></div>
-                <div className={styles.eventBox}>Brainstorming Session<br /><span>10:00 AM - 12:00 PM</span></div>
-                <div className={styles.eventBox}>Lunch + Networking<br /><span>12:00 - 1:00 PM</span></div>
-                <div className={styles.eventBox}>Conceptualization<br /><span>1:00 - 3:00 PM</span></div>
-                <div className={styles.eventBox}>Midday Check-ins<br /><span>3:00 - 4:00 PM</span></div>
-                <div className={styles.eventBox}>Pitch Practice Workshop<br /><span>4:00 - 5:00 PM</span></div>
-                <div className={styles.eventBox}>Challenge Owner Session<br /><span>All Day</span></div>
-                <div className={styles.eventBox}>Mentor Session<br /><span>All Day</span></div>
-                <div className={styles.eventBox}>Hacking Time<br /><span>1:00 - 6:00 PM</span></div>
+                <div className={styles.eventBox}>Opening Ceremony<br /><span>5:00 PM - 7:00 PM</span></div>
             </div>
 
             <div className={styles.dayColumn}>
                 <h3>Day 2 - April 17 </h3>
-                <div className={styles.eventBox}>Check-in + Breakfast<br /><span>9:00 - 9:30 AM</span></div>
-                <div className={styles.eventBox}>Prototype Development<br /><span>9:30 AM - 12:00 PM</span></div>
-                <div className={styles.eventBox}>Lunch + Networking<br /><span>12:00 - 1:00 PM</span></div>
-                <div className={styles.eventBox}>User Testing<br /><span>1:00 - 2:00 PM</span></div>
-                <div className={styles.eventBox}>Prototype Development (Iterations)<br /><span>2:00 - 4:00 PM</span></div>
-                <div className={styles.eventBox}>Pitch Practice<br /><span>4:00 - 5:00 PM</span></div>
-                <div className={styles.eventBox}>Hacking Time<br /><span>11:00 AM - 6:00 PM</span></div>
+                <div className={styles.eventBox}> No scheduled event. Our team will be on standby to provide assistance to teams on a needs-based basis."<br /></div>
             </div>
 
             <div className={styles.dayColumn}>
                 <h3>Day 3 - April 18</h3>
-                <div className={styles.eventBox}>Pitch Deadline<br /><span>12:00 PM CET</span></div>
-                <div className={styles.eventBox}>Final Presentations + Videotaping<br /><span>5:00 - 7:00 PM</span></div>
-                <div className={styles.eventBox}>Pitch Event<br /><span>12:00 - 4:00 PM</span></div>
-                <div className={styles.eventBox}>Celebration<br /><span>4:00 - 6:00 PM</span></div>
+                <div className={styles.eventBox}>Presentation<br /><span>12 PM - 4 PM</span></div>
+                <div className={styles.eventBox}>Closing Ceremony<br /><span>4 PM - 5 PM</span></div>
             </div>
         </div>
 
-        <div className={styles.prizeSection}>
-          <h2>Always something to <span className={styles.highlight}>win!</span></h2>
-          <div className={styles.prizeBox}>
-            <img src={BagPrize} alt="Prize Trophy" className={styles.prizeImage} />
-            <span className={styles.prizeAmount}>€2,500</span>
-          </div>
-          <p className={styles.prizeNote}>Winners will receive a cash prize and further support from our partners.</p>
-        </div>
+
       </section>
 
     </div>
     </Element>
 
+    <Element name="prizes">
+    <section className="prizes-container">
+      <h2 className="prizes-title">Prizes</h2>
+      <ul className="prizes-list">
+        <li><strong>1st Place:</strong> $100 + Engraved Award</li>
+        <li><strong>2nd Place:</strong> $75 + Engraved Award</li>
+        <li><strong>3rd Place:</strong> $50 + Engraved Award</li>
+        <li>All other teams will receive participation certificates.</li>
+      </ul>
+    </section>
+    </Element>
+
 
         {/* Rules Section */}
         <Element name="rules">
+        <section id="rules" className="rules-container">
+
+          <h2 className="rules-title">Hackathon Rules</h2>
+          <ul className="rules-list">
+            <li>All submissions must be the team's own work, and participants must be able to provide proof of work if requested.</li>
+            <li>The idea does not have to be original, but teams will be judged on the quality of their execution.</li>
+            <li>Teams are allowed to use libraries, frameworks, and open-source code in their projects.</li>
+            <li>Reusing an idea from a previous project is permitted, but participants must disclose this and make significant modifications.</li>
+          </ul>
+        </section>
+        </Element>
           <section className="rules">
             <h2>Event Rules</h2>
             <p></p>
@@ -347,7 +366,7 @@ function Hackathon() {
         {/* Resources Section */}
         <Element name="resources">
           <section className="resources">
-          <h3>Explore Our Resources</h3>
+          <h2 className="rules-title">Explore Our Resources</h2>
           <p>Find guides, tutorials, and AI learning materials.</p>
           <button onClick={() => {navigate('/events/hackathon2025/resources'); }} className="resources-btn">Go to Resources</button>
           </section>
@@ -357,8 +376,7 @@ function Hackathon() {
         <Element name="faq">
           <section className="faq">
             <h2>FAQ</h2>
-            <p><strong>Who can participate?</strong> Anyone interested in AI & coding!</p>
-            <p><strong>How much does it cost?</strong> It’s free!</p>
+            <button onClick={() => {navigate('/events/hackathon2025/faq'); }} className="resources-btn">Go to FAQ Section</button>
           </section>
         </Element>
   
