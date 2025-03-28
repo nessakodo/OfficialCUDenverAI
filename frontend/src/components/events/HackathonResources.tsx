@@ -33,15 +33,6 @@ function HackathonResources() {
     ///////////////////////////
 
     return (        <div className="hackathon-resources">
-        {/* Navigation */}
-        <nav className="resources-nav">
-            <h1>Hackathon Resources</h1>
-            <ul>
-                <li><Link to="datasets" smooth={true} duration={500}>📂 Datasets</Link></li>
-                <li><Link to="tutorials" smooth={true} duration={500}>📚 Tutorials</Link></li>
-                <li><Link to="starting-points" smooth={true} duration={500}>🚀 Starting Points</Link></li>
-            </ul>
-        </nav>
 
         {/* Datasets Section */}
         <Element name="datasets" className="section">
