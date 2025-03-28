@@ -218,3 +218,31 @@ ul li {
     transform: scale(1);
   }
 }
+
+.rules-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 20px auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rules-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.rules-list {
+  padding-left: 20px;
+  line-height: 1.6;
+  font-size: 18px;
+  color: #555;
+}
+
+.rules-list li {
+  margin-bottom: 10px;
+}

@@ -220,55 +220,42 @@ function Hackathon() {
             </div>
         </div>
 
-        <div className={styles.prizeSection}>
-          <h2>Always something to <span className={styles.highlight}>win!</span></h2>
-          <div className={styles.prizeBox}>
-            <img src={BagPrize} alt="Prize Trophy" className={styles.prizeImage} />
-            <span className={styles.prizeAmount}>€2,500</span>
-          </div>
-          <p className={styles.prizeNote}>Winners will receive a cash prize and further support from our partners.</p>
-        </div>
+
       </section>
 
     </div>
     </Element>
 
+    <Element name="prizes">
+    <section className="prizes-container">
+      <h2 className="prizes-title">Prizes</h2>
+      <ul className="prizes-list">
+        <li><strong>1st Place:</strong> $100 + Engraved Award</li>
+        <li><strong>2nd Place:</strong> $75 + Engraved Award</li>
+        <li><strong>3rd Place:</strong> $50 + Engraved Award</li>
+        <li>All other teams will receive participation certificates.</li>
+      </ul>
+    </section>
+    </Element>
+
 
         {/* Rules Section */}
         <Element name="rules">
-          <section className="rules">
-            <h2>Event Rules</h2>
-            <p></p>
-          </section>
+        <section id="rules" className="rules-container">
+
+          <h2 className="rules-title">Hackathon Rules</h2>
+          <ul className="rules-list">
+            <li>All submissions must be the team's own work, and participants must be able to provide proof of work if requested.</li>
+            <li>The idea does not have to be original, but teams will be judged on the quality of their execution.</li>
+            <li>Teams are allowed to use libraries, frameworks, and open-source code in their projects.</li>
+            <li>Reusing an idea from a previous project is permitted, but participants must disclose this and make significant modifications.</li>
+          </ul>
+        </section>
         </Element>
   
 
 
-        {/* Judging Criteria */}
-        <Element name="judgingcriteria">
-          <section className="judgingcriteria">
-          <h2>Judging Criteria</h2>
-          <PieChart
-                series={[
-                    {
-                    arcLabel: (item) => `${item.value}%`,
 
-                    data: [
-                        { id: 0, value: 20, label: "Problem & Solution" },
-                        { id: 1, value: 20, label: "Impact & Feasibility" },
-                        { id: 2, value: 20, label: "Technical Depth" },
-                        { id: 3, value: 15, label: "Innovation & Creativity" },
-                        { id: 4, value: 10, label: "Q&A Responses" },
-                        { id: 5, value: 10, label: "Presentation & Clarity" },
-                        { id: 6, value: 5, label: "User-Centered Design & UX" },
-                    ],
-                    },
-                ]}
-                width={250}
-                height={250}
-                />
-          </section>
-        </Element>
 
         {/* Resources Section */}
         <Element name="resources">
