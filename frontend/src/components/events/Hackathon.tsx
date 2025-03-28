@@ -50,6 +50,21 @@ function Hackathon() {
         visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: 'easeOut' } },
       };
 
+    const slideVariants = {
+        hidden: { opacity: 0, x: -100 },  // Start offscreen (left side)
+        visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } },
+    };
+      
+    const slideVariantsRight = {
+        hidden: { opacity: 0, x: 100 },  // Start offscreen (right side)
+        visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } },
+    };
+
+    const slideVariantsTop = {
+      hidden: { opacity: 0, y: 100 },  // Start below the screen
+      visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+    };
+
     const navigate = useNavigate();
 
 
@@ -85,17 +100,12 @@ function Hackathon() {
         <div className="hackathon-container">
   
   
-        {/* Hero Section */}
-        <Element name="hero">
-        <section className="hero">
-            <h1>AI Club Hackathon 2025</h1>
-            <h2>Innovate, Build, and Compete with the Best!</h2>
-            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
-            
-        </section>
-        </Element>
-
       {/* Countdown Section */}
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={slideVariants}
+      >
       <section className="Countdown">
         <h2>Countdown to Hackathon</h2>
         <Countdown
@@ -103,8 +113,28 @@ function Hackathon() {
           renderer={renderer}
         />
       </section>
+      </motion.section>
+      
+        {/* Hero Section */}
+        <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={slideVariants}
+      >
+        <section className="hero">
+            <h1>AI Club Hackathon 2025</h1>
+            <h2>Innovate, Build, and Compete with the Best!</h2>
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
+            
+        </section>
+        </motion.section>
 
 
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={slideVariants}
+      >
         <section className="HackathonVideo">
         {/* Video Section */}
         <motion.div
@@ -118,6 +148,7 @@ function Hackathon() {
             </video>
         </motion.div>
         </section>
+        </motion.section>
 
                 {/* Event Details Section */}
             <Element name="details">
@@ -164,21 +195,40 @@ function Hackathon() {
       <section className={styles.timelineSection}>
         <h2>All <span className={styles.highlight}>activities</span> of this year's hackathon</h2>
         <div className={styles.timelineContainer}>
+              <motion.section
+              initial="hidden"
+              animate="visible"
+              variants={slideVariants}
+            >
             <div className={styles.dayColumn}>
                 <h3>Day 1 - April 16 </h3>
                 <div className={styles.eventBox}>Opening Ceremony<br /><span>5:00 PM - 7:00 PM</span></div>
             </div>
+            </motion.section>
 
+              <motion.section
+              initial="hidden"
+              animate="visible"
+              variants={slideVariantsTop}
+            >
             <div className={styles.dayColumn}>
                 <h3>Day 2 - April 17 </h3>
                 <div className={styles.eventBox}> No scheduled event. Our team will be on standby to provide assistance to teams on a needs-based basis."<br /></div>
             </div>
+            </motion.section>
 
+            <motion.section
+              initial="hidden"
+              animate="visible"
+              variants={slideVariantsRight}
+            >
             <div className={styles.dayColumn}>
                 <h3>Day 3 - April 18</h3>
                 <div className={styles.eventBox}>Presentation<br /><span>12 PM - 4 PM</span></div>
                 <div className={styles.eventBox}>Closing Ceremony<br /><span>4 PM - 5 PM</span></div>
             </div>
+            </motion.section>
+
         </div>
 
 
@@ -320,8 +370,9 @@ function Hackathon() {
         {/* FAQ Section */}
         <Element name="faq">
           <section className="faq">
-            <h2>FAQ</h2>
-            <button onClick={() => {navigate('/events/hackathon2025/faq'); }} className="resources-btn">Go to FAQ Section</button>
+            <h2>Have a Question?</h2>
+            <h3>We have put together the answers you have been looking for. If there is an answer you cannot find, please let us know on aisa@ucdenver.edu.</h3>
+            <button onClick={() => {navigate('/events/hackathon2025/faq'); }} className="resources-btn">Read FAQ</button>
           </section>
         </Element>
   

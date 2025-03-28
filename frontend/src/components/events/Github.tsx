@@ -135,6 +135,15 @@ function GithubEvent() {
 
     return (
         <div className="hackathon-container">
+      {/* Countdown Section */}
+      <section className="Countdown">
+        <h2>Countdown to Github Event</h2>
+        <Countdown
+          date={new Date('2025-03-31T17:00:00')} // set the target date here
+          renderer={renderer}
+        />
+      </section>
+
   
         {/* Hero Section */}
         <Element name="hero">
@@ -145,17 +154,10 @@ function GithubEvent() {
             
         </section>
         </Element>
-
-      {/* Countdown Section */}
-      <section className="Countdown">
-        <h2>Countdown to Github Event</h2>
-        <Countdown
-          date={new Date('2025-03-31T17:00:00')} // set the target date here
-          renderer={renderer}
-        />
-      </section>
-
+        
       <section className="workshop-container">
+
+
 
       {/* Schedule Section */}
 
