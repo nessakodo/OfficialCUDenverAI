@@ -84,66 +84,6 @@ function Hackathon() {
     return (
         <div className="hackathon-container">
   
-        {/* Hero Section */}
-        <Element name="hero">
-        <section className="hero">
-            <h1>AI Club Hackathon 2025</h1>
-            <p>Innovate, Build, and Compete with the Best!</p>
-            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
-            
-        </section>
-        </Element>
-
-
-      {/* Countdown Section */}
-      <section className="Countdown">
-        <h2>Countdown to Hackathon</h2>
-        <Countdown
-          date={new Date('2025-04-16T09:00:00')} // set the target date here
-          renderer={renderer}
-        />
-      </section>
-
-      {/* Navbar with Links to Sections */}
-      <nav className="navbar">
-          <ul>
-            <li>
-              <Link to="hero" smooth={true} duration={500}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="details" smooth={true} duration={500}>
-                Event Details
-              </Link>
-            </li>
-            <li>
-              <Link to="rules" smooth={true} duration={500}>
-                Rules
-              </Link>
-            </li>
-            <li>
-              <Link to="timeline" smooth={true} duration={500}>
-                Timeline
-              </Link>
-            </li>
-            <li>
-              <Link to="prizes" smooth={true} duration={500}>
-                Prizes
-              </Link>
-            </li>
-            <li>
-              <Link to="faq" smooth={true} duration={500}>
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <Link to="resources" smooth={true} duration={500}>
-                Resources
-              </Link>
-            </li>
-          </ul>
-        </nav>
   
         {/* Hero Section */}
         <Element name="hero">
@@ -273,14 +213,12 @@ function Hackathon() {
           </ul>
         </section>
         </Element>
-          <section className="rules">
-            <h2>Event Rules</h2>
-            <p></p>
-          </section>
-        </Element>
+
 
 
         {/* Hackathon Judges */}
+      {/*
+      <section className="judges">
         <h2>Judges</h2>
       <div className="judgeCardCover">
       <div className="judgeCard">
@@ -304,9 +242,16 @@ function Hackathon() {
           Judge description<br />
         </p>
       </div>
+      <div className="judgeCard">
+        <img src={OllamaPic} className="judgeImage" />
+        <h2 className="judgeName">Judge4</h2>
+        <p className="judgeCard">
+          Judge description<br />
+        </p>
       </div>
-
-
+      </div>
+      </section>
+        */}
 
         {/* Judging Criteria */}
         <Element name="judgingcriteria">

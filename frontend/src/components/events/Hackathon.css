@@ -23,7 +23,7 @@ body {
   }
   
   .navbar a {
-    color: rgb(0, 0, 251);
+    color: rgb(133, 133, 133);
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
@@ -221,6 +221,10 @@ body {
     }
   }
   
+
+  .pieChart {
+    margin-bottom: 20vh;
+  }
 
   .details-container {
     max-width: 800px;
