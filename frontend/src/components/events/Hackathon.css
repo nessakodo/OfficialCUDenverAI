@@ -4,8 +4,10 @@ body {
   }
   
   .navbar {
-    background-color: #333;
-    padding: 10px;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
   
   .navbar ul {
@@ -15,15 +17,16 @@ body {
   }
   
   .navbar ul li {
-    display: inline;
+    justify-content: center;
+    display: inline-block;
     margin: 0 15px;
   }
   
   .navbar a {
-    color: white;
+    color: rgb(0, 0, 251);
     text-decoration: none;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
   }
   
   .navbar a:hover {
@@ -207,6 +210,10 @@ body {
 
     .judgeCardCover{
       flex-direction: row; 
+    }
+
+    .navbar {
+      flex-direction: row;
     }
   }
   

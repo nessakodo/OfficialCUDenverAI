@@ -83,8 +83,29 @@ function Hackathon() {
 
     return (
         <div className="hackathon-container">
-        {/* Navbar with Links to Sections */}
-        <nav className="navbar">
+  
+        {/* Hero Section */}
+        <Element name="hero">
+        <section className="hero">
+            <h1>AI Club Hackathon 2025</h1>
+            <p>Innovate, Build, and Compete with the Best!</p>
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
+            
+        </section>
+        </Element>
+
+
+      {/* Countdown Section */}
+      <section className="Countdown">
+        <h2>Countdown to Hackathon</h2>
+        <Countdown
+          date={new Date('2025-04-16T09:00:00')} // set the target date here
+          renderer={renderer}
+        />
+      </section>
+
+      {/* Navbar with Links to Sections */}
+      <nav className="navbar">
           <ul>
             <li>
               <Link to="hero" smooth={true} duration={500}>
@@ -123,25 +144,6 @@ function Hackathon() {
             </li>
           </ul>
         </nav>
-  
-        {/* Hero Section */}
-        <Element name="hero">
-        <section className="hero">
-            <h1>AI Club Hackathon 2025</h1>
-            <p>Innovate, Build, and Compete with the Best!</p>
-            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
-            
-        </section>
-        </Element>
-
-      {/* Countdown Section */}
-      <section className="Countdown">
-        <h2>Countdown to Hackathon</h2>
-        <Countdown
-          date={new Date('2025-04-16T09:00:00')} // set the target date here
-          renderer={renderer}
-        />
-      </section>
 
         <section className="HackathonVideo">
         {/* Video Section */}
@@ -264,24 +266,23 @@ function Hackathon() {
       <div className="judgeCardCover">
       <div className="judgeCard">
         <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Jason</h2>
+        <h2 className="judgeName">Judge1</h2>
         <p className="judgeCard">
-          Action: djioj <br />
-          dfnjofjoij: dijfoasj
+        Judge description
         </p>
       </div>
       <div className="judgeCard">
         <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Jason</h2>
+        <h2 className="judgeName">Judge2</h2>
         <p className="judgeCard">
-          Action: djioj <br />
+        Judge description<br />
         </p>
       </div>
       <div className="judgeCard">
         <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Jason</h2>
+        <h2 className="judgeName">Judge3</h2>
         <p className="judgeCard">
-          Action: djioj <br />
+          Judge description<br />
         </p>
       </div>
       </div>
