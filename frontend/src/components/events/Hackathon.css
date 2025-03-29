@@ -38,6 +38,7 @@ body {
     text-align: center;
   }
   
+  
   .hero {
     background: url('../images/Hackathon/hackathonbackground.jpg') no-repeat center center;
     background-size: cover;
@@ -373,7 +374,6 @@ ul li {
   border-radius: 8px;
   text-align: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
   animation: pulse 1.5s infinite;
 }
 @keyframes pulse {
@@ -393,7 +393,8 @@ ul li {
   background-color: #f9f9f9;
   border-radius: 8px;
   max-width: 800px;
-  margin: 20px auto;
+  margin-right: 30vw;
+  margin-left: 30vw;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20vh;
 }
@@ -418,18 +419,67 @@ ul li {
 }
 
 .prizes-container {
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  max-width: 800px;
-  margin: 20px auto;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20vh;
+  background-color: #ffffff; /* Light background for contrast */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px; /* Limit the width to make the section look centered */
+  text-align: center;
+  margin-right: 35vw;
+  margin-left: 35vw;
 }
 
+/* Title of the Prizes section */
+.prizes-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Styling for the list of prizes */
+.prizes-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each item in the prize list */
+.prize-item {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd; /* A subtle border between items */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add spacing between the prize value and the icon */
+.prize-item strong {
+  margin-right: 10px;
+}
+
+/* Prize icon image styling */
+.prize-icon {
+  width: 24px;
+  height: auto;
+  margin-left: 10px;
+  vertical-align: middle; /* Aligns icon nicely with text */
+}
+
+/* Add some spacing and style for the last item */
+.prize-item:last-child {
+  border-bottom: none;
+  font-style: italic; /* Makes the participation certificate note stand out */
+  color: #999;
+}
 .resources {
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   border-radius: 8px;
   max-width: 800px;
   margin: 20px auto;

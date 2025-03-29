@@ -26,7 +26,7 @@ import { useInView } from 'react-intersection-observer';
 /* Image Imports */
 import BagPrize from '../images/Hackathon/bag.png'
 import { Autocomplete } from "@mui/material";
-import OllamaPic from '../images/Ollama.png'
+import Engraving from '../images/Hackathon/engraving.png'
 import vision from '../images/vision.jpg'
 import audience  from '../images/audience.jpg'
 import event_img from '../images/eventimg.jpg'
@@ -313,17 +313,23 @@ function Hackathon() {
     </div>
     </Element>
 
-    <Element name="prizes">
-    <section className="prizes-container">
-      <h2 className="prizes-title">Prizes</h2>
-      <ul className="prizes-list">
-        <li><strong>1st Place:</strong> $100 + Engraved Award</li>
-        <li><strong>2nd Place:</strong> $75 + Engraved Award</li>
-        <li><strong>3rd Place:</strong> $50 + Engraved Award</li>
-        <li>All other teams will receive participation certificates.</li>
-      </ul>
-    </section>
-    </Element>
+      <section className="prizes-container">
+        <h2 className="prizes-title">Prizes</h2>
+        <ul className="prizes-list">
+          <li className="prize-item">
+            <strong>1st Place:</strong> $100
+          </li>
+          <li className="prize-item">
+            <strong>2nd Place:</strong> $75
+          </li>
+          <li className="prize-item">
+            <strong>3rd Place:</strong> $50
+          </li>
+          <li className="prize-item">
+            All other teams will receive participation certificates and tote bags.
+          </li>
+        </ul>
+      </section>
 
 
         {/* Rules Section */}
