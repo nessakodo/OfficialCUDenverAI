@@ -154,10 +154,8 @@ function GithubEvent() {
             
         </section>
         </Element>
-        
+
       <section className="workshop-container">
-
-
 
       {/* Schedule Section */}
 

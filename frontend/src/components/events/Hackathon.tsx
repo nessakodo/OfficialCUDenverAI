@@ -21,11 +21,20 @@ import Box from '@mui/material/Box';
 import Countdown from 'react-countdown';
 import { Slider, useMediaQuery } from '@mui/material';
 import Paper from '@mui/material/Paper';
+import { useInView } from 'react-intersection-observer';
 
 /* Image Imports */
 import BagPrize from '../images/Hackathon/bag.png'
 import { Autocomplete } from "@mui/material";
 import OllamaPic from '../images/Ollama.png'
+import vision from '../images/vision.jpg'
+import audience  from '../images/audience.jpg'
+import event_img from '../images/eventimg.jpg'
+import finance from '../images/finance.jpg'
+import healthcare from '../images/healthcare.jpg'
+import climatechange from '../images/climate.jpg'
+import transportation from '../images/transportation.jpg'
+
 
 export const useIsMobile = () => {
   return useMediaQuery('(max-width:500px)');
@@ -51,19 +60,24 @@ function Hackathon() {
       };
 
     const slideVariants = {
-        hidden: { opacity: 0, x: -100 },  // Start offscreen (left side)
-        visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } },
+        hidden: { opacity: 0, x: -800 },  // Start offscreen (left side)
+        visible: { opacity: 1, x: 0, transition: { duration: 3, ease: "easeOut" } },
     };
       
     const slideVariantsRight = {
-        hidden: { opacity: 0, x: 100 },  // Start offscreen (right side)
-        visible: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } },
+        hidden: { opacity: 0, x: 800 },  // Start offscreen (right side)
+        visible: { opacity: 1, x: 0, transition: { duration: 3, ease: "easeOut" } },
     };
 
     const slideVariantsTop = {
       hidden: { opacity: 0, y: 100 },  // Start below the screen
       visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
     };
+
+    const { ref, inView } = useInView({
+      triggerOnce: true, // Only trigger once when it enters view
+      threshold: 0.001
+  });
 
     const navigate = useNavigate();
 
@@ -103,23 +117,23 @@ function Hackathon() {
       {/* Countdown Section */}
       <motion.section
         initial="hidden"
-        animate="visible"
-        variants={slideVariants}
+        animate={"visible"}
+        variants={slideVariantsTop}
       >
-      <section className="Countdown">
+      <div className="Countdown">
         <h2>Countdown to Hackathon</h2>
         <Countdown
           date={new Date('2025-04-16T09:00:00')} // set the target date here
           renderer={renderer}
         />
-      </section>
+      </div>
       </motion.section>
       
         {/* Hero Section */}
         <motion.section
         initial="hidden"
-        animate="visible"
-        variants={slideVariants}
+        animate={"visible"}
+        variants={slideVariantsTop}
       >
         <section className="hero">
             <h1>AI Club Hackathon 2025</h1>
@@ -131,13 +145,15 @@ function Hackathon() {
 
 
       <motion.section
+        ref={ref}
         initial="hidden"
-        animate="visible"
+        animate={"visible"}
         variants={slideVariants}
       >
         <section className="HackathonVideo">
         {/* Video Section */}
         <motion.div
+            ref={ref}
             initial="hidden"
             animate="visible"
             variants={titleVariants}
@@ -153,39 +169,99 @@ function Hackathon() {
                 {/* Event Details Section */}
             <Element name="details">
             <section className="details">
-            <div className="details-container">
-                    <h2>Auraria Hack 2025</h2>
-                    <p className="intro-text">
+                <div className="start">
+                    <h2 className="title">Auraria Hack 2025</h2>
+                    <p className="subtitle">
                         A hackathon designed to bring students together to solve real-world challenges using AI.
                     </p>
-
-                    <div className="content-box">
-                        <h3>Vision</h3>
-                        <p>Foster interdisciplinary collaboration to solve real-world challenges using AI, while equipping students with hands-on technical and entrepreneurial skills.</p>
-                    </div>
-
-                    <div className="content-box">
-                        <h3>Target Audience</h3>
-                        <p>Any major is welcomed and no expereince is needed.</p>
-                    </div>
-
-                    <div className="content-box">
-                        <h3>Event Description</h3>
-                        <p>
-                            This is a hackathon competition for students in CU Denver. The hackathon focuses on four big areas that are seeing significant impacts from AI development. Participants will collaborate in teams of four to solve a problem within these fields, which serve as hackathon tracks.
-                        </p>
-                    </div>
-
-                    <div className="content-box">
-                        <h3>The 4 Tracks for Auraria Hack 2025</h3>
-                        <ul>
-                            <li>Healthcare</li>
-                            <li>Finance</li>
-                            <li>Transportation</li>
-                            <li>Climate Change / Sustainability</li>
-                        </ul>
-                    </div>
                 </div>
+                        <motion.section
+                          ref={ref}
+                          initial="hidden"
+                          animate={inView ? "visible" : "hidden"}
+                          variants={slideVariantsRight}
+                        >
+                        {/* Vision Section */}
+                        <div className="content-box-1">
+                            <img src={vision} alt="Vision" className="content-img" />
+                            <h3>Vision</h3>
+                            <p>
+                                Foster interdisciplinary collaboration to solve real-world challenges using AI, while equipping students with hands-on technical and entrepreneurial skills.
+                            </p>
+                        </div>
+                        </motion.section>
+
+                        <motion.section
+                          ref={ref}
+                          initial="hidden"
+                          animate={inView ? "visible" : "hidden"}
+                          variants={slideVariants}
+                        >
+                        {/* Target Audience */}
+                        <div className="content-box-1">
+                            <img src={audience} alt="Target Audience" className="content-img" />
+                            <h3>Target Audience</h3>
+                            <p>Any major is welcomed and no experience is needed.</p>
+                        </div>
+                        </motion.section>
+
+                          <motion.section
+                          ref={ref}
+                          initial="hidden"
+                          animate={inView ? "visible" : "hidden"}
+                          variants={slideVariantsRight}
+                        >
+                        {/* Event Description */}
+                        <div className="content-box-1">
+                            <img src={event_img} alt="Event" className="content-img" />
+                            <h3>Event Description</h3>
+                            <p>
+                                This is a hackathon competition for students in CU Denver. The hackathon focuses on four big areas that are seeing significant impacts from AI development.
+                            </p>
+                        </div>
+                        </motion.section>
+
+
+                    <h2 className="title"> Tracks: </h2>
+                    <motion.section
+                          ref={ref}
+                          initial="hidden"
+                          animate={inView ? "visible" : "hidden"}
+                          variants={slideVariantsTop}
+                        >
+                    <div className="tracks">
+
+                        {/* Tracks */}
+                        <div className="content-box">
+                          <img src={healthcare} alt="Healthcare Track" className="content-img" />
+                          <ul>
+                              <li>Healthcare</li>
+                          </ul>
+                      </div>
+
+                      <div className="content-box">
+                          <img src={finance} alt="Finance Track" className="content-img" />
+                          <ul>
+                              <li>Finance</li>
+                          </ul>
+                      </div>
+
+                      <div className="content-box">
+                          <img src={transportation} alt="Transportation Track" className="content-img" />
+                          <ul>
+                              <li>Transportation</li>
+                          </ul>
+                      </div>
+
+                      <div className="content-box">
+                          <img src={climatechange} alt="Climate Change Track" className="content-img" />
+                          <ul>
+                              <li>Climate Change / Sustainability</li>
+                          </ul>
+                    </div>
+                    </div>
+                    </motion.section>
+
             </section>
         </Element>
 
