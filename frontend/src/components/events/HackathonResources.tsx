@@ -11,10 +11,6 @@ import { Link, Element } from "react-scroll";
 import './HackathonResources.css'
 
 
-/* UI Imports */
-
-/* Image Imports */
-
 
 function HackathonResources() {
     ///////////////////////////
