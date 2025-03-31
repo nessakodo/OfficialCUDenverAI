@@ -27,7 +27,8 @@ import BagPrize from '../images/Hackathon/bag.png'
 import { Autocomplete } from "@mui/material";
 import OllamaPic from '../images/Ollama.png'
 
-/* remove this comment */
+/* Remove this function because it's a duplicate*/
+
 export const useIsMobile = () => {
   return useMediaQuery('(max-width:500px)');
 };
