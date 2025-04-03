@@ -184,7 +184,7 @@ function Hackathon() {
     </div>
     </Element>
 
-    <Element name="prizes">
+    {/* <Element name="prizes">
     <section className="prizes-container">
       <h2 className="prizes-title">Prizes</h2>
       <ul className="prizes-list">
@@ -194,7 +194,7 @@ function Hackathon() {
         <li>All other teams will receive participation certificates.</li>
       </ul>
     </section>
-    </Element>
+    </Element> */}
 
 
         {/* Rules Section */}
