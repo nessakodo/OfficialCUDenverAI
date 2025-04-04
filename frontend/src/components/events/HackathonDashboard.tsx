@@ -1,12 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import './HackathonDashboard.css';
+import { auth, login, logout } from './firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
 
 const HackathonDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'team' | 'submission' | 'announcements' | 'schedule' | 'leaderboard'>('team');
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (!user) {
+    return (
+      <div className="login-container">
+        <h2>Please sign in with GitHub to access the dashboard</h2>
+        <button onClick={login} className="login-btn">Sign in with GitHub</button>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard-container">
       <nav className="dashboard-nav">
+        <span className="user-info">Signed in as {user.displayName || user.email}</span>
+        <button onClick={logout}>Logout</button>
         <button onClick={() => setActiveTab('team')}>My Team</button>
         <button onClick={() => setActiveTab('submission')}>Project Submission</button>
         <button onClick={() => setActiveTab('announcements')}>Announcements</button>
