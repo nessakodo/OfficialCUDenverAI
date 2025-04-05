@@ -42,6 +42,7 @@ const HackathonDashboard: React.FC = () => {
             <h2>My Team</h2>
             <p>View your teammates and their contact info.</p>
             {/* Map teammates here */}
+
           </div>
         )}
 
@@ -85,6 +86,7 @@ const HackathonDashboard: React.FC = () => {
             <h2>Leaderboard</h2>
             <p>View real-time team rankings here.</p>
             {/* Scoreboard table */}
+            
           </div>
         )}
       </div>
