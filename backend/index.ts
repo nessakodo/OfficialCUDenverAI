@@ -64,6 +64,38 @@ app.get('/api/' , (req, res) => {
   res.send('This is the Projects Page');
 });
 
+/////////////////////////
+// HACKATHON
+//////////////////////////
+
+app.get('/api/leaderboard', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
+  const query = 'SELECT T.team_name, L.presentation_score FROM SCORES L JOIN HACKATHON_TEAMS T ON L.team_id = T.team_id ORDER BY L.presentation_score DESC';
+  const [leaderboard] = await connection.execute(query);
+  res.json(leaderboard);
+});
+
+app.post('/api/submission', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
+  const userId = req.user.id; 
+  const query = 'SELECT * FROM SUBMISSIONS WHERE team_id IN (SELECT team_id FROM Team_Members WHERE user_id = ?)';
+  const [submission] = await connection.execute(query, [userId]);
+  res.json(submission);
+});
+
+app.get('/api/team', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
+  const userId = req.user.id;  
+  const query = 'SELECT * FROM HACKATHON_TEAMS WHERE team_id IN (SELECT team_id FROM Team_Members WHERE user_id = ?)';
+  const [team] = await connection.execute(query, [userId]);
+  res.json(team);
+});
+
+app.get('/api/announcements', async (req, res) => {
+  const query = 'SELECT * FROM ANNOUNCEMENTS ORDER BY created_at DESC';
+  const [announcements] = await connection.execute(query);
+  res.json(announcements);
+});
 
 /////////////////////////
 // PROJECTS
