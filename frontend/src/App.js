@@ -16,6 +16,7 @@ import HackathonResources from './components/events/HackathonResources.tsx'
 import FAQ from './components/events/Faq.tsx'
 import GithubEvent from './components/events/Github.tsx'
 import HackathonDashboard from './components/events/HackathonDashboard.tsx'
+import HackathonPrizes from './components/events/Prizes.tsx'
 
 
 
@@ -44,8 +45,9 @@ function App() {
           <Route path="/events/hackathon2025" element={<Hackathon />} />
           <Route path="/events/hackathon2025/resources" element={<HackathonResources />} />
           <Route path="/events/hackathon2025/faq" element={<FAQ />} />
-          <Route path="/events/githubevent" element={<GithubEvent />} />
+          <Route path="/events/hackathon2025/prizes" element={<HackathonPrizes />} />
           <Route path="/hackathon-dashboard" element={<HackathonDashboard />} />
+          <Route path="/events/githubevent" element={<GithubEvent />} />
         </Routes>
         <Footer />
       </div>
