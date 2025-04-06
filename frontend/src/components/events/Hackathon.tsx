@@ -185,18 +185,6 @@ function Hackathon() {
     </div>
     </Element>
 
-    {/* <Element name="prizes">
-    <section className="prizes-container">
-      <h2 className="prizes-title">Prizes</h2>
-      <ul className="prizes-list">
-        <li><strong>1st Place:</strong> $100 + Engraved Award</li>
-        <li><strong>2nd Place:</strong> $75 + Engraved Award</li>
-        <li><strong>3rd Place:</strong> $50 + Engraved Award</li>
-        <li>All other teams will receive participation certificates.</li>
-      </ul>
-    </section>
-    </Element> */}
-
 
         {/* Rules Section */}
         <Element name="rules">
@@ -303,7 +291,14 @@ function Hackathon() {
           />
         </section>
 
-        
+          {/* Prizes Section */}
+          <Element name="resources">
+          <section className="resources">
+          <h2 className="rules-title">We have cool prizes!!</h2>
+          <p>Check them out here!</p>
+          <button onClick={() => {navigate('/events/hackathon2025/prizes'); }} className="resources-btn">Look at prizes</button>
+          </section>
+        </Element>
 
 
         {/* Resources Section */}
@@ -316,8 +311,8 @@ function Hackathon() {
         </Element>
   
         {/* FAQ Section */}
-        <Element name="faq">
-          <section className="faq">
+        <Element name="resources">
+          <section className="resources">
             <h2>FAQ</h2>
             <button onClick={() => {navigate('/events/hackathon2025/faq'); }} className="resources-btn">Go to FAQ Section</button>
           </section>
