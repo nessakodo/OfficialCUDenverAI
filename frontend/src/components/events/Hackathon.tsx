@@ -295,6 +295,7 @@ function Hackathon() {
           <Element name="resources">
           <section className="resources">
           <h2 className="rules-title">We have cool prizes!!</h2>
+          <p>Check them out here!</p>
           <button onClick={() => {navigate('/events/hackathon2025/prizes'); }} className="resources-btn">Look at prizes</button>
           </section>
         </Element>
@@ -310,8 +311,8 @@ function Hackathon() {
         </Element>
   
         {/* FAQ Section */}
-        <Element name="faq">
-          <section className="faq">
+        <Element name="resources">
+          <section className="resources">
             <h2>FAQ</h2>
             <button onClick={() => {navigate('/events/hackathon2025/faq'); }} className="resources-btn">Go to FAQ Section</button>
           </section>
