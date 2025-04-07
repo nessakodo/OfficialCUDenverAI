@@ -47,7 +47,7 @@ function FAQ() {
     },
     {
       question: "7. What prizes are available?",
-      answer: <p>$100 (1st), $75 (2nd), $50 (3rd), plus certificates and honorable mentions for outstanding teams.</p>,
+      answer: <p>You can check out the prizes in the prizes page, we have a ton of awesome items that you can win, be sure to check them out!</p>,
     },
     {
       question: "8. Do I need prior experience with AI or data science?",

@@ -1,7 +1,12 @@
 .faq-container {
-    margin-left: 20vw;
-    margin-right: 20vw;
+    margin-left: 27vw;
+    margin-right: 27vw;
 }
+
+.faq-container h1 {
+    margin-bottom: 5vh;
+}
+
 .faq-answer {
     margin-top: 10px;
     padding-left: 10px;
