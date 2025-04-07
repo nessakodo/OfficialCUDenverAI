@@ -141,19 +141,40 @@ const HackathonDashboard: React.FC = () => {
         )}
 
         {activeTab === 'leaderboard' && (
-          <div>
+          <div className="leaderboard-section">
             <h2>Leaderboard</h2>
             <p>View real-time team rankings here.</p>
-            {/* Scoreboard table */}
-            <ul>
-              {loading ? <p>Loading...</p> : (
-               <ul>
-              {leaderboard.map((team: any) => (
-                <li>{team.team_name}:{team.presentation_score}</li>
-              ))}
-            </ul>
-          )}
-            </ul>
+
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <table className="leaderboard-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Team Name</th>
+                    <th>Presentation Score</th>
+                    <th>Innovation Score</th>
+                    <th>Usability Score</th>
+                    <th>Total Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {leaderboard
+                    .sort((a: any, b: any) => b.total_score - a.total_score) // sort by total score descending
+                    .map((team: any, index: number) => (
+                      <tr key={team.team_id || index}>
+                        <td>{index + 1}</td>
+                        <td>{team.team_name}</td>
+                        <td>{team.presentation_score}</td>
+                        <td>{team.innovation_score}</td>
+                        <td>{team.usability_score}</td>
+                        <td>{team.usability_score + team.presentation_score+team.innovation_score}</td>
+                      </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         )}
       </div>
