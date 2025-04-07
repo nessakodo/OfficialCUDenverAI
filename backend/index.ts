@@ -121,6 +121,9 @@ app.get('/api/announcements', async (req, res) => {
   res.json(announcements);
 });
 
+// Student email verification
+
+
 /////////////////////////
 // PROJECTS
 //////////////////////////

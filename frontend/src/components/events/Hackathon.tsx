@@ -81,7 +81,8 @@ function Hackathon() {
           <section className="hero">
             <h1>AI Club Hackathon 2025</h1>
             <h2>Innovate, Build, and Compete with the Best!</h2>
-            <a href="https://forms.office.com/..."><button className="register-btn">Register Now</button></a>
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode
+"><button className="register-btn">Register Now</button></a>
           </section>
       </Element>
 
