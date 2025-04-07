@@ -102,7 +102,7 @@ app.post('/api/submission', async (req, res) => {
 app.get('/api/team', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
   const userId = 0;  
-  const query = 'SELECT user_name, user_email FROM TEAM_MEMBERS WHERE team_id = ?';
+  const query = 'SELECT user_name, user_email, role FROM TEAM_MEMBERS WHERE team_id = ?';
   const [team] = await connection.execute(query, [userId]);
   res.json(team);
 });
