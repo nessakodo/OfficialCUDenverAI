@@ -7,7 +7,7 @@
 import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux'; 
 import { setBlogs, setError } from "../../actions/BlogsActions";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Link, Element } from "react-scroll";
 import './Hackathon.css'
 import styles from "./HackathonPage.module.css";
@@ -34,11 +34,12 @@ import finance from '../images/finance.jpg'
 import healthcare from '../images/healthcare.jpg'
 import climatechange from '../images/climate.jpg'
 import transportation from '../images/transportation.jpg'
+import OllamaPic from '../images/Ollama.png'
+import Judge1 from '../images/Hackathon/DaveOgle.png'
+import Judge2 from '../images/Hackathon/ShawnMccarthy.jpg'
+import Judge3 from '../images/Hackathon/YuDu.jpg'
+import Judge4 from '../images/Hackathon/SteveHosie.png'
 
-
-export const useIsMobile = () => {
-  return useMediaQuery('(max-width:500px)');
-};
 
 function Hackathon() {
     ///////////////////////////
@@ -129,6 +130,20 @@ function Hackathon() {
       </div>
       </motion.section>
       
+        <div className="hackathon-nav">
+        <ul>
+          <li><Link to="hero" smooth={true} duration={500}>Hero</Link></li>
+          <li><Link to="details" smooth={true} duration={500}>Event Details</Link></li>
+          <li><Link to="timeline" smooth={true} duration={500}>Timeline</Link></li>
+          <li><Link to="rules" smooth={true} duration={500}>Rules</Link></li>
+          <li><Link to="judgingcriteria" smooth={true} duration={500}>Judging Criteria</Link></li>
+          <li><RouterLink to="/events/hackathon2025/prizes">Prizes</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/rules">Rules</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/faq">FAQ</RouterLink></li>
+        </ul>
+      </div>
+
         {/* Hero Section */}
         <motion.section
         initial="hidden"
@@ -139,7 +154,7 @@ function Hackathon() {
             <h1>AI Club Hackathon 2025</h1>
             <h2>Innovate, Build, and Compete with the Best!</h2>
             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
-            
+
         </section>
         </motion.section>
 
@@ -313,39 +328,6 @@ function Hackathon() {
     </div>
     </Element>
 
-      <section className="prizes-container">
-        <h2 className="prizes-title">Prizes</h2>
-        <ul className="prizes-list">
-          <li className="prize-item">
-            <strong>1st Place:</strong> $100
-          </li>
-          <li className="prize-item">
-            <strong>2nd Place:</strong> $75
-          </li>
-          <li className="prize-item">
-            <strong>3rd Place:</strong> $50
-          </li>
-          <li className="prize-item">
-            All other teams will receive participation certificates and tote bags.
-          </li>
-        </ul>
-      </section>
-
-
-        {/* Rules Section */}
-        <Element name="rules">
-        <section id="rules" className="rules-container">
-
-          <h2 className="rules-title">Hackathon Rules</h2>
-          <ul className="rules-list">
-            <li>All submissions must be the team's own work, and participants must be able to provide proof of work if requested.</li>
-            <li>The idea does not have to be original, but teams will be judged on the quality of their execution.</li>
-            <li>Teams are allowed to use libraries, frameworks, and open-source code in their projects.</li>
-            <li>Reusing an idea from a previous project is permitted, but participants must disclose this and make significant modifications.</li>
-          </ul>
-        </section>
-        </Element>
-
 
 
         {/* Hackathon Judges */}
@@ -354,29 +336,29 @@ function Hackathon() {
         <h2>Judges</h2>
       <div className="judgeCardCover">
       <div className="judgeCard">
-        <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Judge1</h2>
+        <img src={Judge1} className="judgeImage" />
+        <h2 className="judgeName">Dave Ogle</h2>
         <p className="judgeCard">
         Judge description
         </p>
       </div>
       <div className="judgeCard">
-        <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Judge2</h2>
+        <img src={Judge2} className="judgeImage" />
+        <h2 className="judgeName">Shawn McCarthy</h2>
         <p className="judgeCard">
         Judge description<br />
         </p>
       </div>
       <div className="judgeCard">
-        <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Judge3</h2>
+        <img src={Judge3} className="judgeImage" />
+        <h2 className="judgeName">Yu Du</h2>
         <p className="judgeCard">
           Judge description<br />
         </p>
       </div>
       <div className="judgeCard">
-        <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Judge4</h2>
+        <img src={Judge4} className="judgeImage" />
+        <h2 className="judgeName">Steve Hosie</h2>
         <p className="judgeCard">
           Judge description<br />
         </p>
@@ -437,27 +419,6 @@ function Hackathon() {
           />
         </section>
 
-        
-
-
-        {/* Resources Section */}
-        <Element name="resources">
-          <section className="resources">
-          <h2 className="rules-title">Explore Our Resources</h2>
-          <p>Find guides, tutorials, and AI learning materials.</p>
-          <button onClick={() => {navigate('/events/hackathon2025/resources'); }} className="resources-btn">Go to Resources</button>
-          </section>
-        </Element>
-  
-        {/* FAQ Section */}
-        <Element name="faq">
-          <section className="faq">
-            <h2>Have a Question?</h2>
-            <h3>We have put together the answers you have been looking for. If there is an answer you cannot find, please let us know on aisa@ucdenver.edu.</h3>
-            <button onClick={() => {navigate('/events/hackathon2025/faq'); }} className="resources-btn">Read FAQ</button>
-          </section>
-        </Element>
-  
 
   
       </div>

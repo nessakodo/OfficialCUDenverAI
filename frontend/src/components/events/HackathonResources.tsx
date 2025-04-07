@@ -7,13 +7,10 @@
 import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux'; 
 import { setBlogs, setError } from "../../actions/BlogsActions";
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Link, Element } from "react-scroll";
 import './HackathonResources.css'
 
-
-/* UI Imports */
-
-/* Image Imports */
 
 
 function HackathonResources() {
@@ -34,6 +31,16 @@ function HackathonResources() {
 
     return (        <div className="hackathon-resources">
 
+    <div className="hackathon-nav">
+        <ul>
+        <li><RouterLink to="/events/hackathon2025">Hackathon Info</RouterLink></li>
+        <li><RouterLink to="/events/hackathon2025/prizes">Prizes</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/faq">FAQ</RouterLink></li>
+        <li><RouterLink to="/events/hackathon2025/rules">Rules</RouterLink></li>
+        </ul>
+      </div>
+      
         {/* Datasets Section */}
         <Element name="datasets" className="section">
             <h2>📂 Datasets</h2>

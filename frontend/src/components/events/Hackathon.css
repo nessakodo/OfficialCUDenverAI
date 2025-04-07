@@ -70,6 +70,44 @@ body {
     margin: 10px;
   }
 
+  .hackathon-nav {
+    position: fixed;
+    top: 130px;
+    right: 20px;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 12px;
+    z-index: 1000;
+    padding: 0.5rem 1rem;
+    transition: 0.3s;
+    cursor: pointer;
+
+  }
+  
+
+  .dashboard-nav h3 {
+    font-size: 1.1em;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .dashboard-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dashboard-nav li {
+    margin: 0.3rem 0;
+    cursor: pointer;
+    color: #2e7dff;
+    transition: 0.3s;
+  }
+  
+  .dashboard-nav li:hover {
+    text-decoration: underline;
+  }
+
   .schedule-day {
     margin-bottom: 30px;
   }
