@@ -39,6 +39,14 @@ import Judge1 from '../images/Hackathon/DaveOgle.png'
 import Judge2 from '../images/Hackathon/ShawnMccarthy.jpg'
 import Judge3 from '../images/Hackathon/YuDu.jpg'
 import Judge4 from '../images/Hackathon/SteveHosie.png'
+import vision from '../images/vision.jpg'
+import audience  from '../images/audience.jpg'
+import event_img from '../images/eventimg.jpg'
+import finance from '../images/finance.jpg'
+import healthcare from '../images/healthcare.jpg'
+import climatechange from '../images/climate.jpg'
+import transportation from '../images/transportation.jpg'
+
 
 
 function Hackathon() {
@@ -56,9 +64,30 @@ function Hackathon() {
      * Options for the title transition
      */
     const titleVariants = {
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: 'easeOut' } },
-      };
+      hidden: { opacity: 0, scale: 0.8 },
+      visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: 'easeOut' } },
+    };
+
+    const slideVariants = {
+        hidden: { opacity: 0, x: -800 },  // Start offscreen (left side)
+        visible: { opacity: 1, x: 0, transition: { duration: 3, ease: "easeOut" } },
+    };
+      
+    const slideVariantsRight = {
+        hidden: { opacity: 0, x: 800 },  // Start offscreen (right side)
+        visible: { opacity: 1, x: 0, transition: { duration: 3, ease: "easeOut" } },
+    };
+
+    const slideVariantsTop = {
+      hidden: { opacity: 0, y: 100 },  // Start below the screen
+      visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+    };
+
+    const { ref, inView } = useInView({
+      triggerOnce: true, // Only trigger once when it enters view
+      threshold: 0.001
+  });
+
 
     const slideVariants = {
         hidden: { opacity: 0, x: -800 },  // Start offscreen (left side)
@@ -135,7 +164,6 @@ function Hackathon() {
           <li><Link to="hero" smooth={true} duration={500}>Hero</Link></li>
           <li><Link to="details" smooth={true} duration={500}>Event Details</Link></li>
           <li><Link to="timeline" smooth={true} duration={500}>Timeline</Link></li>
-          <li><Link to="rules" smooth={true} duration={500}>Rules</Link></li>
           <li><Link to="judgingcriteria" smooth={true} duration={500}>Judging Criteria</Link></li>
           <li><RouterLink to="/events/hackathon2025/prizes">Prizes</RouterLink></li>
           <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
@@ -166,7 +194,7 @@ function Hackathon() {
         variants={slideVariants}
       >
         <section className="HackathonVideo">
-        {/* Video Section */}
+        {/* 
         <motion.div
             ref={ref}
             initial="hidden"
@@ -178,9 +206,11 @@ function Hackathon() {
                 Your browser does not support the video tag.
             </video>
         </motion.div>
+         */}
         </section>
         </motion.section>
 
+                {/* Event Details Section */}
                 {/* Event Details Section */}
             <Element name="details">
             <section className="details">
@@ -273,8 +303,7 @@ function Hackathon() {
                           <ul>
                               <li>Climate Change / Sustainability</li>
                           </ul>
-                    </div>
-                    </div>
+
                     </motion.section>
 
             </section>
@@ -330,6 +359,7 @@ function Hackathon() {
 
 
 
+
         {/* Hackathon Judges */}
       {/*
       <section className="judges">
@@ -370,10 +400,10 @@ function Hackathon() {
         {/* Judging Criteria */}
         <Element name="judgingcriteria">
           <section className="judgingcriteria">
-          <h2>Judging Criteria</h2>
           </section>
         </Element>
         <section className="pieChart">
+
           <PieChart
                 series={[
                     {
