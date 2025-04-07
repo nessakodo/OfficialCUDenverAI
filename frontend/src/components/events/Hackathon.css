@@ -153,106 +153,79 @@ body {
     font-size: 14px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
   }
-  .prizes {
-    text-align: center;
-    padding: 50px 0;
-  }
-  
-  .prizes h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #333;
-  }
-  
-  .prize-card {
-    background-color: #f9f9f9;
-    margin: 20px;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .prize-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .prize-card h3 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #444;
-  }
-  
-  .prize-details {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .trophy-icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 15px;
-  }
-  
-  .prize-amount {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #007BFF;
-    margin-right: 10px;
-  }
+
   
   .engraved-award {
     font-size: 1.2rem;
     color: #555;
   }
   
-  .judgeCardCover{
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 100px;
-
-  }
-
-
-  .judgeCard {
-    margin: 0 auto;
-    max-width: 300px;
-    border-radius: 1rem;
-    padding: 1rem;
-    display: flex;              
-    flex-direction: column;   
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-
-  .judgeCard p {
-    max-width: 200px;
+  .judges {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
     text-align: center;
   }
   
+  .judges-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .judgeCardCover {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .judgeCard {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .judgeCard:hover {
+    transform: translateY(-5px);
+  }
   
   .judgeImage {
-    margin: 0 auto;
-    max-width: 265px;
-    height: 300px; 
-    border-radius: 10px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto;
+    margin-bottom: 1rem;
+    border: 3px solid #eee;
   }
   
   .judgeName {
     font-size: 1.25rem;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 0.75rem;
+    font-weight: bold;
+    color: #222;
+    margin: 0.5rem 0;
   }
-
-
+  
+  .judgeTitle {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0.75rem;
+  }
+  
+  .judgeDescription {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .judgeField {
+    font-size: 0.9rem;
+    color: #444;
+    font-weight: 600;
+  }
   .pieChart{
     display: flex;
     align-items: center;
@@ -304,7 +277,15 @@ body {
 .tracks {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 10vh;
+    gap: 3vw;
+}
+
+.HackathonPage_timelineContainer__UI2X9{
+  margin-right: 10vw;
+  margin-left: 10vw;
 }
 
 .content-box {
@@ -426,6 +407,10 @@ ul li {
   }
 }
 
+.judges {
+
+}
+
 .rules-container {
   padding: 20px;
   background-color: #f9f9f9;
@@ -456,65 +441,11 @@ ul li {
   margin-bottom: 10px;
 }
 
-.prizes-container {
-  background-color: #ffffff; /* Light background for contrast */
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px; /* Limit the width to make the section look centered */
-  text-align: center;
-  margin-right: 35vw;
-  margin-left: 35vw;
-}
 
-/* Title of the Prizes section */
-.prizes-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
 
-/* Styling for the list of prizes */
-.prizes-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
 
-/* Each item in the prize list */
-.prize-item {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #555;
-  padding: 15px 0;
-  border-bottom: 1px solid #ddd; /* A subtle border between items */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-/* Add spacing between the prize value and the icon */
-.prize-item strong {
-  margin-right: 10px;
-}
 
-/* Prize icon image styling */
-.prize-icon {
-  width: 24px;
-  height: auto;
-  margin-left: 10px;
-  vertical-align: middle; /* Aligns icon nicely with text */
-}
-
-/* Add some spacing and style for the last item */
-.prize-item:last-child {
-  border-bottom: none;
-  font-style: italic; /* Makes the participation certificate note stand out */
-  color: #999;
-}
 .resources {
   padding: 20px;
   background-color: #ffffff;
