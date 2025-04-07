@@ -34,10 +34,10 @@ body {
   }
   
   section {
-    padding: 60px 20px;
     margin: 20px 0;
     text-align: center;
   }
+  
   
   .hero {
     background: url('../images/Hackathon/hackathonbackground.jpg') no-repeat center center;
@@ -52,7 +52,7 @@ body {
   }
   
   .register-btn {
-    background-color: #686868;
+    background-color: #e94e29;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -62,7 +62,7 @@ body {
   }
   
   .register-btn:hover {
-    background-color: #e94e29;
+    background-color: #686868;
   }
   
   .sponsor-logos img {
@@ -127,13 +127,7 @@ body {
     font-size: 1.1em;
   }
 
-  .container {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
-  }
+
   
   /* Timeline Section */
   .timelineSection h2 {
@@ -159,38 +153,61 @@ body {
     font-size: 14px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
   }
-  
-  /* Prize Section */
-  .prizeSection {
-    margin-top: 40px;
+  .prizes {
+    text-align: center;
+    padding: 50px 0;
   }
   
-  .prizeBox {
+  .prizes h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  .prize-card {
+    background-color: #f9f9f9;
+    margin: 20px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .prize-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .prize-card h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .prize-details {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-  }
-  
-  .prizeImage {
-    width: 80px;
-  }
-  
-  .prizeAmount {
-    font-size: 24px;
-    font-weight: bold;
-    background: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .prizeNote {
-    font-size: 14px;
-    color: gray;
     margin-top: 10px;
   }
-
+  
+  .trophy-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+  }
+  
+  .prize-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007BFF;
+    margin-right: 10px;
+  }
+  
+  .engraved-award {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
   .judgeCardCover{
     display: flex;
     gap: 2rem;
@@ -264,10 +281,83 @@ body {
     margin-bottom: 20vh;
   }
 
-  .details-container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
+
+
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.title {
+  margin-top: 20vh;
+}
+
+.tracks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.content-box {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.content-box-1 {
+  margin-bottom: 10vh;
+  background: #ffffff;
+  margin-right: 40vw;
+  margin-left: 40vw;
+  width: 20vw;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.content-box:hover {
+    transform: translateY(-5px);
+}
+
+.content-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 15px;
+    color: #222;
+}
+
+p {
+    font-size: 1rem;
+    color: #444;
+    margin-top: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    font-size: 1.1rem;
+    margin: 5px 0;
 }
 
 h2 {
@@ -290,6 +380,7 @@ h2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
+
 
 h3 {
     font-size: 22px;
@@ -321,7 +412,6 @@ ul li {
   border-radius: 8px;
   text-align: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
   animation: pulse 1.5s infinite;
 }
 @keyframes pulse {
@@ -341,7 +431,8 @@ ul li {
   background-color: #f9f9f9;
   border-radius: 8px;
   max-width: 800px;
-  margin: 20px auto;
+  margin-right: 30vw;
+  margin-left: 30vw;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20vh;
 }
@@ -366,18 +457,67 @@ ul li {
 }
 
 .prizes-container {
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  max-width: 800px;
-  margin: 20px auto;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20vh;
+  background-color: #ffffff; /* Light background for contrast */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px; /* Limit the width to make the section look centered */
+  text-align: center;
+  margin-right: 35vw;
+  margin-left: 35vw;
 }
 
+/* Title of the Prizes section */
+.prizes-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Styling for the list of prizes */
+.prizes-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each item in the prize list */
+.prize-item {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd; /* A subtle border between items */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add spacing between the prize value and the icon */
+.prize-item strong {
+  margin-right: 10px;
+}
+
+/* Prize icon image styling */
+.prize-icon {
+  width: 24px;
+  height: auto;
+  margin-left: 10px;
+  vertical-align: middle; /* Aligns icon nicely with text */
+}
+
+/* Add some spacing and style for the last item */
+.prize-item:last-child {
+  border-bottom: none;
+  font-style: italic; /* Makes the participation certificate note stand out */
+  color: #999;
+}
 .resources {
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   border-radius: 8px;
   max-width: 800px;
   margin: 20px auto;
@@ -386,17 +526,13 @@ ul li {
 }
 
 .resources-btn {
-  margin: 20px;
-  background: linear-gradient(90deg, #ffffff, #ffffff);
-  color: rgb(0, 0, 0);
-  padding: 12px 24px; 
-  border: none; 
-  border-radius: 40px; 
+  background-color: #e94e29;
+  color: white;
+  padding: 10px 20px;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  justify-content: center;
-  text-align: center;
+  margin-top: 3vh;
+  font-size: 18px;
 }
 
 .resources-btn:hover {

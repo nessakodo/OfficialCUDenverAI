@@ -21,12 +21,19 @@ import Box from '@mui/material/Box';
 import Countdown from 'react-countdown';
 import { Slider, useMediaQuery } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import { motion } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
 
 /* Image Imports */
 import BagPrize from '../images/Hackathon/bag.png'
 import { Autocomplete } from "@mui/material";
+import Engraving from '../images/Hackathon/engraving.png'
+import vision from '../images/vision.jpg'
+import audience  from '../images/audience.jpg'
+import event_img from '../images/eventimg.jpg'
+import finance from '../images/finance.jpg'
+import healthcare from '../images/healthcare.jpg'
+import climatechange from '../images/climate.jpg'
+import transportation from '../images/transportation.jpg'
 import OllamaPic from '../images/Ollama.png'
 import Judge1 from '../images/Hackathon/DaveOgle.png'
 import Judge2 from '../images/Hackathon/ShawnMccarthy.jpg'
@@ -39,6 +46,7 @@ import finance from '../images/finance.jpg'
 import healthcare from '../images/healthcare.jpg'
 import climatechange from '../images/climate.jpg'
 import transportation from '../images/transportation.jpg'
+
 
 
 function Hackathon() {
@@ -81,6 +89,26 @@ function Hackathon() {
   });
 
 
+    const slideVariants = {
+        hidden: { opacity: 0, x: -800 },  // Start offscreen (left side)
+        visible: { opacity: 1, x: 0, transition: { duration: 3, ease: "easeOut" } },
+    };
+      
+    const slideVariantsRight = {
+        hidden: { opacity: 0, x: 800 },  // Start offscreen (right side)
+        visible: { opacity: 1, x: 0, transition: { duration: 3, ease: "easeOut" } },
+    };
+
+    const slideVariantsTop = {
+      hidden: { opacity: 0, y: 100 },  // Start below the screen
+      visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+    };
+
+    const { ref, inView } = useInView({
+      triggerOnce: true, // Only trigger once when it enters view
+      threshold: 0.001
+  });
+
     const navigate = useNavigate();
 
 
@@ -115,6 +143,22 @@ function Hackathon() {
     return (
         <div className="hackathon-container">
   
+  
+      {/* Countdown Section */}
+      <motion.section
+        initial="hidden"
+        animate={"visible"}
+        variants={slideVariantsTop}
+      >
+      <div className="Countdown">
+        <h2>Countdown to Hackathon</h2>
+        <Countdown
+          date={new Date('2025-04-16T09:00:00')} // set the target date here
+          renderer={renderer}
+        />
+      </div>
+      </motion.section>
+      
         <div className="hackathon-nav">
         <ul>
           <li><Link to="hero" smooth={true} duration={500}>Hero</Link></li>
@@ -129,29 +173,30 @@ function Hackathon() {
       </div>
 
         {/* Hero Section */}
-        <Element name="hero">
+        <motion.section
+        initial="hidden"
+        animate={"visible"}
+        variants={slideVariantsTop}
+      >
         <section className="hero">
             <h1>AI Club Hackathon 2025</h1>
             <h2>Innovate, Build, and Compete with the Best!</h2>
             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode"> <button className="register-btn">Register Now</button> </a>
-           <button  onClick={() => {navigate('/hackathon-dashboard'); }} className="register-btn">Sign into Dashboard</button>
 
         </section>
-        </Element>
-
-      {/* Countdown Section */}
-      <section className="Countdown">
-        <h2>Countdown to Hackathon</h2>
-        <Countdown
-          date={new Date('2025-04-16T09:00:00')} // set the target date here
-          renderer={renderer}
-        />
-      </section>
+        </motion.section>
 
 
+      <motion.section
+        ref={ref}
+        initial="hidden"
+        animate={"visible"}
+        variants={slideVariants}
+      >
         <section className="HackathonVideo">
         {/* 
         <motion.div
+            ref={ref}
             initial="hidden"
             animate="visible"
             variants={titleVariants}
@@ -163,6 +208,7 @@ function Hackathon() {
         </motion.div>
          */}
         </section>
+        </motion.section>
 
                 {/* Event Details Section */}
                 {/* Event Details Section */}
@@ -257,8 +303,7 @@ function Hackathon() {
                           <ul>
                               <li>Climate Change / Sustainability</li>
                           </ul>
-                    </div>
-                    </div>
+
                     </motion.section>
 
             </section>
@@ -270,21 +315,40 @@ function Hackathon() {
       <section className={styles.timelineSection}>
         <h2>All <span className={styles.highlight}>activities</span> of this year's hackathon</h2>
         <div className={styles.timelineContainer}>
+              <motion.section
+              initial="hidden"
+              animate="visible"
+              variants={slideVariants}
+            >
             <div className={styles.dayColumn}>
                 <h3>Day 1 - April 16 </h3>
                 <div className={styles.eventBox}>Opening Ceremony<br /><span>5:00 PM - 7:00 PM</span></div>
             </div>
+            </motion.section>
 
+              <motion.section
+              initial="hidden"
+              animate="visible"
+              variants={slideVariantsTop}
+            >
             <div className={styles.dayColumn}>
                 <h3>Day 2 - April 17 </h3>
                 <div className={styles.eventBox}> No scheduled event. Our team will be on standby to provide assistance to teams on a needs-based basis."<br /></div>
             </div>
+            </motion.section>
 
+            <motion.section
+              initial="hidden"
+              animate="visible"
+              variants={slideVariantsRight}
+            >
             <div className={styles.dayColumn}>
                 <h3>Day 3 - April 18</h3>
                 <div className={styles.eventBox}>Presentation<br /><span>12 PM - 4 PM</span></div>
                 <div className={styles.eventBox}>Closing Ceremony<br /><span>4 PM - 5 PM</span></div>
             </div>
+            </motion.section>
+
         </div>
 
 
@@ -292,7 +356,6 @@ function Hackathon() {
 
     </div>
     </Element>
-
 
 
 
