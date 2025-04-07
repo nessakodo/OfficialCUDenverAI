@@ -148,32 +148,50 @@ const HackathonDashboard: React.FC = () => {
             {loading ? (
               <p>Loading...</p>
             ) : (
-              <table className="leaderboard-table">
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Team Name</th>
-                    <th>Presentation Score</th>
-                    <th>Innovation Score</th>
-                    <th>Usability Score</th>
-                    <th>Total Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {leaderboard
-                    .sort((a: any, b: any) => b.total_score - a.total_score) // sort by total score descending
-                    .map((team: any, index: number) => (
-                      <tr key={team.team_id || index}>
-                        <td>{index + 1}</td>
-                        <td>{team.team_name}</td>
-                        <td>{team.presentation_score}</td>
-                        <td>{team.innovation_score}</td>
-                        <td>{team.usability_score}</td>
-                        <td>{team.usability_score + team.presentation_score+team.innovation_score}</td>
-                      </tr>
-                  ))}
-                </tbody>
-              </table>
+          <table className="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Team Name</th>
+                <th>Problem & Solution</th>
+                <th>Impact & Feasibility</th>
+                <th>Technical Depth</th>
+                <th>Innovation & Creativity</th>
+                <th>Q&A Responses</th>
+                <th>Presentation Clarity</th>
+                <th>User-Centered Design</th>
+                <th>Total Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboard
+                .sort((a: any, b: any) => {
+                  const totalA = a.problem_solution + a.impact_feasibility + a.technical_depth +
+                                a.innovation_creativity + a.qa_responses + a.presentation_clarity +
+                                a.user_centered_design;
+                  const totalB = b.problem_solution + b.impact_feasibility + b.technical_depth +
+                                b.innovation_creativity + b.qa_responses + b.presentation_clarity +
+                                b.user_centered_design;
+                  return totalB - totalA;
+                })
+                .map((team: any, index: number) => {
+                  return (
+                    <tr key={team.team_id || index}>
+                      <td>{index + 1}</td>
+                      <td>{team.team_name}</td>
+                      <td>{team.problem_solution}</td>
+                      <td>{team.impact_feasibility}</td>
+                      <td>{team.technical_depth}</td>
+                      <td>{team.innovation_creativity}</td>
+                      <td>{team.qa_responses}</td>
+                      <td>{team.presentation_clarity}</td>
+                      <td>{team.user_centered_design}</td>
+                      <td>{team.total_score}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
             )}
           </div>
         )}
