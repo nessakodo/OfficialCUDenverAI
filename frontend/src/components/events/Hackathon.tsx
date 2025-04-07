@@ -26,7 +26,10 @@ import Paper from '@mui/material/Paper';
 import BagPrize from '../images/Hackathon/bag.png'
 import { Autocomplete } from "@mui/material";
 import OllamaPic from '../images/Ollama.png'
-
+import Judge1 from '../images/Hackathon/DaveOgle.png'
+import Judge2 from '../images/Hackathon/ShawnMccarthy.jpg'
+import Judge3 from '../images/Hackathon/YuDu.jpg'
+import Judge4 from '../images/Hackathon/SteveHosie.png'
 
 function Hackathon() {
     ///////////////////////////
@@ -81,7 +84,7 @@ function Hackathon() {
     return (
         <div className="hackathon-container">
   
-        <div className="dashboard-nav">
+        <div className="hackathon-nav">
         <ul>
           <li><Link to="hero" smooth={true} duration={500}>Hero</Link></li>
           <li><Link to="details" smooth={true} duration={500}>Event Details</Link></li>
@@ -90,6 +93,7 @@ function Hackathon() {
           <li><Link to="judgingcriteria" smooth={true} duration={500}>Judging Criteria</Link></li>
           <li><RouterLink to="/events/hackathon2025/prizes">Prizes</RouterLink></li>
           <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/rules">Rules</RouterLink></li>
           <li><RouterLink to="/events/hackathon2025/faq">FAQ</RouterLink></li>
         </ul>
       </div>
@@ -219,29 +223,29 @@ function Hackathon() {
         <h2>Judges</h2>
       <div className="judgeCardCover">
       <div className="judgeCard">
-        <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Judge1</h2>
+        <img src={Judge1} className="judgeImage" />
+        <h2 className="judgeName">Dave Ogle</h2>
         <p className="judgeCard">
         Judge description
         </p>
       </div>
       <div className="judgeCard">
-        <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Judge2</h2>
+        <img src={Judge2} className="judgeImage" />
+        <h2 className="judgeName">Shawn McCarthy</h2>
         <p className="judgeCard">
         Judge description<br />
         </p>
       </div>
       <div className="judgeCard">
-        <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Judge3</h2>
+        <img src={Judge3} className="judgeImage" />
+        <h2 className="judgeName">Yu Du</h2>
         <p className="judgeCard">
           Judge description<br />
         </p>
       </div>
       <div className="judgeCard">
-        <img src={OllamaPic} className="judgeImage" />
-        <h2 className="judgeName">Judge4</h2>
+        <img src={Judge4} className="judgeImage" />
+        <h2 className="judgeName">Steve Hosie</h2>
         <p className="judgeCard">
           Judge description<br />
         </p>
