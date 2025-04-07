@@ -141,19 +141,58 @@ const HackathonDashboard: React.FC = () => {
         )}
 
         {activeTab === 'leaderboard' && (
-          <div>
+          <div className="leaderboard-section">
             <h2>Leaderboard</h2>
             <p>View real-time team rankings here.</p>
-            {/* Scoreboard table */}
-            <ul>
-              {loading ? <p>Loading...</p> : (
-               <ul>
-              {leaderboard.map((team: any) => (
-                <li>{team.team_name}:{team.presentation_score}</li>
-              ))}
-            </ul>
-          )}
-            </ul>
+
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+          <table className="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Team Name</th>
+                <th>Problem & Solution</th>
+                <th>Impact & Feasibility</th>
+                <th>Technical Depth</th>
+                <th>Innovation & Creativity</th>
+                <th>Q&A Responses</th>
+                <th>Presentation Clarity</th>
+                <th>User-Centered Design</th>
+                <th>Total Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboard
+                .sort((a: any, b: any) => {
+                  const totalA = a.problem_solution + a.impact_feasibility + a.technical_depth +
+                                a.innovation_creativity + a.qa_responses + a.presentation_clarity +
+                                a.user_centered_design;
+                  const totalB = b.problem_solution + b.impact_feasibility + b.technical_depth +
+                                b.innovation_creativity + b.qa_responses + b.presentation_clarity +
+                                b.user_centered_design;
+                  return totalB - totalA;
+                })
+                .map((team: any, index: number) => {
+                  return (
+                    <tr key={team.team_id || index}>
+                      <td>{index + 1}</td>
+                      <td>{team.team_name}</td>
+                      <td>{team.problem_solution}</td>
+                      <td>{team.impact_feasibility}</td>
+                      <td>{team.technical_depth}</td>
+                      <td>{team.innovation_creativity}</td>
+                      <td>{team.qa_responses}</td>
+                      <td>{team.presentation_clarity}</td>
+                      <td>{team.user_centered_design}</td>
+                      <td>{team.total_score}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+            )}
           </div>
         )}
       </div>

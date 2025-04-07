@@ -70,8 +70,24 @@ app.get('/api/' , (req, res) => {
 
 app.get('/api/leaderboard', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const query = 'SELECT T.team_name, L.presentation_score FROM SCORES L JOIN HACKATHON_TEAMS T ON L.team_id = T.team_id ORDER BY L.presentation_score DESC';
-  const [leaderboard] = await connection.execute(query);
+  const query = `
+  SELECT 
+    T.team_name,
+    AVG(S.problem_solution) AS problem_solution,
+    AVG(S.impact_feasibility) AS impact_feasibility,
+    AVG(S.technical_depth) AS technical_depth,
+    AVG(S.innovation_creativity) AS innovation_creativity,
+    AVG(S.qa_responses) AS qa_responses,
+    AVG(S.presentation_clarity) AS presentation_clarity,
+    AVG(S.user_centered_design) AS user_centered_design,
+    (AVG(S.problem_solution) + AVG(S.impact_feasibility) + AVG(S.technical_depth) +
+     AVG(S.innovation_creativity) + AVG(S.qa_responses) + AVG(S.presentation_clarity) +
+     AVG(S.user_centered_design)) AS total_score
+  FROM SCORES S
+  JOIN HACKATHON_TEAMS T ON S.team_id = T.team_id
+  GROUP BY S.team_id
+  ORDER BY total_score DESC
+`;  const [leaderboard] = await connection.execute(query);
   res.json(leaderboard);
 });
 
