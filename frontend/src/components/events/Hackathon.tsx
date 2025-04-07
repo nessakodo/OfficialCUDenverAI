@@ -7,7 +7,7 @@
 import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux'; 
 import { setBlogs, setError } from "../../actions/BlogsActions";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Link, Element } from "react-scroll";
 import './Hackathon.css'
 import styles from "./HackathonPage.module.css";
@@ -81,7 +81,19 @@ function Hackathon() {
     return (
         <div className="hackathon-container">
   
-  
+        <div className="dashboard-nav">
+        <ul>
+          <li><Link to="hero" smooth={true} duration={500}>Hero</Link></li>
+          <li><Link to="details" smooth={true} duration={500}>Event Details</Link></li>
+          <li><Link to="timeline" smooth={true} duration={500}>Timeline</Link></li>
+          <li><Link to="rules" smooth={true} duration={500}>Rules</Link></li>
+          <li><Link to="judgingcriteria" smooth={true} duration={500}>Judging Criteria</Link></li>
+          <li><RouterLink to="/events/hackathon2025/prizes">Prizes</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/faq">FAQ</RouterLink></li>
+        </ul>
+      </div>
+
         {/* Hero Section */}
         <Element name="hero">
         <section className="hero">
@@ -291,33 +303,6 @@ function Hackathon() {
           />
         </section>
 
-          {/* Prizes Section */}
-          <Element name="resources">
-          <section className="resources">
-          <h2 className="rules-title">We have cool prizes!!</h2>
-          <p>Check them out here!</p>
-          <button onClick={() => {navigate('/events/hackathon2025/prizes'); }} className="resources-btn">Look at prizes</button>
-          </section>
-        </Element>
-
-
-        {/* Resources Section */}
-        <Element name="resources">
-          <section className="resources">
-          <h2 className="rules-title">Explore Our Resources</h2>
-          <p>Find guides, tutorials, and AI learning materials.</p>
-          <button onClick={() => {navigate('/events/hackathon2025/resources'); }} className="resources-btn">Go to Resources</button>
-          </section>
-        </Element>
-  
-        {/* FAQ Section */}
-        <Element name="resources">
-          <section className="resources">
-            <h2>FAQ</h2>
-            <button onClick={() => {navigate('/events/hackathon2025/faq'); }} className="resources-btn">Go to FAQ Section</button>
-          </section>
-        </Element>
-  
 
   
       </div>
