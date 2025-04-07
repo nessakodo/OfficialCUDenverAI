@@ -119,7 +119,7 @@ const HackathonDashboard: React.FC = () => {
 
         {activeTab === 'announcements' && (
           <div>
-            <h2>announcements</h2>
+            <h2>Announcements</h2>
             <ul>
               {/* Render live announcements */}
               {loading ? <p>Loading...</p> : (
