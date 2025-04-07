@@ -93,7 +93,7 @@ const HackathonDashboard: React.FC = () => {
                   <div className="team-grid">
                     {teamData.map((member, index) => (
                       <div className="team-card" key={index}>
-                        <h3 className="team-name">{member.user_name}</h3>
+                        <h3 className="team-name">{member.user_name} ({member.role})</h3>
                         <a className="team-email" href={`mailto:${member.user_email}`}>
                           {member.user_email}
                         </a>
@@ -129,7 +129,7 @@ const HackathonDashboard: React.FC = () => {
               {loading ? <p>Loading...</p> : (
                <ul>
               {teamData.map((member: any) => (
-                <li key={member.id}>{member.name} - {member.email}</li>
+                <li key={member.id}>{member.name} - {member.email}  </li>
               ))}
             </ul>
           )}
