@@ -82,23 +82,27 @@ const HackathonDashboard: React.FC = () => {
       </nav>
 
       <div className="dashboard-content">
-        {activeTab === 'team' && (
-          <div>
-            <h2>My Team</h2>
-            <p>View your teammates and their contact info.</p>
-            {/* Map teammates*/}
-            <ul>
-              {loading ? <p>Loading...</p> : (
-               <ul>
-              {teamData.map((member: any) => (
-                <li>{member.user_name} - {member.user_email}</li>
-              ))}
-            </ul>
-          )}
-            </ul>
-          </div>
-        )}
+                {activeTab === 'team' && (
+              <div>
+                <h2 className="team-heading">My Team</h2>
+                <p className="team-subheading">View your teammates and their contact info.</p>
 
+                {loading ? (
+                  <p className="loading">Loading...</p>
+                ) : (
+                  <div className="team-grid">
+                    {teamData.map((member, index) => (
+                      <div className="team-card" key={index}>
+                        <h3 className="team-name">{member.user_name}</h3>
+                        <a className="team-email" href={`mailto:${member.user_email}`}>
+                          {member.user_email}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
         {activeTab === 'submission' && (
           <div>
             <h2>Project Submission</h2>
