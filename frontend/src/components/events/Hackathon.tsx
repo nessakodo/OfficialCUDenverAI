@@ -84,7 +84,7 @@ function Hackathon() {
     return (
         <div className="hackathon-container">
   
-        <div className="dashboard-nav">
+        <div className="hackathon-nav">
         <ul>
           <li><Link to="hero" smooth={true} duration={500}>Hero</Link></li>
           <li><Link to="details" smooth={true} duration={500}>Event Details</Link></li>
@@ -93,6 +93,7 @@ function Hackathon() {
           <li><Link to="judgingcriteria" smooth={true} duration={500}>Judging Criteria</Link></li>
           <li><RouterLink to="/events/hackathon2025/prizes">Prizes</RouterLink></li>
           <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/rules">Rules</RouterLink></li>
           <li><RouterLink to="/events/hackathon2025/faq">FAQ</RouterLink></li>
         </ul>
       </div>

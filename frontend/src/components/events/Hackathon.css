@@ -70,17 +70,21 @@ body {
     margin: 10px;
   }
 
-  .dashboard-nav {
+  .hackathon-nav {
     position: fixed;
     top: 130px;
     right: 20px;
     background: #fff;
     padding: 1rem;
     border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
     z-index: 1000;
+    padding: 0.5rem 1rem;
+    transition: 0.3s;
+    cursor: pointer;
+
   }
   
+
   .dashboard-nav h3 {
     font-size: 1.1em;
     margin-bottom: 0.5rem;

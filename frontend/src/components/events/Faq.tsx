@@ -83,12 +83,13 @@ function FAQ() {
     <div className="faq-container">
 
       {/* Sidebar Navigation */}
-      <div className="dashboard-nav">
+      <div className="hackathon-nav">
         <ul>
-          <li><RouterLink to="/events/hackathon2025">Hackathon Info</RouterLink></li>
-          <li><RouterLink to="/events/hackathon2025/prizes">Prizes</RouterLink></li>
-          <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
-          <li><RouterLink to="/events/hackathon2025/faq">FAQ</RouterLink></li>
+            <li><RouterLink to="/events/hackathon2025">Hackathon Info</RouterLink></li>
+            <li><RouterLink to="/events/hackathon2025/prizes">Prizes</RouterLink></li>
+            <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
+            <li><RouterLink to="/events/hackathon2025/faq">FAQ</RouterLink></li>
+            <li><RouterLink to="/events/hackathon2025/rules">Rules</RouterLink></li>         
         </ul>
       </div>
 
