@@ -17,7 +17,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
 // email verification
-import {createTransport} from "nodemailer";
+const nodemailer = require('nodemailer');
 
 
 ///////////////////////
@@ -53,7 +53,7 @@ app.use(
 ); 
 
 // email verification
-const transporter = createTransport({
+const transporter =  nodemailer.createTransport({
   host: "smtp.mailersend.net", 
   port: 587,
   secure: true,
@@ -139,11 +139,22 @@ app.get('/api/announcements', async (req, res) => {
 app.get('/api/verify-status', async (req, res) => {
   const { uid } = req.query;
 
-  // Example: fetch from DB instead of Map
-  // const verified = await db.query('SELECT * FROM verified_users WHERE github_uid = ?', [uid]);
+  if (!uid) {
+    return res.status(400).json({ error: 'Missing uid in query params' });
+  }
 
-  const verified = emailCodes.has(uid) === false;
-  res.json({ verified });
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const query = 'SELECT * FROM VERIFIED_USERS WHERE github_uid = ?';
+    const [rows] = await connection.execute(query, [uid]);
+
+    const isVerified = rows.length > 0;
+
+    res.json({ verified: isVerified, user: rows[0] || null });
+  } catch (err) {
+    console.error('Error checking verification status:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 
@@ -151,13 +162,21 @@ app.get('/api/verify-status', async (req, res) => {
 app.post('/api/send-code', async (req, res) => {
   const { uid, email } = req.body;
 
+  // Basic validation
+  if (!uid || !email) {
+    return res.status(400).json({ error: 'Missing uid or email in request body' });
+  }
+
+  // Ensure email is a CU Denver address
   if (!email.endsWith('@ucdenver.edu')) {
     return res.status(400).json({ error: 'Only CU Denver emails are allowed' });
   }
 
+  // Generate 6-digit code
   const code = Math.floor(100000 + Math.random() * 900000).toString();
-  const expiresAt = Date.now() + 10 * 60 * 1000;
+  const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
 
+  // Store the code for this uid
   emailCodes.set(uid, { code, email, expiresAt });
 
   const mailOptions = {
@@ -176,6 +195,7 @@ app.post('/api/send-code', async (req, res) => {
     res.status(500).json({ error: 'Failed to send email' });
   }
 });
+
 
 
 app.post('/api/verify-code', async (req, res) => {
