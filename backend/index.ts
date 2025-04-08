@@ -62,7 +62,6 @@ const transporter =  nodemailer.createTransport({
     pass: process.env.SMTP_PASSWORD,
   },
 });
-const emailCodes = new Map();
 
 // Setting up hidden keys
 const CALENDAR_ID = process.env.CALENDAR_ID;
@@ -176,8 +175,8 @@ app.post('/api/send-code', async (req, res) => {
   const code = Math.floor(100000 + Math.random() * 900000).toString();
   const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
 
-  // Store the code for this uid
-  emailCodes.set(uid, { code, email, expiresAt });
+  // Store the code for this uid in the SQL Database
+
 
   const mailOptions = {
     from: process.env.FROM_EMAIL,
