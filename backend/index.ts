@@ -188,7 +188,7 @@ app.post('/api/verify-code', async (req, res) => {
 
   // TODO: Persist in DB → github_uid + student_email + team_id (lookup from roster)
   // Example:
-  // await db.query('INSERT INTO verified_users (github_uid, student_email, team_id) VALUES (?, ?, ?)', [uid, record.email, team_id]);
+  // await db.query('INSERT INTO VERIFIED_USERS (github_uid, student_email, team_id) VALUES (?, ?, ?)', [uid, record.email, team_id]);
 
   emailCodes.delete(uid);
   res.json({ success: true, email: record.email });
