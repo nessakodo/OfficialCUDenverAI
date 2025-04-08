@@ -1,19 +1,15 @@
 .container {
     font-family: Arial, sans-serif;
-    padding: 20px;
     max-width: 900px;
     margin: auto;
     text-align: center;
   }
   
-  /* Timeline Section */
-  .timelineSection h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
+
   
   .highlight {
-    color: red;
+    color: #2956e9;
+;
   }
   
   .timelineGrid {
@@ -62,38 +58,7 @@
     margin-top: 10px;
   }
   
-  /* Sitemap Section */
-  .sitemapSection {
-    margin-top: 50px;
-    background: #222;
-    color: white;
-    padding: 30px;
-    border-radius: 8px;
-  }
-  
-  .sitemapContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .sitemapLinks {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-  }
-  
-  .sitemapItem {
-    background: #444;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .sitemapItem:hover {
-    background: #666;
-  }
+
 
   .timelineContainer {
     display: flex;
@@ -119,7 +84,7 @@
   .eventBox {
     background: white;
     padding: 10px;
-    border-left: 5px solid #e94e29;
+    border-left: 5px solid #2956e9;
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);

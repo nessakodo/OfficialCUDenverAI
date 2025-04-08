@@ -9,12 +9,15 @@ const https = require('https');
 const app = require('express')()
 const bcrypt = require('bcrypt');
 var bodyParser = require('body-parser');
-const PORT = 8080;
+const PORT = 8000;
 const cors = require("cors");
 const allowedOrigins = ["http://localhost:3000"];
 const { v4: uuidv4 } = require('uuid');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+
+// email verification
+const nodemailer = require('nodemailer');
 
 
 ///////////////////////
@@ -49,7 +52,16 @@ app.use(
   })
 ); 
 
-
+// email verification
+const transporter =  nodemailer.createTransport({
+  host: "smtp.mailersend.net", 
+  port: 587,
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USER, 
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
 
 // Setting up hidden keys
 const CALENDAR_ID = process.env.CALENDAR_ID;
@@ -69,32 +81,136 @@ app.get('/api/' , (req, res) => {
 //////////////////////////
 
 app.get('/api/leaderboard', async (req, res) => {
-  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
-  const query = 'SELECT T.team_name, L.presentation_score FROM SCORES L JOIN HACKATHON_TEAMS T ON L.team_id = T.team_id ORDER BY L.presentation_score DESC';
-  const [leaderboard] = await connection.execute(query);
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+  const query = `
+  SELECT 
+    T.team_name,
+    AVG(S.problem_solution) AS problem_solution,
+    AVG(S.impact_feasibility) AS impact_feasibility,
+    AVG(S.technical_depth) AS technical_depth,
+    AVG(S.innovation_creativity) AS innovation_creativity,
+    AVG(S.qa_responses) AS qa_responses,
+    AVG(S.presentation_clarity) AS presentation_clarity,
+    AVG(S.user_centered_design) AS user_centered_design,
+    (AVG(S.problem_solution) + AVG(S.impact_feasibility) + AVG(S.technical_depth) +
+     AVG(S.innovation_creativity) + AVG(S.qa_responses) + AVG(S.presentation_clarity) +
+     AVG(S.user_centered_design)) AS total_score
+  FROM SCORES S
+  JOIN HACKATHON_TEAMS T ON S.team_id = T.team_id
+  GROUP BY S.team_id
+  ORDER BY total_score DESC
+`;  const [leaderboard] = await connection.execute(query);
   res.json(leaderboard);
 });
 
 app.post('/api/submission', async (req, res) => {
-  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
-  const userId = req.user.id; 
-  const query = 'SELECT * FROM SUBMISSIONS WHERE team_id IN (SELECT team_id FROM Team_Members WHERE user_id = ?)';
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+  const userId = req.user.team_id; 
+  const query = 'SELECT * FROM SUBMISSIONS WHERE team_id IN (SELECT team_id FROM Team_Members WHERE team_id = ?)';
   const [submission] = await connection.execute(query, [userId]);
   res.json(submission);
 });
 
 app.get('/api/team', async (req, res) => {
-  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD);
-  const userId = req.user.id;  
-  const query = 'SELECT * FROM HACKATHON_TEAMS WHERE team_id IN (SELECT team_id FROM Team_Members WHERE user_id = ?)';
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+  const userId = 0;  
+  const query = 'SELECT user_name, user_email, role FROM TEAM_MEMBERS WHERE team_id = ?';
   const [team] = await connection.execute(query, [userId]);
   res.json(team);
 });
 
+app.get('/api/teams', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+  const query = 'SELECT team_name FROM HACKATHON_TEAMS';
+  const [team] = await connection.execute(query);
+  res.json(team);
+});
+
 app.get('/api/announcements', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
   const query = 'SELECT * FROM ANNOUNCEMENTS ORDER BY created_at DESC';
   const [announcements] = await connection.execute(query);
   res.json(announcements);
+});
+
+// Student email verification
+
+app.get('/api/verify-status', async (req, res) => {
+  const { uid } = req.query;
+
+  if (!uid) {
+    return res.status(400).json({ error: 'Missing uid in query params' });
+  }
+
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const query = 'SELECT * FROM VERIFIED_USERS WHERE github_uid = ?';
+    const [rows] = await connection.execute(query, [uid]);
+
+    const isVerified = rows.length > 0;
+
+    res.json({ verified: isVerified, user: rows[0] || null });
+  } catch (err) {
+    console.error('Error checking verification status:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
+app.post('/api/send-code', async (req, res) => {
+  const { uid, email } = req.body;
+
+  // Basic validation
+  if (!uid || !email) {
+    return res.status(400).json({ error: 'Missing uid or email in request body' });
+  }
+
+  // Ensure email is a CU Denver address
+  if (!email.endsWith('@ucdenver.edu')) {
+    return res.status(400).json({ error: 'Only CU Denver emails are allowed' });
+  }
+
+  // Generate 6-digit code
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+  // Store the code for this uid in the SQL Database
+
+
+  const mailOptions = {
+    from: process.env.FROM_EMAIL,
+    to: email,
+    subject: "CU Denver Hackathon - Email Verification",
+    text: `Your verification code is: ${code}`,
+    html: `<p>Your verification code is:</p><h2>${code}</h2>`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.json({ message: 'Verification code sent!' });
+  } catch (error) {
+    console.error('Email send error:', error);
+    res.status(500).json({ error: 'Failed to send email' });
+  }
+});
+
+
+
+app.post('/api/verify-code', async (req, res) => {
+  const { uid, code } = req.body;
+  const record = emailCodes.get(uid);
+
+  if (!record) return res.status(400).json({ error: 'No code sent yet' });
+  if (Date.now() > record.expiresAt) return res.status(400).json({ error: 'Code expired' });
+  if (record.code !== code) return res.status(400).json({ error: 'Invalid code' });
+
+  // TODO: Persist in DB → github_uid + student_email + team_id (lookup from roster)
+  // Example:
+  // await db.query('INSERT INTO VERIFIED_USERS (github_uid, student_email, team_id) VALUES (?, ?, ?)', [uid, record.email, team_id]);
+
+  emailCodes.delete(uid);
+  res.json({ success: true, email: record.email });
 });
 
 /////////////////////////

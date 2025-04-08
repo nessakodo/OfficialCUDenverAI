@@ -1,4 +1,10 @@
+/*Functionality imports*/
+
 import React from 'react';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
+
+/* Image Imports */
+
 import './Prizes.css';
 import ArduinoPic from '../images/Hackathon/PrizeArduino.png';
 import BackpackRed from '../images/Hackathon/PrizeBackpack.png';
@@ -27,6 +33,17 @@ const Prizes = () => {
 
   return (
     <div className="prizes-container">
+
+    <div className="hackathon-nav">
+                <ul>
+                <li><RouterLink to="/events/hackathon2025">Hackathon Info</RouterLink></li>
+                <li><RouterLink to="/events/hackathon2025/prizes">Prizes</RouterLink></li>
+                <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
+                <li><RouterLink to="/events/hackathon2025/faq">FAQ</RouterLink></li>
+                <li><RouterLink to="/events/hackathon2025/rules">Rules</RouterLink></li>
+                </ul>
+    </div>
+
       <h1>Hackathon Prizes</h1>
       <div className="prizes-list">
         {prizes.map((item, index) => (
