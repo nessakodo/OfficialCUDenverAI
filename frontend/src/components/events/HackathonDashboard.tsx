@@ -3,6 +3,8 @@ import './HackathonDashboard.css';
 import { auth, login, logout } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 
+import githubimg from '../images/GithubEventImg.jpg'
+
 const HackathonDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'team' | 'submission' | 'announcements' | 'schedule' | 'leaderboard'>('team');
   const [user, setUser] = useState<User | null>(null);
@@ -14,6 +16,12 @@ const HackathonDashboard: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const [emailVerified, setEmailVerified] = useState<boolean>(false);
+  const [studentEmail, setStudentEmail] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailCode, setEmailCode] = useState('');
+  const [verificationStep, setVerificationStep] = useState<'entry' | 'code'>('entry');
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -21,6 +29,17 @@ const HackathonDashboard: React.FC = () => {
     });
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const checkEmailVerification = async () => {
+      if (user) {
+        const res = await fetch(`http://localhost:8000/api/verify-status?uid=${user.uid}`);
+        const data = await res.json();
+        setEmailVerified(data.verified);
+      }
+    };
+    checkEmailVerification();
+  }, [user]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,24 +80,93 @@ const HackathonDashboard: React.FC = () => {
 
   if (!user) {
     return (
-      <div className="login-container">
-        <h2>Please sign in with GitHub to access the dashboard</h2>
-        <button onClick={login} className="login-btn">Sign in with GitHub</button>
+    <div className="login-container">
+      <div className="login-card">
+        <img src={githubimg} alt="Logo" className="login-logo" />
+        <h2 className="login-heading">Welcome to the Dashboard</h2>
+        <p className="login-subtext">Sign in with GitHub to access your team and scores.</p>
+        <button onClick={login} className="login-btn">
+          Sign in with GitHub
+        </button>
+      </div>
+    </div>
+    );
+  }
+
+  if (user && !emailVerified) {
+    return (
+      <div className="verify-email-container">
+        <div className="verify-email-card">
+          <h2>Verify Your Student Email</h2>
+          {verificationStep === 'entry' ? (
+            <>
+              <p>Please enter your university-issued student email to proceed.</p>
+              <input
+                type="email"
+                value={studentEmail}
+                onChange={(e) => setStudentEmail(e.target.value)}
+                placeholder="you@university.edu"
+              />
+              <button
+                onClick={async () => {
+                  const res = await fetch('http://localhost:8000/api/send-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ uid: user.uid, email: studentEmail }),
+                  });
+                  if (res.ok) {
+                    setVerificationStep('code');
+                    setEmailSent(true);
+                  }
+                }}
+              >
+                Send Verification Code
+              </button>
+            </>
+          ) : (
+            <>
+              <p>We sent a code to <strong>{studentEmail}</strong>. Enter it below:</p>
+              <input
+                type="text"
+                value={emailCode}
+                onChange={(e) => setEmailCode(e.target.value)}
+                placeholder="Enter 6-digit code"
+              />
+              <button
+                onClick={async () => {
+                  const res = await fetch('http://localhost:8000/api/verify-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ uid: user.uid, code: emailCode }),
+                  });
+                  if (res.ok) {
+                    setEmailVerified(true);
+                  } else {
+                    alert('Incorrect code');
+                  }
+                }}
+              >
+                Verify Code
+              </button>
+            </>
+          )}
+        </div>
       </div>
     );
   }
+  
 
   return (
     <div className="dashboard-container">
       <nav className="dashboard-nav">
         <span className="user-info">Signed in as {user.displayName || user.email}</span>
-        <button onClick={logout}>Logout</button>
         <button onClick={() => setActiveTab('team')}>My Team</button>
         <button onClick={() => setActiveTab('submission')}>Project Submission</button>
         <button onClick={() => setActiveTab('announcements')}>Announcements</button>
         <button onClick={() => setActiveTab('schedule')}>Live Schedule</button>
         <button onClick={() => setActiveTab('leaderboard')}>Leaderboard</button>
         <a href="https://discord.com/invite/xEACjKzBA7" target="_blank" rel="noopener noreferrer">Discord</a>
+        <button onClick={logout}>Logout</button>
       </nav>
 
       <div className="dashboard-content">
@@ -124,30 +212,19 @@ const HackathonDashboard: React.FC = () => {
         {activeTab === 'announcements' && (
           <div>
             <h2>Announcements</h2>
-            <ul>
-              {/* Render live announcements */}
-              {loading ? <p>Loading...</p> : (
-               <ul>
-              {teamData.map((member: any) => (
-                <li key={member.id}>{member.name} - {member.email}  </li>
-              ))}
-            </ul>
-          )}
-            </ul>
+          
           </div>
         )}
 
         {activeTab === 'schedule' && (
           <div>
             <h2>Live Schedule</h2>
-            <p>Display real-time schedule here.</p>
           </div>
         )}
 
         {activeTab === 'leaderboard' && (
           <div className="leaderboard-section">
             <h2>Leaderboard</h2>
-            <p>View real-time team rankings here.</p>
 
             {loading ? (
               <p>Loading...</p>

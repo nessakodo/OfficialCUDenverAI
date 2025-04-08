@@ -16,6 +16,9 @@ const { v4: uuidv4 } = require('uuid');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
+// email verification
+const nodemailer = require('nodemailer');
+
 
 ///////////////////////
 // Middleware functions
@@ -49,7 +52,16 @@ app.use(
   })
 ); 
 
-
+// email verification
+const transporter =  nodemailer.createTransport({
+  host: "smtp.mailersend.net", 
+  port: 587,
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USER, 
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
 
 // Setting up hidden keys
 const CALENDAR_ID = process.env.CALENDAR_ID;
@@ -119,6 +131,86 @@ app.get('/api/announcements', async (req, res) => {
   const query = 'SELECT * FROM ANNOUNCEMENTS ORDER BY created_at DESC';
   const [announcements] = await connection.execute(query);
   res.json(announcements);
+});
+
+// Student email verification
+
+app.get('/api/verify-status', async (req, res) => {
+  const { uid } = req.query;
+
+  if (!uid) {
+    return res.status(400).json({ error: 'Missing uid in query params' });
+  }
+
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const query = 'SELECT * FROM VERIFIED_USERS WHERE github_uid = ?';
+    const [rows] = await connection.execute(query, [uid]);
+
+    const isVerified = rows.length > 0;
+
+    res.json({ verified: isVerified, user: rows[0] || null });
+  } catch (err) {
+    console.error('Error checking verification status:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
+app.post('/api/send-code', async (req, res) => {
+  const { uid, email } = req.body;
+
+  // Basic validation
+  if (!uid || !email) {
+    return res.status(400).json({ error: 'Missing uid or email in request body' });
+  }
+
+  // Ensure email is a CU Denver address
+  if (!email.endsWith('@ucdenver.edu')) {
+    return res.status(400).json({ error: 'Only CU Denver emails are allowed' });
+  }
+
+  // Generate 6-digit code
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+  // Store the code for this uid in the SQL Database
+
+
+  const mailOptions = {
+    from: process.env.FROM_EMAIL,
+    to: email,
+    subject: "CU Denver Hackathon - Email Verification",
+    text: `Your verification code is: ${code}`,
+    html: `<p>Your verification code is:</p><h2>${code}</h2>`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.json({ message: 'Verification code sent!' });
+  } catch (error) {
+    console.error('Email send error:', error);
+    res.status(500).json({ error: 'Failed to send email' });
+  }
+});
+
+
+
+app.post('/api/verify-code', async (req, res) => {
+  const { uid, code } = req.body;
+  const record = emailCodes.get(uid);
+
+  if (!record) return res.status(400).json({ error: 'No code sent yet' });
+  if (Date.now() > record.expiresAt) return res.status(400).json({ error: 'Code expired' });
+  if (record.code !== code) return res.status(400).json({ error: 'Invalid code' });
+
+  // TODO: Persist in DB → github_uid + student_email + team_id (lookup from roster)
+  // Example:
+  // await db.query('INSERT INTO VERIFIED_USERS (github_uid, student_email, team_id) VALUES (?, ?, ?)', [uid, record.email, team_id]);
+
+  emailCodes.delete(uid);
+  res.json({ success: true, email: record.email });
 });
 
 /////////////////////////
