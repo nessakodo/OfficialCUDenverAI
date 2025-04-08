@@ -30,7 +30,9 @@ const HackathonDashboard: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
+/*
   useEffect(() => {
+  
     const checkEmailVerification = async () => {
       if (user) {
         const res = await fetch(`http://localhost:8000/api/verify-status?uid=${user.uid}`);
@@ -40,7 +42,7 @@ const HackathonDashboard: React.FC = () => {
     };
     checkEmailVerification();
   }, [user]);
-
+*/
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -92,7 +94,7 @@ const HackathonDashboard: React.FC = () => {
     </div>
     );
   }
-
+/*
   if (user && !emailVerified) {
     return (
       <div className="verify-email-container">
@@ -154,7 +156,7 @@ const HackathonDashboard: React.FC = () => {
       </div>
     );
   }
-  
+  */
 
   return (
     <div className="dashboard-container">
