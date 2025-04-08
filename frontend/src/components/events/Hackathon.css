@@ -73,15 +73,19 @@ body {
   .hackathon-nav {
     position: fixed;
     top: 130px;
-    right: 20px;
-    background: #fff;
-    padding: 1rem;
-    border-radius: 12px;
-    z-index: 1000;
+    right: -170px; 
+    width: 200px;
+    background: #ffffff;
     padding: 0.5rem 1rem;
-    transition: 0.3s;
+    border-radius: 20px 0 0 20px; 
+    z-index: 1000;
+    transition: right 0.3s ease;
     cursor: pointer;
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hackathon-nav:hover {
+    right: 0; 
   }
   
 
@@ -93,7 +97,7 @@ body {
   
   .dashboard-nav ul {
     list-style: none;
-    padding: 0;
+    padding: 10px;
     margin: 0;
   }
   
