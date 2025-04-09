@@ -14,6 +14,7 @@ function Rules() {
           <li><RouterLink to="/events/hackathon2025/resources">Resources</RouterLink></li>
           <li><RouterLink to="/events/hackathon2025/rules">Rules</RouterLink></li>
           <li><RouterLink to="/events/hackathon2025/faq">FAQ</RouterLink></li>
+          <li><RouterLink to="/events/hackathon2025/leaderboard">Leaderboard</RouterLink></li>
 
         </ul>
       </div>
