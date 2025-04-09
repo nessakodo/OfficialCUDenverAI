@@ -95,7 +95,7 @@ function Hackathon() {
               A hackathon designed to bring students together to solve real-world challenges using AI.
             </p>
           </div>
-
+          <div className="horizontal-context-boxes">
           {/* Vision */}
             <div className="content-box-1">
               <img src={vision} alt="Vision" className="content-img" />
@@ -115,6 +115,7 @@ function Hackathon() {
               <img src={event_img} alt="Event" className="content-img" />
               <h3>Event Description</h3>
               <p>This is a hackathon competition for CU Denver students focusing on AI's real-world impact.</p>
+            </div>
             </div>
 
           {/* Tracks */}
