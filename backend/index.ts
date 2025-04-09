@@ -111,9 +111,10 @@ app.get('/api/leaderboard', async (req, res) => {
 
 app.post('/api/submission', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const userId = req.query.uid.toString(); 
-  const query = 'SELECT * FROM SUBMISSIONS WHERE team_id IN (SELECT team_id FROM Team_Members WHERE github_uid = ?)';
-  const [submission] = await connection.execute(query, [userId]);
+  const userId = req.query.uid; 
+  const { project_name, github_link, presentation_link} = req.body;
+  const query = `INSERT INTO SUBMISSIONS (project_name, github_link, presentation_link, team_id) SELECT ?, ?, ?, team_id FROM TEAM_MEMBERS WHERE github_uid = ?`;  
+  const [submission] = await connection.execute(query, [project_name, github_link, presentation_link, userId]);
   res.json(submission);
 });
 

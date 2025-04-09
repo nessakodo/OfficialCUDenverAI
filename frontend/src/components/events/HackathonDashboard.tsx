@@ -26,22 +26,34 @@ const HackathonDashboard: React.FC = () => {
   const [title, setTitle] = useState('');
   const [github, setGithub] = useState('');
   const [powerpoint, setPowerpoint] = useState('');
-  
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('github', github);
-    formData.append('powerpoint', powerpoint);
+  const [submissionData, setsubmissionData] = useState({
+    project_name: "",
+    github_link: "",
+    presentation_link: ""});
 
-    const res = await fetch('http://localhost:8000/api/submit', {
-      method: 'POST',
-      body: formData
-    });
   
-    if (res.ok) alert('Submitted!');
-    else alert('Failed to submit.');
+    // This handles the submit for the submissions
+    const handleChange = (e) => {
+      setsubmissionData({
+          ...submissionData,
+          [e.target.name]: e.target.value
+      });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch(`http://localhost:8000/api/submission?uid=${user.uid}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+    })
+    .catch((error) => {
+        setError(error.message);
+    });
+};
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -152,7 +164,6 @@ const HackathonDashboard: React.FC = () => {
     );
   }
 
-
   return (
     <div className="dashboard-container">
       <nav className="dashboard-nav">
@@ -192,20 +203,41 @@ const HackathonDashboard: React.FC = () => {
         {activeTab === 'submission' && (
           <div className="submission-container">
           <h2>🚀 Project Submission</h2>
-          <form className="submission-form">
+          <form className="submission-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Project Title</label>
-              <input type="text" placeholder="Enter your project title" />
+              <input
+                type="text"
+                name="project_name"
+                value={submissionData.project_name}
+                onChange={handleChange}
+                placeholder="Enter your project title"
+                required
+              />
             </div>
 
             <div className="form-group">
               <label>GitHub Link</label>
-              <input type="url" placeholder="https://github.com/your-repo" />
+              <input
+                type="url"
+                name="github_link"
+                value={submissionData.github_link}
+                onChange={handleChange}
+                placeholder="https://github.com/your-repo"
+                required
+              />
             </div>
 
             <div className="form-group">
               <label>Presentation Link</label>
-              <input type="url" placeholder="Google Slides, Canva, or PowerPoint Online" />
+              <input
+                type="url"
+                name="presentation_link"
+                value={submissionData.presentation_link}
+                onChange={handleChange}
+                placeholder="Google Slides, Canva, or PowerPoint Online"
+                required
+              />
             </div>
 
             <button type="submit">Submit</button>
