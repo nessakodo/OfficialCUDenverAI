@@ -85,16 +85,22 @@ app.get('/api/leaderboard', async (req, res) => {
   const query = `
   SELECT 
     T.team_name,
-    AVG(S.problem_solution) AS problem_solution,
-    AVG(S.impact_feasibility) AS impact_feasibility,
-    AVG(S.technical_depth) AS technical_depth,
-    AVG(S.innovation_creativity) AS innovation_creativity,
-    AVG(S.qa_responses) AS qa_responses,
-    AVG(S.presentation_clarity) AS presentation_clarity,
-    AVG(S.user_centered_design) AS user_centered_design,
-    (AVG(S.problem_solution) + AVG(S.impact_feasibility) + AVG(S.technical_depth) +
-     AVG(S.innovation_creativity) + AVG(S.qa_responses) + AVG(S.presentation_clarity) +
-     AVG(S.user_centered_design)) AS total_score
+      AVG(S.problem_solution) AS problem_solution,
+      AVG(S.impact_feasibility) AS impact_feasibility,
+      AVG(S.technical_depth) AS technical_depth,
+      AVG(S.innovation_creativity) AS innovation_creativity,
+      AVG(S.qa_responses) AS qa_responses,
+      AVG(S.presentation_clarity) AS presentation_clarity,
+      AVG(S.user_centered_design) AS user_centered_design,
+      (
+        AVG(S.problem_solution) * 0.2 +
+        AVG(S.impact_feasibility) * 0.2 +
+        AVG(S.technical_depth) * 0.2 +
+        AVG(S.innovation_creativity) * 0.15 +
+        AVG(S.qa_responses) * 0.1 +
+        AVG(S.presentation_clarity) * 0.1 +
+        AVG(S.user_centered_design) * 0.05
+      ) AS total_score
   FROM SCORES S
   JOIN HACKATHON_TEAMS T ON S.team_id = T.team_id
   GROUP BY S.team_id
@@ -133,6 +139,15 @@ app.get('/api/announcements', async (req, res) => {
   res.json(announcements);
 });
 
+app.get('/api/feedback', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+  const userId = 0;
+  const query = 'SELECT notes FROM SCORES WHERE team_id = ? ';
+  const [feedback] = await connection.execute(query, [userId]);
+  res.json(feedback);
+});
+
+
 // Student email verification
 
 app.get('/api/verify-status', async (req, res) => {
@@ -144,7 +159,7 @@ app.get('/api/verify-status', async (req, res) => {
 
   try {
     const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-    const query = 'SELECT * FROM VERIFIED_USERS WHERE github_uid = ?';
+    const query = 'SELECT * FROM TEAM_MEMBERS WHERE github_uid = ?';
     const [rows] = await connection.execute(query, [uid]);
 
     const isVerified = rows.length > 0;
@@ -156,8 +171,37 @@ app.get('/api/verify-status', async (req, res) => {
   }
 });
 
+app.post('/api/save-email', async (req, res) => {
+  const { uid, student_email } = req.body;
 
+  if (!uid || !student_email) {
+    return res.status(400).json({ error: 'Missing uid or student_email in request body' });
+  }
 
+  try {
+    let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+
+    const [result] = await connection.execute(
+      `UPDATE TEAM_MEMBERS 
+       SET github_uid = ?
+       WHERE user_email = ?`,
+      [uid, student_email] 
+    );
+
+    await connection.end();
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'No team member found with that email' });
+    }
+
+    res.status(200).json({ message: 'Email saved and user verified successfully' });
+  } catch (error) {
+    console.error('Error updating team member:', error.message);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+/*
 app.post('/api/send-code', async (req, res) => {
   const { uid, email } = req.body;
 
@@ -212,6 +256,7 @@ app.post('/api/verify-code', async (req, res) => {
   emailCodes.delete(uid);
   res.json({ success: true, email: record.email });
 });
+*/
 
 /////////////////////////
 // PROJECTS

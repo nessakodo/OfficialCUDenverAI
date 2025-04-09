@@ -6,22 +6,42 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 import githubimg from '../images/GithubEventImg.jpg'
 
 const HackathonDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'team' | 'submission' | 'announcements' | 'schedule' | 'leaderboard'>('team');
+  const [activeTab, setActiveTab] = useState<'team' | 'submission' | 'announcements' | 'schedule' | 'leaderboard' | 'feedback' >('team');
   const [user, setUser] = useState<User | null>(null);
 
   const [teamData, setTeamData] = useState([]);
   const [announcements, setAnnouncements] = useState([]);
   const [schedule, setSchedule] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
+  const [feedback, setFeedback] =  useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const [emailVerified, setEmailVerified] = useState<boolean>(false);
   const [studentEmail, setStudentEmail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
-  const [emailCode, setEmailCode] = useState('');
-  const [verificationStep, setVerificationStep] = useState<'entry' | 'code'>('entry');
+  //const [emailCode, setEmailCode] = useState('');
+  //const [verificationStep, setVerificationStep] = useState<'entry' | 'code'>('entry');
 
+  const [title, setTitle] = useState('');
+  const [github, setGithub] = useState('');
+  const [powerpoint, setPowerpoint] = useState('');
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('github', github);
+    formData.append('powerpoint', powerpoint);
+
+    const res = await fetch('https://cudenver-ai.tech/api/submit', {
+      method: 'POST',
+      body: formData
+    });
+  
+    if (res.ok) alert('Submitted!');
+    else alert('Failed to submit.');
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -30,19 +50,19 @@ const HackathonDashboard: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
-/*
+
   useEffect(() => {
   
     const checkEmailVerification = async () => {
       if (user) {
-        const res = await fetch(`http://localhost:8000/api/verify-status?uid=${user.uid}`);
+        const res = await fetch(`https://cudenver-ai.tech/api/verify-status?uid=${user.uid}`);
         const data = await res.json();
         setEmailVerified(data.verified);
       }
     };
     checkEmailVerification();
   }, [user]);
-*/
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -51,20 +71,24 @@ const HackathonDashboard: React.FC = () => {
         let response;
         switch (activeTab) {
           case 'team':
-            response = await fetch('http://localhost:8000/api/team');
+            response = await fetch('https://cudenver-ai.tech/api/team');
             setTeamData(await response.json());
             break;
           case 'announcements':
-            response = await fetch('http://localhost:8000/api/announcements');
+            response = await fetch('https://cudenver-ai.tech/api/announcements');
             setAnnouncements(await response.json());
             break;
           case 'schedule':
-            response = await fetch('http://localhost:8000/api/schedule');
+            response = await fetch('https://cudenver-ai.tech/api/schedule');
             setSchedule(await response.json());
             break;
           case 'leaderboard':
-            response = await fetch('http://localhost:8000/api/leaderboard');
+            response = await fetch('https://cudenver-ai.tech/api/leaderboard');
             setLeaderboard(await response.json());
+            break;
+          case 'feedback':
+              response = await fetch('https://cudenver-ai.tech/api/feedback');
+              setFeedback(await response.json());
             break;
           default:
             break;
@@ -94,69 +118,39 @@ const HackathonDashboard: React.FC = () => {
     </div>
     );
   }
-/*
+
   if (user && !emailVerified) {
     return (
       <div className="verify-email-container">
         <div className="verify-email-card">
-          <h2>Verify Your Student Email</h2>
-          {verificationStep === 'entry' ? (
-            <>
-              <p>Please enter your university-issued student email to proceed.</p>
-              <input
-                type="email"
-                value={studentEmail}
-                onChange={(e) => setStudentEmail(e.target.value)}
-                placeholder="you@university.edu"
-              />
-              <button
-                onClick={async () => {
-                  const res = await fetch('http://localhost:8000/api/send-code', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ uid: user.uid, email: studentEmail }),
-                  });
-                  if (res.ok) {
-                    setVerificationStep('code');
-                    setEmailSent(true);
-                  }
-                }}
-              >
-                Send Verification Code
-              </button>
-            </>
-          ) : (
-            <>
-              <p>We sent a code to <strong>{studentEmail}</strong>. Enter it below:</p>
-              <input
-                type="text"
-                value={emailCode}
-                onChange={(e) => setEmailCode(e.target.value)}
-                placeholder="Enter 6-digit code"
-              />
-              <button
-                onClick={async () => {
-                  const res = await fetch('http://localhost:8000/api/verify-code', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ uid: user.uid, code: emailCode }),
-                  });
-                  if (res.ok) {
-                    setEmailVerified(true);
-                  } else {
-                    alert('Incorrect code');
-                  }
-                }}
-              >
-                Verify Code
-              </button>
-            </>
-          )}
+          <h2>Connect with your student email</h2>
+          <p>Please enter your university-issued student email to proceed.</p>
+          <input
+            type="email"
+            value={studentEmail}
+            onChange={(e) => setStudentEmail(e.target.value)}
+            placeholder="you@university.edu"
+          />
+          <button
+            onClick={async () => {
+              const res = await fetch('https://cudenver-ai.tech/api/save-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ uid: user.uid, student_email: studentEmail }),
+              });
+              if (res.ok) {
+                setEmailVerified(true); // Automatically mark as verified
+              } else {
+                alert('Something went wrong. Please try again.');
+              }
+            }}
+          >
+            Enter
+          </button>
         </div>
       </div>
     );
   }
-  */
 
   return (
     <div className="dashboard-container">
@@ -167,6 +161,7 @@ const HackathonDashboard: React.FC = () => {
         <button onClick={() => setActiveTab('announcements')}>Announcements</button>
         <button onClick={() => setActiveTab('schedule')}>Live Schedule</button>
         <button onClick={() => setActiveTab('leaderboard')}>Leaderboard</button>
+        <button onClick={() => setActiveTab('feedback')}>Feedback</button>
         <a href="https://discord.com/invite/xEACjKzBA7" target="_blank" rel="noopener noreferrer">Discord</a>
         <button onClick={logout}>Logout</button>
       </nav>
@@ -203,8 +198,8 @@ const HackathonDashboard: React.FC = () => {
               <label>GitHub Link</label>
               <input type="url" placeholder="https://github.com/your-repo" />
 
-              <label>Presentation File</label>
-              <input type="file" accept=".pdf,.ppt,.pptx" />
+              <label>Presentation Link</label>
+              <input type="url" placeholder="Paste your Google Slides, Canva, or PowerPoint Online link here" />
 
               <button type="submit">Submit</button>
             </form>
@@ -275,6 +270,27 @@ const HackathonDashboard: React.FC = () => {
                 })}
             </tbody>
           </table>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'feedback' && (
+          <div className="feedback-section">
+            <h2>Feedback</h2>
+            <p className="feedback-subheading">Here’s what others had to say about your work!</p>
+
+            {loading ? (
+              <p>Loading feedback...</p>
+            ) : feedback.length === 0 ? (
+              <p>No feedback available yet.</p>
+            ) : (
+              <div className="feedback-grid">
+                {feedback.map((note, index) => (
+                  <div className="feedback-card" key={index}>
+                    <p className="feedback-comment">"{note.notes}"</p>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         )}
