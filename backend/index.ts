@@ -9,7 +9,7 @@ const https = require('https');
 const app = require('express')()
 const bcrypt = require('bcrypt');
 var bodyParser = require('body-parser');
-const PORT = 8080;
+const PORT = 8000;
 const cors = require("cors");
 const allowedOrigins = ["http://localhost:3000"];
 const { v4: uuidv4 } = require('uuid');
@@ -111,16 +111,16 @@ app.get('/api/leaderboard', async (req, res) => {
 
 app.post('/api/submission', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const userId = req.user.team_id; 
-  const query = 'SELECT * FROM SUBMISSIONS WHERE team_id IN (SELECT team_id FROM Team_Members WHERE team_id = ?)';
+  const userId = req.query;
+  const query = 'SELECT * FROM SUBMISSIONS WHERE team_id IN (SELECT team_id FROM Team_Members WHERE github_uid = ?)';
   const [submission] = await connection.execute(query, [userId]);
   res.json(submission);
 });
 
 app.get('/api/team', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const userId = 0;  
-  const query = 'SELECT user_name, user_email, role FROM TEAM_MEMBERS WHERE team_id = ?';
+  const userId = req.query.uid.toString(); 
+  const query = 'SELECT user_name, user_email, role FROM TEAM_MEMBERS WHERE team_id IN (SELECT team_id FROM TEAM_MEMBERS WHERE github_uid = ?)';  console.log(userId);
   const [team] = await connection.execute(query, [userId]);
   res.json(team);
 });
