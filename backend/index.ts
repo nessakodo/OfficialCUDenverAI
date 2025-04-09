@@ -85,16 +85,22 @@ app.get('/api/leaderboard', async (req, res) => {
   const query = `
   SELECT 
     T.team_name,
-    AVG(S.problem_solution) AS problem_solution,
-    AVG(S.impact_feasibility) AS impact_feasibility,
-    AVG(S.technical_depth) AS technical_depth,
-    AVG(S.innovation_creativity) AS innovation_creativity,
-    AVG(S.qa_responses) AS qa_responses,
-    AVG(S.presentation_clarity) AS presentation_clarity,
-    AVG(S.user_centered_design) AS user_centered_design,
-    (AVG(S.problem_solution) + AVG(S.impact_feasibility) + AVG(S.technical_depth) +
-     AVG(S.innovation_creativity) + AVG(S.qa_responses) + AVG(S.presentation_clarity) +
-     AVG(S.user_centered_design)) AS total_score
+      AVG(S.problem_solution) AS problem_solution,
+      AVG(S.impact_feasibility) AS impact_feasibility,
+      AVG(S.technical_depth) AS technical_depth,
+      AVG(S.innovation_creativity) AS innovation_creativity,
+      AVG(S.qa_responses) AS qa_responses,
+      AVG(S.presentation_clarity) AS presentation_clarity,
+      AVG(S.user_centered_design) AS user_centered_design,
+      (
+        AVG(S.problem_solution) * 0.2 +
+        AVG(S.impact_feasibility) * 0.2 +
+        AVG(S.technical_depth) * 0.2 +
+        AVG(S.innovation_creativity) * 0.15 +
+        AVG(S.qa_responses) * 0.1 +
+        AVG(S.presentation_clarity) * 0.1 +
+        AVG(S.user_centered_design) * 0.05
+      ) AS total_score
   FROM SCORES S
   JOIN HACKATHON_TEAMS T ON S.team_id = T.team_id
   GROUP BY S.team_id
