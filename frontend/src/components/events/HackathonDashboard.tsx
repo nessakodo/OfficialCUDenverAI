@@ -23,32 +23,60 @@ const HackathonDashboard: React.FC = () => {
   //const [emailCode, setEmailCode] = useState('');
   //const [verificationStep, setVerificationStep] = useState<'entry' | 'code'>('entry');
 
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [submissionLoading, setSubmissionLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [github, setGithub] = useState('');
   const [powerpoint, setPowerpoint] = useState('');
-  
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('github', github);
-    formData.append('powerpoint', powerpoint);
+  const [submissionData, setsubmissionData] = useState({
+    project_name: "",
+    github_link: "",
+    presentation_link: ""});
 
-    const res = await fetch('https://cudenver-ai.tech/api/submit', {
-      method: 'POST',
-      body: formData
-    });
   
-    if (res.ok) alert('Submitted!');
-    else alert('Failed to submit.');
+    // This handles the submit for the submissions
+    const handleChange = (e) => {
+      setsubmissionData({
+          ...submissionData,
+          [e.target.name]: e.target.value
+      });
   };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmissionLoading(true);
+    setSubmissionSuccess(false);
+    setError(null);
+
+    try {
+      const response = await fetch(`https://cudenver-ai.tech/api/submission?uid=${user.uid}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      });
+
+      if (response.ok) {
+        setSubmissionSuccess(true);
+        setsubmissionData({ project_name: "", github_link: "", presentation_link: "" }); // Clear form
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Submission failed.');
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmissionLoading(false);
+    }
+  };
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+      });
+      return () => unsubscribe();
+    }, []);
 
 
   useEffect(() => {
@@ -71,7 +99,7 @@ const HackathonDashboard: React.FC = () => {
         let response;
         switch (activeTab) {
           case 'team':
-            response = await fetch('https://cudenver-ai.tech/api/team');
+            response = await fetch(`https://cudenver-ai.tech/api/team?uid=${user.uid}`);
             setTeamData(await response.json());
             break;
           case 'announcements':
@@ -83,11 +111,11 @@ const HackathonDashboard: React.FC = () => {
             setSchedule(await response.json());
             break;
           case 'leaderboard':
-            response = await fetch('https://cudenver-ai.tech/api/leaderboard');
+            response = await fetch(`https://cudenver-ai.tech/api/leaderboard?uid=${user.uid}`);
             setLeaderboard(await response.json());
             break;
           case 'feedback':
-              response = await fetch('https://cudenver-ai.tech/api/feedback');
+              response = await fetch(`https://cudenver-ai.tech/api/feedback?uid=${user.uid}`);
               setFeedback(await response.json());
             break;
           default:
@@ -189,33 +217,98 @@ const HackathonDashboard: React.FC = () => {
               </div>
             )}
         {activeTab === 'submission' && (
-          <div>
-            <h2>Project Submission</h2>
-            <form className="submission-form">
+          <div className="submission-container">
+          <h2>🚀 Project Submission</h2>
+          <form className="submission-form" onSubmit={handleSubmit}>
+          {submissionLoading && <p className="status-message">Submitting...</p>}
+          {submissionSuccess && <p className="status-message success">✅ Submission successful!</p>}
+          {error && <p className="status-message error">❌ {error}</p>}
+            <div className="form-group">
               <label>Project Title</label>
-              <input type="text" placeholder="Enter your project title" />
+              <input
+                type="text"
+                name="project_name"
+                value={submissionData.project_name}
+                onChange={handleChange}
+                placeholder="Enter your project title"
+                required
+              />
+            </div>
 
+            <div className="form-group">
               <label>GitHub Link</label>
-              <input type="url" placeholder="https://github.com/your-repo" />
+              <input
+                type="url"
+                name="github_link"
+                value={submissionData.github_link}
+                onChange={handleChange}
+                placeholder="https://github.com/your-repo"
+                required
+              />
+            </div>
 
+            <div className="form-group">
               <label>Presentation Link</label>
-              <input type="url" placeholder="Paste your Google Slides, Canva, or PowerPoint Online link here" />
+              <input
+                type="url"
+                name="presentation_link"
+                value={submissionData.presentation_link}
+                onChange={handleChange}
+                placeholder="Google Slides, Canva, or PowerPoint Online"
+                required
+              />
+            </div>
 
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
         )}
 
         {activeTab === 'announcements' && (
-          <div>
-            <h2>Announcements</h2>
-          
+          <div className="announcements-section">
+            <h2>📢 Announcements</h2>
+            {loading ? (
+              <p>Loading announcements...</p>
+            ) : announcements.length === 0 ? (
+              <p>No announcements posted yet.</p>
+            ) : (
+              <div className="announcement-grid">
+                {announcements.map((a: any) => (
+                  <div className="announcement-card" key={a.announcement_id}>
+                    <h3 className="announcement-title">{a.title}</h3>
+                    <p className="announcement-content">{a.content}</p>
+                    <p className="announcement-date">
+                      {new Date(a.created_at).toLocaleString()}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
+
         {activeTab === 'schedule' && (
-          <div>
-            <h2>Live Schedule</h2>
+          <div className="schedule-section">
+            <h2>📅 Live Schedule</h2>
+            {loading ? (
+              <p>Loading schedule...</p>
+            ) : schedule.length === 0 ? (
+              <p>No scheduled events yet.</p>
+            ) : (
+              <ul className="schedule-list">
+                {schedule.map((event: any) => (
+                  <li className="schedule-item" key={event.event_id}>
+                    <h3 className="event-title">{event.title}</h3>
+                    <p className="event-description">{event.description}</p>
+                    <p className="event-time">
+                      {new Date(event.start_time).toLocaleString()} -{' '}
+                      {new Date(event.end_time).toLocaleString()}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
 

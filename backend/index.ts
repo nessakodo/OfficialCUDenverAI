@@ -111,16 +111,17 @@ app.get('/api/leaderboard', async (req, res) => {
 
 app.post('/api/submission', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const userId = req.user.team_id; 
-  const query = 'SELECT * FROM SUBMISSIONS WHERE team_id IN (SELECT team_id FROM Team_Members WHERE team_id = ?)';
-  const [submission] = await connection.execute(query, [userId]);
+  const userId = req.query.uid; 
+  const { project_name, github_link, presentation_link} = req.body;
+  const query = `INSERT INTO SUBMISSIONS (project_name, github_link, presentation_link, team_id) SELECT ?, ?, ?, team_id FROM TEAM_MEMBERS WHERE github_uid = ?`;  
+  const [submission] = await connection.execute(query, [project_name, github_link, presentation_link, userId]);
   res.json(submission);
 });
 
 app.get('/api/team', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const userId = 0;  
-  const query = 'SELECT user_name, user_email, role FROM TEAM_MEMBERS WHERE team_id = ?';
+  const userId = req.query.uid.toString(); 
+  const query = 'SELECT user_name, user_email, role FROM TEAM_MEMBERS WHERE team_id IN (SELECT team_id FROM TEAM_MEMBERS WHERE github_uid = ?)';  console.log(userId);
   const [team] = await connection.execute(query, [userId]);
   res.json(team);
 });
@@ -139,10 +140,17 @@ app.get('/api/announcements', async (req, res) => {
   res.json(announcements);
 });
 
+app.get('/api/schedule', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+  const query = 'SELECT * FROM SCHEDULE ORDER BY start_time ASC';
+  const [schedule] = await connection.execute(query);
+  res.json(schedule);
+});
+
 app.get('/api/feedback', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const userId = 0;
-  const query = 'SELECT notes FROM SCORES WHERE team_id = ? ';
+  const userId = req.query.uid.toString(); 
+  const query = 'SELECT notes FROM SCORES WHERE team_id IN (SELECT team_id FROM TEAM_MEMBERS WHERE github_uid = ?) ';
   const [feedback] = await connection.execute(query, [userId]);
   res.json(feedback);
 });
