@@ -6,13 +6,14 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 import githubimg from '../images/GithubEventImg.jpg'
 
 const HackathonDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'team' | 'submission' | 'announcements' | 'schedule' | 'leaderboard'>('team');
+  const [activeTab, setActiveTab] = useState<'team' | 'submission' | 'announcements' | 'schedule' | 'leaderboard' | 'feedback' >('team');
   const [user, setUser] = useState<User | null>(null);
 
   const [teamData, setTeamData] = useState([]);
   const [announcements, setAnnouncements] = useState([]);
   const [schedule, setSchedule] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
+  const [feedback, setFeedback] =  useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,6 +23,25 @@ const HackathonDashboard: React.FC = () => {
   const [emailCode, setEmailCode] = useState('');
   const [verificationStep, setVerificationStep] = useState<'entry' | 'code'>('entry');
 
+  const [title, setTitle] = useState('');
+  const [github, setGithub] = useState('');
+  const [powerpoint, setPowerpoint] = useState('');
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('github', github);
+    formData.append('powerpoint', powerpoint);
+
+    const res = await fetch('http://localhost:8000/api/submit', {
+      method: 'POST',
+      body: formData
+    });
+  
+    if (res.ok) alert('Submitted!');
+    else alert('Failed to submit.');
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -30,7 +50,10 @@ const HackathonDashboard: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
+
+/*
   useEffect(() => {
+  
     const checkEmailVerification = async () => {
       if (user) {
         const res = await fetch(`http://localhost:8000/api/verify-status?uid=${user.uid}`);
@@ -40,7 +63,7 @@ const HackathonDashboard: React.FC = () => {
     };
     checkEmailVerification();
   }, [user]);
-
+*/
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -63,6 +86,10 @@ const HackathonDashboard: React.FC = () => {
           case 'leaderboard':
             response = await fetch('http://localhost:8000/api/leaderboard');
             setLeaderboard(await response.json());
+            break;
+          case 'feedback':
+              response = await fetch('http://localhost:8000/api/feedback');
+              setFeedback(await response.json());
             break;
           default:
             break;
@@ -92,7 +119,7 @@ const HackathonDashboard: React.FC = () => {
     </div>
     );
   }
-
+/*
   if (user && !emailVerified) {
     return (
       <div className="verify-email-container">
@@ -154,7 +181,7 @@ const HackathonDashboard: React.FC = () => {
       </div>
     );
   }
-  
+  */
 
   return (
     <div className="dashboard-container">
@@ -165,6 +192,7 @@ const HackathonDashboard: React.FC = () => {
         <button onClick={() => setActiveTab('announcements')}>Announcements</button>
         <button onClick={() => setActiveTab('schedule')}>Live Schedule</button>
         <button onClick={() => setActiveTab('leaderboard')}>Leaderboard</button>
+        <button onClick={() => setActiveTab('feedback')}>Feedback</button>
         <a href="https://discord.com/invite/xEACjKzBA7" target="_blank" rel="noopener noreferrer">Discord</a>
         <button onClick={logout}>Logout</button>
       </nav>
@@ -273,6 +301,27 @@ const HackathonDashboard: React.FC = () => {
                 })}
             </tbody>
           </table>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'feedback' && (
+          <div className="feedback-section">
+            <h2>Feedback</h2>
+            <p className="feedback-subheading">Here’s what others had to say about your work!</p>
+
+            {loading ? (
+              <p>Loading feedback...</p>
+            ) : feedback.length === 0 ? (
+              <p>No feedback available yet.</p>
+            ) : (
+              <div className="feedback-grid">
+                {feedback.map((note, index) => (
+                  <div className="feedback-card" key={index}>
+                    <p className="feedback-comment">"{note.notes}"</p>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         )}

@@ -133,6 +133,15 @@ app.get('/api/announcements', async (req, res) => {
   res.json(announcements);
 });
 
+app.get('/api/feedback', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+  const userId = 0;
+  const query = 'SELECT notes FROM SCORES WHERE team_id = ? ';
+  const [feedback] = await connection.execute(query, [userId]);
+  res.json(feedback);
+});
+
+
 // Student email verification
 
 app.get('/api/verify-status', async (req, res) => {
