@@ -265,15 +265,50 @@ const HackathonDashboard: React.FC = () => {
         )}
 
         {activeTab === 'announcements' && (
-          <div>
-            <h2>Announcements</h2>
-          
+          <div className="announcements-section">
+            <h2>📢 Announcements</h2>
+            {loading ? (
+              <p>Loading announcements...</p>
+            ) : announcements.length === 0 ? (
+              <p>No announcements posted yet.</p>
+            ) : (
+              <div className="announcement-grid">
+                {announcements.map((a: any) => (
+                  <div className="announcement-card" key={a.announcement_id}>
+                    <h3 className="announcement-title">{a.title}</h3>
+                    <p className="announcement-content">{a.content}</p>
+                    <p className="announcement-date">
+                      {new Date(a.created_at).toLocaleString()}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
+
         {activeTab === 'schedule' && (
-          <div>
-            <h2>Live Schedule</h2>
+          <div className="schedule-section">
+            <h2>📅 Live Schedule</h2>
+            {loading ? (
+              <p>Loading schedule...</p>
+            ) : schedule.length === 0 ? (
+              <p>No scheduled events yet.</p>
+            ) : (
+              <ul className="schedule-list">
+                {schedule.map((event: any) => (
+                  <li className="schedule-item" key={event.event_id}>
+                    <h3 className="event-title">{event.title}</h3>
+                    <p className="event-description">{event.description}</p>
+                    <p className="event-time">
+                      {new Date(event.start_time).toLocaleString()} -{' '}
+                      {new Date(event.end_time).toLocaleString()}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
 

@@ -340,3 +340,52 @@
   font-size: 0.85em;
   color: #999;
 }
+
+.announcement-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.announcement-card {
+  background: #f4f4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.announcement-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.announcement-content {
+  margin: 0.5rem 0;
+}
+
+.announcement-date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.schedule-list {
+  list-style: none;
+  padding: 0;
+}
+
+.schedule-item {
+  background: #eaf4fc;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.event-title {
+  font-weight: bold;
+}
+
+.event-time {
+  font-size: 0.9rem;
+  color: #555;
+}

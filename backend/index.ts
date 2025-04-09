@@ -140,6 +140,13 @@ app.get('/api/announcements', async (req, res) => {
   res.json(announcements);
 });
 
+app.get('/api/schedule', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+  const query = 'SELECT * FROM SCHEDULE ORDER BY start_time ASC';
+  const [schedule] = await connection.execute(query);
+  res.json(schedule);
+});
+
 app.get('/api/feedback', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
   const userId = req.query.uid.toString(); 
