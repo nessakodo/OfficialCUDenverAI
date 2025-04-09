@@ -198,8 +198,8 @@ const HackathonDashboard: React.FC = () => {
               <label>GitHub Link</label>
               <input type="url" placeholder="https://github.com/your-repo" />
 
-              <label>Presentation File</label>
-              <input type="file" accept=".pdf,.ppt,.pptx" />
+              <label>Presentation Link</label>
+              <input type="url" placeholder="Paste your Google Slides, Canva, or PowerPoint Online link here" />
 
               <button type="submit">Submit</button>
             </form>
