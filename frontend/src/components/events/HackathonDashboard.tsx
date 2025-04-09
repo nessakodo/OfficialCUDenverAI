@@ -23,6 +23,8 @@ const HackathonDashboard: React.FC = () => {
   //const [emailCode, setEmailCode] = useState('');
   //const [verificationStep, setVerificationStep] = useState<'entry' | 'code'>('entry');
 
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [submissionLoading, setSubmissionLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [github, setGithub] = useState('');
   const [powerpoint, setPowerpoint] = useState('');
@@ -40,27 +42,41 @@ const HackathonDashboard: React.FC = () => {
       });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    fetch(`http://localhost:8000/api/submission?uid=${user.uid}`, {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmissionLoading(true);
+    setSubmissionSuccess(false);
+    setError(null);
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/submission?uid=${user.uid}`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(submissionData),
-    })
-    .catch((error) => {
-        setError(error.message);
-    });
-};
+      });
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
+      if (response.ok) {
+        setSubmissionSuccess(true);
+        setsubmissionData({ project_name: "", github_link: "", presentation_link: "" }); // Clear form
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Submission failed.');
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmissionLoading(false);
+    }
+  };
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+      });
+      return () => unsubscribe();
+    }, []);
 
 
   useEffect(() => {
@@ -204,6 +220,9 @@ const HackathonDashboard: React.FC = () => {
           <div className="submission-container">
           <h2>🚀 Project Submission</h2>
           <form className="submission-form" onSubmit={handleSubmit}>
+          {submissionLoading && <p className="status-message">Submitting...</p>}
+          {submissionSuccess && <p className="status-message success">✅ Submission successful!</p>}
+          {error && <p className="status-message error">❌ {error}</p>}
             <div className="form-group">
               <label>Project Title</label>
               <input

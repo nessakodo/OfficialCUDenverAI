@@ -196,6 +196,19 @@
     background-color: #1d4ed8;
   }
 
+  .status-message {
+    margin-top: 10px;
+    font-size: 0.95rem;
+  }
+  
+  .status-message.success {
+    color: green;
+  }
+  
+  .status-message.error {
+    color: red;
+  }
+  
   .leaderboard-section {
     margin-top: 2rem;
     text-align: center;
