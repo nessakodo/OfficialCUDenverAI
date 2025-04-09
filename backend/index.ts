@@ -9,7 +9,7 @@ const https = require('https');
 const app = require('express')()
 const bcrypt = require('bcrypt');
 var bodyParser = require('body-parser');
-const PORT = 8000;
+const PORT = 8080;
 const cors = require("cors");
 const allowedOrigins = ["http://localhost:3000"];
 const { v4: uuidv4 } = require('uuid');
@@ -201,6 +201,7 @@ app.post('/api/save-email', async (req, res) => {
   }
 });
 
+/*
 app.post('/api/send-code', async (req, res) => {
   const { uid, email } = req.body;
 
@@ -255,6 +256,7 @@ app.post('/api/verify-code', async (req, res) => {
   emailCodes.delete(uid);
   res.json({ success: true, email: record.email });
 });
+*/
 
 /////////////////////////
 // PROJECTS
