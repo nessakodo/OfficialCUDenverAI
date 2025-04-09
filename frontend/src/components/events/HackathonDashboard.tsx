@@ -50,7 +50,7 @@ const HackathonDashboard: React.FC = () => {
     setError(null);
 
     try {
-      const response = await fetch(`http://localhost:8000/api/submission?uid=${user.uid}`, {
+      const response = await fetch(`https://cudenver-ai.tech/api/submission?uid=${user.uid}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const HackathonDashboard: React.FC = () => {
   
     const checkEmailVerification = async () => {
       if (user) {
-        const res = await fetch(`http://localhost:8000/api/verify-status?uid=${user.uid}`);
+        const res = await fetch(`https://cudenver-ai.tech/api/verify-status?uid=${user.uid}`);
         const data = await res.json();
         setEmailVerified(data.verified);
       }
@@ -99,23 +99,23 @@ const HackathonDashboard: React.FC = () => {
         let response;
         switch (activeTab) {
           case 'team':
-            response = await fetch(`http://localhost:8000/api/team?uid=${user.uid}`);
+            response = await fetch(`https://cudenver-ai.tech/api/team?uid=${user.uid}`);
             setTeamData(await response.json());
             break;
           case 'announcements':
-            response = await fetch('http://localhost:8000/api/announcements');
+            response = await fetch('https://cudenver-ai.tech/api/announcements');
             setAnnouncements(await response.json());
             break;
           case 'schedule':
-            response = await fetch('http://localhost:8000/api/schedule');
+            response = await fetch('https://cudenver-ai.tech/api/schedule');
             setSchedule(await response.json());
             break;
           case 'leaderboard':
-            response = await fetch(`http://localhost:8000/api/leaderboard?uid=${user.uid}`);
+            response = await fetch(`https://cudenver-ai.tech/api/leaderboard?uid=${user.uid}`);
             setLeaderboard(await response.json());
             break;
           case 'feedback':
-              response = await fetch(`http://localhost:8000/api/feedback?uid=${user.uid}`);
+              response = await fetch(`https://cudenver-ai.tech/api/feedback?uid=${user.uid}`);
               setFeedback(await response.json());
             break;
           default:
@@ -161,7 +161,7 @@ const HackathonDashboard: React.FC = () => {
           />
           <button
             onClick={async () => {
-              const res = await fetch('http://localhost:8000/api/save-email', {
+              const res = await fetch('https://cudenver-ai.tech/api/save-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ uid: user.uid, student_email: studentEmail }),
