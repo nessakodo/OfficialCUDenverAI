@@ -190,21 +190,27 @@ const HackathonDashboard: React.FC = () => {
               </div>
             )}
         {activeTab === 'submission' && (
-          <div>
-            <h2>Project Submission</h2>
-            <form className="submission-form">
+          <div className="submission-container">
+          <h2>🚀 Project Submission</h2>
+          <form className="submission-form">
+            <div className="form-group">
               <label>Project Title</label>
               <input type="text" placeholder="Enter your project title" />
+            </div>
 
+            <div className="form-group">
               <label>GitHub Link</label>
               <input type="url" placeholder="https://github.com/your-repo" />
+            </div>
 
+            <div className="form-group">
               <label>Presentation Link</label>
-              <input type="url" placeholder="Paste your Google Slides, Canva, or PowerPoint Online link here" />
+              <input type="url" placeholder="Google Slides, Canva, or PowerPoint Online" />
+            </div>
 
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
         )}
 
         {activeTab === 'announcements' && (
