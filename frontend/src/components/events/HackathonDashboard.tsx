@@ -20,8 +20,8 @@ const HackathonDashboard: React.FC = () => {
   const [emailVerified, setEmailVerified] = useState<boolean>(false);
   const [studentEmail, setStudentEmail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
-  const [emailCode, setEmailCode] = useState('');
-  const [verificationStep, setVerificationStep] = useState<'entry' | 'code'>('entry');
+  //const [emailCode, setEmailCode] = useState('');
+  //const [verificationStep, setVerificationStep] = useState<'entry' | 'code'>('entry');
 
   const [title, setTitle] = useState('');
   const [github, setGithub] = useState('');
@@ -51,7 +51,6 @@ const HackathonDashboard: React.FC = () => {
   }, []);
 
 
-/*
   useEffect(() => {
   
     const checkEmailVerification = async () => {
@@ -63,7 +62,7 @@ const HackathonDashboard: React.FC = () => {
     };
     checkEmailVerification();
   }, [user]);
-*/
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -119,69 +118,39 @@ const HackathonDashboard: React.FC = () => {
     </div>
     );
   }
-/*
+
   if (user && !emailVerified) {
     return (
       <div className="verify-email-container">
         <div className="verify-email-card">
-          <h2>Verify Your Student Email</h2>
-          {verificationStep === 'entry' ? (
-            <>
-              <p>Please enter your university-issued student email to proceed.</p>
-              <input
-                type="email"
-                value={studentEmail}
-                onChange={(e) => setStudentEmail(e.target.value)}
-                placeholder="you@university.edu"
-              />
-              <button
-                onClick={async () => {
-                  const res = await fetch('http://localhost:8000/api/send-code', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ uid: user.uid, email: studentEmail }),
-                  });
-                  if (res.ok) {
-                    setVerificationStep('code');
-                    setEmailSent(true);
-                  }
-                }}
-              >
-                Send Verification Code
-              </button>
-            </>
-          ) : (
-            <>
-              <p>We sent a code to <strong>{studentEmail}</strong>. Enter it below:</p>
-              <input
-                type="text"
-                value={emailCode}
-                onChange={(e) => setEmailCode(e.target.value)}
-                placeholder="Enter 6-digit code"
-              />
-              <button
-                onClick={async () => {
-                  const res = await fetch('http://localhost:8000/api/verify-code', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ uid: user.uid, code: emailCode }),
-                  });
-                  if (res.ok) {
-                    setEmailVerified(true);
-                  } else {
-                    alert('Incorrect code');
-                  }
-                }}
-              >
-                Verify Code
-              </button>
-            </>
-          )}
+          <h2>Connect with your student email</h2>
+          <p>Please enter your university-issued student email to proceed.</p>
+          <input
+            type="email"
+            value={studentEmail}
+            onChange={(e) => setStudentEmail(e.target.value)}
+            placeholder="you@university.edu"
+          />
+          <button
+            onClick={async () => {
+              const res = await fetch('http://localhost:8000/api/save-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ uid: user.uid, student_email: studentEmail }),
+              });
+              if (res.ok) {
+                setEmailVerified(true); // Automatically mark as verified
+              } else {
+                alert('Something went wrong. Please try again.');
+              }
+            }}
+          >
+            Enter
+          </button>
         </div>
       </div>
     );
   }
-  */
 
   return (
     <div className="dashboard-container">

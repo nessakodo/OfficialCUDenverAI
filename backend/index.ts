@@ -153,7 +153,7 @@ app.get('/api/verify-status', async (req, res) => {
 
   try {
     const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-    const query = 'SELECT * FROM VERIFIED_USERS WHERE github_uid = ?';
+    const query = 'SELECT * FROM TEAM_MEMBERS WHERE github_uid = ?';
     const [rows] = await connection.execute(query, [uid]);
 
     const isVerified = rows.length > 0;
@@ -165,7 +165,35 @@ app.get('/api/verify-status', async (req, res) => {
   }
 });
 
+app.post('/api/save-email', async (req, res) => {
+  const { uid, student_email } = req.body;
 
+  if (!uid || !student_email) {
+    return res.status(400).json({ error: 'Missing uid or student_email in request body' });
+  }
+
+  try {
+    let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+
+    const [result] = await connection.execute(
+      `UPDATE TEAM_MEMBERS 
+       SET github_uid = ?
+       WHERE user_email = ?`,
+      [uid, student_email] 
+    );
+
+    await connection.end();
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'No team member found with that email' });
+    }
+
+    res.status(200).json({ message: 'Email saved and user verified successfully' });
+  } catch (error) {
+    console.error('Error updating team member:', error.message);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 app.post('/api/send-code', async (req, res) => {
   const { uid, email } = req.body;
