@@ -142,7 +142,7 @@ app.get('/api/announcements', async (req, res) => {
 app.get('/api/feedback', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
   const userId = req.query.uid.toString(); 
-  const query = 'SELECT notes FROM SCORES WHERE team_id = ? ';
+  const query = 'SELECT notes FROM SCORES WHERE team_id IN (SELECT team_id FROM TEAM_MEMBERS WHERE github_uid = ?) ';
   const [feedback] = await connection.execute(query, [userId]);
   res.json(feedback);
 });
