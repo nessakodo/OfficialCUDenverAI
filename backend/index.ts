@@ -128,7 +128,7 @@ app.get('/api/team', async (req, res) => {
 
 app.get('/api/teams', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const query = 'SELECT team_name FROM HACKATHON_TEAMS';
+  const query = 'SELECT * FROM HACKATHON_TEAMS';
   const [team] = await connection.execute(query);
   res.json(team);
 });
