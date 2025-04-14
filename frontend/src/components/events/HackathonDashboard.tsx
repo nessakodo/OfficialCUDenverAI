@@ -169,7 +169,7 @@ const HackathonDashboard: React.FC = () => {
               if (res.ok) {
                 setEmailVerified(true); // Automatically mark as verified
               } else {
-                alert('Make sure you enter your student email. If still not working then contact elyas.larfi@ucdenver.edu or another organizer.');
+                alert("Make sure you enter the student email you registered with. If it's still not working then make sure you registered and contact elyas.larfi@ucdenver.edu or another organizer.");
               }
             }}
           >
