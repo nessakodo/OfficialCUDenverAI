@@ -109,6 +109,54 @@ app.get('/api/leaderboard', async (req, res) => {
   res.json(leaderboard);
 });
 
+app.post('/api/scores', async (req, res) => {
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+
+    const {
+      judge_id,
+      team_id,
+      notes,
+      problem_solution,
+      impact_feasibility,
+      technical_depth,
+      innovation_creativity,
+      qa_responses,
+      presentation_clarity,
+      user_centered_design
+    } = req.body;
+
+    const query = `
+      INSERT INTO SCORES (
+        judge_id, team_id, notes, problem_solution, impact_feasibility,
+        technical_depth, innovation_creativity, qa_responses,
+        presentation_clarity, user_centered_design
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    const values = [
+      judge_id,
+      team_id,
+      notes || null,
+      problem_solution,
+      impact_feasibility,
+      technical_depth,
+      innovation_creativity,
+      qa_responses,
+      presentation_clarity,
+      user_centered_design
+    ];
+
+    const [result] = await connection.execute(query, values);
+    res.status(200).json({ success: true, result });
+
+  } catch (error) {
+    console.error('Error inserting scores:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 app.post('/api/submission', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
   const userId = req.query.uid; 
@@ -139,6 +187,8 @@ app.get('/api/teams', async (req, res) => {
   const [team] = await connection.execute(query);
   res.json(team);
 });
+
+
 
 app.get('/api/announcements', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
