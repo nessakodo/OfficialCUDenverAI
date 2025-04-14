@@ -85,7 +85,7 @@ function Hackathon() {
             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=yjczVhelGkKq4BqltBT9f0pyyXMYCX5OiVgHckMlvl5UNDJQU0pPQUpINjhDNFRNQVU2TFc0WVZGNCQlQCN0PWcu&origin=QRCode
 "><button className="register-btn">Register Now</button></a>
             
-            <RouterLink to="/hackathon-dashboard"><button className="register-btn">Register Now</button></RouterLink>
+            <RouterLink to="/hackathon-dashboard"><button className="register-btn">Hackathon Dashboard</button></RouterLink>
 
           </section>
       </Element>
