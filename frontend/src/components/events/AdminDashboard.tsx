@@ -10,59 +10,115 @@ interface Submission {
 }
 
 function AdminDashboard() {
-  const [submissions, setSubmissions] = useState<Submission[]>([]);
+  const [tab, setTab] = useState('teams');
+  const [teams, setTeams] = useState([]);
+  const [submissions, setSubmissions] = useState([]);
+  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [scores, setScores] = useState({
+    problem_solution: 0,
+    impact_feasibility: 0,
+    technical_depth: 0,
+    innovation_creativity: 0,
+  });
 
   useEffect(() => {
-    // We'll fetch this from our HACKATHON_TEAMS table 
-    setSubmissions([
-      {
-        teamName: "Team Phoenix",
-        projectTitle: "AI for Health Equity",
-        repoLink: "https://github.com/example/team-phoenix",
-        slideLink: "https://drive.google.com/example",
-        track: "Healthcare",
-      },
-      {
-        teamName: "DataWizards",
-        projectTitle: "Green Route Optimizer",
-        repoLink: "https://github.com/example/datawizards",
-        slideLink: "https://drive.google.com/example2",
-        track: "Transportation",
-      },
-    ]);
+    // Fetch all teams
+    fetch('/api/teams').then(res => res.json()).then(setTeams);
+    // Fetch all submissions
+    fetch('/api/submissions').then(res => res.json()).then(setSubmissions);
   }, []);
 
+  const handleScoreChange = (field, value) => {
+    setScores(prev => ({ ...prev, [field]: parseInt(value) }));
+  };
+
+  const submitScores = async () => {
+    const res = await fetch(`/api/scores/${selectedTeam.team_id}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(scores),
+    });
+
+    if (res.ok) alert('Scores submitted!');
+    else alert('Error submitting scores.');
+  };
+
   return (
-    <div className="judges-dashboard">
-      <h1>Judges Dashboard</h1>
-      <div className="submission-list">
-        {submissions.map((submission, index) => (
-          <div className="submission-card" key={index}>
-            <h2>{submission.projectTitle}</h2>
-            <p><strong>Team:</strong> {submission.teamName}</p>
-            <p><strong>Track:</strong> {submission.track}</p>
-            <a href={submission.repoLink} target="_blank" rel="noopener noreferrer">View Code</a><br />
-            <a href={submission.slideLink} target="_blank" rel="noopener noreferrer">View Slides</a>
-            
-            {/* Scoring Form Placeholder */}
-            <div className="score-form">
-              <label>Technical Depth (0-10):</label>
-              <input type="number" min="0" max="10" />
-
-              <label>Creativity (0-10):</label>
-              <input type="number" min="0" max="10" />
-
-              <label>Feasibility (0-10):</label>
-              <input type="number" min="0" max="10" />
-
-              <label>Comments:</label>
-              <textarea />
-
-              <button>Submit Score</button>
-            </div>
-          </div>
-        ))}
+    <div className="admin-container">
+      <h1>Admin Dashboard</h1>
+      <div className="tabs">
+        <button onClick={() => setTab('teams')}>Teams</button>
+        <button onClick={() => setTab('submissions')}>Submissions</button>
+        <button onClick={() => setTab('scores')}>Score Teams</button>
       </div>
+
+      {tab === 'teams' && (
+        <div className="section">
+          <h2>All Teams</h2>
+          <ul>
+            {teams.map(team => (
+              <li key={team.team_id}>
+                <strong>{team.team_name}</strong><br />
+                Members: {team.members?.map(m => m.user_name).join(', ')}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {tab === 'submissions' && (
+        <div className="section">
+          <h2>All Submissions</h2>
+          <ul>
+            {submissions.map(sub => (
+              <li key={sub.submission_id}>
+                <strong>Team ID:</strong> {sub.team_id}<br />
+                <a href={sub.github_link} target="_blank" rel="noreferrer">GitHub Repo</a><br />
+                <a href={sub.file_path} target="_blank" rel="noreferrer">Presentation</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {tab === 'scores' && (
+        <div className="section">
+          <h2>Score a Team</h2>
+          <select onChange={e => {
+            const team = teams.find(t => t.team_id === parseInt(e.target.value));
+            setSelectedTeam(team);
+          }}>
+            <option>Select a team</option>
+            {teams.map(team => (
+              <option key={team.team_id} value={team.team_id}>
+                {team.team_name}
+              </option>
+            ))}
+          </select>
+
+          {selectedTeam && (
+            <div className="score-form">
+              <label>
+                Problem/Solution:
+                <input type="number" min="0" max="20" onChange={e => handleScoreChange('problem_solution', e.target.value)} />
+              </label>
+              <label>
+                Impact/Feasibility:
+                <input type="number" min="0" max="20" onChange={e => handleScoreChange('impact_feasibility', e.target.value)} />
+              </label>
+              <label>
+                Technical Depth:
+                <input type="number" min="0" max="20" onChange={e => handleScoreChange('technical_depth', e.target.value)} />
+              </label>
+              <label>
+                Innovation/Creativity:
+                <input type="number" min="0" max="20" onChange={e => handleScoreChange('innovation_creativity', e.target.value)} />
+              </label>
+              <button onClick={submitScores}>Submit Scores</button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

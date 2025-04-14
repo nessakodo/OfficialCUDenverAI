@@ -118,6 +118,13 @@ app.post('/api/submission', async (req, res) => {
   res.json(submission);
 });
 
+app.get('/api/submissions', async (req, res) => {
+  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+  const query = 'SELECT * FROM SUBMISSIONS';
+  const [submissions] = await connection.execute(query);
+  res.json(submissions);
+});
+
 app.get('/api/team', async (req, res) => {
   let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
   const userId = req.query.uid.toString(); 
