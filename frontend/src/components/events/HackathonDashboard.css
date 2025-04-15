@@ -4,7 +4,7 @@
     height: 100vh;
     font-family: sans-serif;
     background-color: #f9fafb;
-    flex-wrap: wrap;
+
   }
 
   .login-container {
@@ -271,6 +271,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
+  
 }
 
 .team-card {
