@@ -4,6 +4,7 @@
     height: 100vh;
     font-family: sans-serif;
     background-color: #f9fafb;
+    flex-wrap: wrap;
   }
 
   .login-container {
@@ -107,6 +108,7 @@
     justify-content: space-around;
     background-color: #1f2937;
     padding: 1rem;
+    flex-wrap: wrap;
   }
   
   .dashboard-nav button,

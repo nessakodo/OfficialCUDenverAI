@@ -77,21 +77,39 @@ body {
   .hackathon-nav {
     position: fixed;
     top: 130px;
-    right: -170px; 
+    right: -180px;
     width: 200px;
-    background: #ffffff;
+    background: #e4e1e1;
     padding: 0.5rem 1rem;
-    border-radius: 20px 0 0 20px; 
+    border-radius: 20px 0 0 20px;
     z-index: 1000;
     transition: right 0.3s ease;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+    /* create the arrow */
+    &::before {
+      content: "➤";               /* arrow character */
+      position: absolute;
+      left: 0.05rem;              /* adjust to sit just outside */
+      top: 50%;
+      transform: translateY(-50%) rotate(180deg);
+      font-size: 1.2rem;
+      transition: transform 0.3s ease, left 0.3s ease;
+    }
   }
   
   .hackathon-nav:hover {
-    right: 0; 
+    right: 0;
   }
   
+  .hackathon-nav:hover::before {
+    /* rotate arrow to point the other way, and slide it in a bit */
+    transform: translateY(-50%) rotate(0deg);
+    left: 0.01rem;
+  }
+
+
 
   .dashboard-nav h3 {
     font-size: 1.1em;
