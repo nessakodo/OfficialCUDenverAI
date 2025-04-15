@@ -86,9 +86,13 @@ function HackathonResources() {
                 {dropdownOpen === 'Finance' && (
                 <div className="dropdown-content">
                     <ul>
-                        <li><a href="https://www.redfin.com/news/data-center/?utm_source=chatgpt.com" target="_blank">Redfin</a> - Datasets of Housing Prize History Fron Redfin</li>
+                    <li><a href="https://www.redfin.com/news/data-center/?utm_source=chatgpt.com" target="_blank">Redfin</a> - Datasets of Housing Prize History Fron Redfin</li>
                         <li><a href="https://www.zillow.com/research/data/?utm_source=chatgpt.com" target="_blank">Zillow Housing Data</a> - Datasets of Housing Prize History From Zillow</li>
                         <li><a href="https://www.nasdaq.com/market-activity/quotes/historical?utm_source=chatgpt.com" target="_blank">Nasdaq Stock Data</a> - Dataset of Stock Prices</li>
+                        <li><a href="https://www.alphavantage.co/?gad_source=1&gclid=CjwKCAjwtdi_BhACEiwA97y8BJYbH5x7IrPPofXPq9Aedq1ZbuC4NQsWZH-TrxHqCF0e4blAgznW-BoConIQAvD_BwE" target="_blank">Alpha Vantage </a> - Free Stock Market Data API</li>
+                        <li><a href="https://fred.stlouisfed.org/" target="_blank">FRED Federal Reserve Economic Data </a> - Economic and financial data</li>
+                        <li><a href="https://opendata-geospatialdenver.hub.arcgis.com/" target="_blank">Denver Open Data Catalog  </a> - The City of Denver public data portal with various datasets.</li>
+                        <li><a href="https://data.worldbank.org//" target="_blank">World Bank Open Data </a> - Financial, economic, environmental, and social datasets</li>
 
                     </ul>
                 </div>
@@ -132,9 +136,16 @@ function HackathonResources() {
         <p>Here are some guides to use python as data analytics tool</p>
         <ul>
             <li><a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.youtube.com/watch%3Fv%3DWUeBzT43JyY&ved=2ahUKEwipnMzXm8mMAxVTOjQIHbAnDp0QwqsBegQIDxAF&usg=AOvVaw0rv-dsIsHNjvK9PrHhg2vm" target="_blank">Awesome Tutorial For Anaconda and Jupyter Notebook</a> - To help set up python environment for data science</li>
+            <hr></hr>
             <li><a href="https://media.datacamp.com/legacy/image/upload/v1676302204/Marketing/Blog/Pandas_Cheat_Sheet.pdf" target="_blank">Pandas Cheatsheet</a> - Guide on Pandas library in Python for data cleaning</li>
+            <li><a href="https://funky-cathedral-ca3.notion.site/Pandas-Example-Code-1d60549cb63e8000833de7d00748c28f" target="_blank">Pandas Example Code</a> </li>
+            <hr></hr>
             <li><a href="https://media.datacamp.com/legacy/image/upload/v1676302389/Marketing/Blog/Scikit-Learn_Cheat_Sheet.pdf" target="_blank">Scikit-Learn Cheatsheet</a> - Guide on Scikit-Learn library in Python for Machine-Learning</li>
+            <li><a href="https://www.notion.so/Scikit-learn-Example-Code-1d60549cb63e801dab60d0d77fd8e629?pvs=25" target="_blank">Scikit-Learn Example Code</a> </li>
+            <hr></hr>
             <li><a href="https://media.datacamp.com/legacy/image/upload/v1676302459/Marketing/Blog/Numpy_Cheat_Sheet.pdf" target="_blank">Numpy Cheatsheet</a> - Guide on Numpy library in Python for math</li>
+            <li><a href="https://www.notion.so/Numpy-Example-Code-1d60549cb63e8018a1ebfe92cae2476b?pvs=25" target="_blank">Numpy Example Code</a> </li>
+
         </ul>
         </Element>
 
@@ -142,7 +153,7 @@ function HackathonResources() {
         <Element name="AI/LLM" className="section AI">
         <h2>🔍 AI/LLM Resource</h2>
         <ul>
-            <li><a href="https://chatgpt.com" target="_blank">ChatGPT</a> - ChatGPT Plus is now free for college students through May, <a href="https://ollama.com" target="_blank">click here to claim</a> </li>
+            <li><a href="https://chatgpt.com" target="_blank">ChatGPT</a> - ChatGPT Plus is now free for college students through May, <a href="https://chatgpt.com/students" target="_blank">click here to claim</a> </li>
             <li><a href="https://ollama.com" target="_blank">Ollama</a> - A selfhost AI in your local device, check out <a href="https://cudenver-ai.tech/blog" target="_blank">our blog</a> for tutorial if need</li>
             <li><a href="https://huggingface.co" target="_blank">Hugging Face</a> - The open source AI community</li>
         </ul>
