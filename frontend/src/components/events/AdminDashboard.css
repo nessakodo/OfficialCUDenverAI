@@ -1,0 +1,54 @@
+.admin-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.tabs button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background: #eee;
+  border: 1px solid #ccc;
+}
+
+.tabs button:hover {
+  background: #ddd;
+}
+
+.section {
+  background: #f9f9f9;
+  padding: 1rem;
+  border: 1px solid #ddd;
+}
+
+.score-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.score-form input {
+  padding: 0.4rem;
+  width: 100px;
+}
+
+.score-form button {
+  margin-top: 1rem;
+  padding: 0.6rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.score-form button:hover {
+  background-color: #0056b3;
+}

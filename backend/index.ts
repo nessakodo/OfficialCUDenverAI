@@ -109,50 +109,170 @@ app.get('/api/leaderboard', async (req, res) => {
   res.json(leaderboard);
 });
 
+app.post('/api/scores', async (req, res) => {
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+
+    const {
+      judge_id,
+      team_id,
+      notes,
+      problem_solution,
+      impact_feasibility,
+      technical_depth,
+      innovation_creativity,
+      qa_responses,
+      presentation_clarity,
+      user_centered_design
+    } = req.body;
+
+    const query = `
+      INSERT INTO SCORES (
+        judge_id, team_id, notes, problem_solution, impact_feasibility,
+        technical_depth, innovation_creativity, qa_responses,
+        presentation_clarity, user_centered_design
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    const values = [
+      judge_id,
+      team_id,
+      notes || null,
+      problem_solution,
+      impact_feasibility,
+      technical_depth,
+      innovation_creativity,
+      qa_responses,
+      presentation_clarity,
+      user_centered_design
+    ];
+
+    const [result] = await connection.execute(query, values);
+    res.status(200).json({ success: true, result });
+
+  } catch (error) {
+    console.error('Error inserting scores:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 app.post('/api/submission', async (req, res) => {
-  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const userId = req.query.uid; 
-  const { project_name, github_link, presentation_link} = req.body;
-  const query = `INSERT INTO SUBMISSIONS (project_name, github_link, presentation_link, team_id) SELECT ?, ?, ?, team_id FROM TEAM_MEMBERS WHERE github_uid = ?`;  
-  const [submission] = await connection.execute(query, [project_name, github_link, presentation_link, userId]);
-  res.json(submission);
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const userId = req.query.uid;
+    const { project_name, github_link, presentation_link } = req.body;
+
+    const query = `
+      INSERT INTO SUBMISSIONS (project_name, github_link, presentation_link, team_id)
+      SELECT ?, ?, ?, team_id FROM TEAM_MEMBERS WHERE github_uid = ?
+    `;
+
+    const [submission] = await connection.execute(query, [project_name, github_link, presentation_link, userId]);
+    res.json(submission);
+  } catch (error) {
+    console.error('Error in /api/submission:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.get('/api/submissions', async (req, res) => {
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const query = 'SELECT * FROM SUBMISSIONS';
+    const [submissions] = await connection.execute(query);
+    res.json(submissions);
+  } catch (error) {
+    console.error('Error in /api/submissions:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 app.get('/api/team', async (req, res) => {
-  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const userId = req.query.uid.toString(); 
-  const query = 'SELECT user_name, user_email, role FROM TEAM_MEMBERS WHERE team_id IN (SELECT team_id FROM TEAM_MEMBERS WHERE github_uid = ?)';  console.log(userId);
-  const [team] = await connection.execute(query, [userId]);
-  res.json(team);
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const userId = req.query.uid.toString();
+
+    const query = `
+      SELECT user_name, user_email, role
+      FROM TEAM_MEMBERS
+      WHERE team_id IN (SELECT team_id FROM TEAM_MEMBERS WHERE github_uid = ?)
+    `;
+
+    const [team] = await connection.execute(query, [userId]);
+    res.json(team);
+  } catch (error) {
+    console.error('Error in /api/team:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 app.get('/api/teams', async (req, res) => {
-  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const query = 'SELECT team_name FROM HACKATHON_TEAMS';
-  const [team] = await connection.execute(query);
-  res.json(team);
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const query = 'SELECT * FROM HACKATHON_TEAMS';
+    const [team] = await connection.execute(query);
+    res.json(team);
+  } catch (error) {
+    console.error('Error in /api/teams:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.get('/api/judges', async (req, res) => {
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const query = 'SELECT * FROM JUDGES';
+    const [judges] = await connection.execute(query);
+    res.json(judges);
+  } catch (error) {
+    console.error('Error in /api/judges:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 app.get('/api/announcements', async (req, res) => {
-  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const query = 'SELECT * FROM ANNOUNCEMENTS ORDER BY created_at DESC';
-  const [announcements] = await connection.execute(query);
-  res.json(announcements);
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const query = 'SELECT * FROM ANNOUNCEMENTS ORDER BY created_at DESC';
+    const [announcements] = await connection.execute(query);
+    res.json(announcements);
+  } catch (error) {
+    console.error('Error in /api/announcements:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 app.get('/api/schedule', async (req, res) => {
-  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const query = 'SELECT * FROM SCHEDULE ORDER BY start_time ASC';
-  const [schedule] = await connection.execute(query);
-  res.json(schedule);
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const query = 'SELECT * FROM SCHEDULE ORDER BY start_time ASC';
+    const [schedule] = await connection.execute(query);
+    res.json(schedule);
+  } catch (error) {
+    console.error('Error in /api/schedule:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 app.get('/api/feedback', async (req, res) => {
-  let connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
-  const userId = req.query.uid.toString(); 
-  const query = 'SELECT notes FROM SCORES WHERE team_id IN (SELECT team_id FROM TEAM_MEMBERS WHERE github_uid = ?) ';
-  const [feedback] = await connection.execute(query, [userId]);
-  res.json(feedback);
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const userId = req.query.uid.toString();
+
+    const query = `
+      SELECT notes FROM SCORES
+      WHERE team_id IN (
+        SELECT team_id FROM TEAM_MEMBERS WHERE github_uid = ?
+      )
+    `;
+
+    const [feedback] = await connection.execute(query, [userId]);
+    res.json(feedback);
+  } catch (error) {
+    console.error('Error in /api/feedback:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 
