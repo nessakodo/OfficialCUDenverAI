@@ -28,6 +28,26 @@ function AdminDashboard() {
     user_centered_design: 0,
   });
 
+  const [authenticated, setAuthenticated] = useState(false);
+  const [adminInput, setAdminInput] = useState('');
+
+  const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD
+  console.log(ADMIN_PASSWORD)
+
+  useEffect(() => {
+    const isAuthed = localStorage.getItem('admin-authenticated') === 'true';
+    setAuthenticated(isAuthed);
+  }, []);
+
+  const handleAuth = () => {
+    if (adminInput === ADMIN_PASSWORD) {
+      setAuthenticated(true);
+      localStorage.setItem('admin-authenticated', 'true');
+    } else {
+      alert('Incorrect password');
+    }
+  };
+
   // Fetch teams
   useEffect(() => {
     fetch('http://localhost:8080/api/teams')
@@ -51,6 +71,21 @@ function AdminDashboard() {
         .then(setJudges)
         .catch(err => console.error("Error loading judges", err));
     }, []);
+
+  if (!authenticated) {
+    return (
+      <div className="admin-container">
+        <h2>Admin Access</h2>
+        <p>Please enter the admin password to continue:</p>
+        <input
+          type="password"
+          value={adminInput}
+          onChange={(e) => setAdminInput(e.target.value)}
+        />
+        <button onClick={handleAuth}>Enter</button>
+      </div>
+    );
+  }
 
   const handleScoreChange = (field, value) => {
     setScores(prev => ({ ...prev, [field]: value }));
