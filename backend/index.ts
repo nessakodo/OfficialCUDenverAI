@@ -219,6 +219,18 @@ app.get('/api/teams', async (req, res) => {
   }
 });
 
+app.get('/api/judges', async (req, res) => {
+  try {
+    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
+    const query = 'SELECT * FROM JUDGES';
+    const [judges] = await connection.execute(query);
+    res.json(judges);
+  } catch (error) {
+    console.error('Error in /api/judges:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 app.get('/api/announcements', async (req, res) => {
   try {
     const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, "hackathon");
