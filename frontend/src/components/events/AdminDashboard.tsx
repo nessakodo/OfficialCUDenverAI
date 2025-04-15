@@ -49,7 +49,7 @@ function AdminDashboard() {
 
   // Fetch teams
   useEffect(() => {
-    fetch('http://localhost:8080/api/teams')
+    fetch('https://cudenver-ai.tech/api/teams')
       .then(res => res.json())
       .then(setTeams)
       .catch(err => console.error("Error loading teams", err));
@@ -57,7 +57,7 @@ function AdminDashboard() {
 
   // Fetch submissions
   useEffect(() => {
-    fetch('http://localhost:8080/api/submissions')
+    fetch('https://cudenver-ai.tech/api/submissions')
       .then(res => res.json())
       .then(setSubmissions)
       .catch(err => console.error("Error loading submissions", err));
@@ -65,7 +65,7 @@ function AdminDashboard() {
 
     // Fetch Judges
     useEffect(() => {
-      fetch('http://localhost:8080/api/judges')
+      fetch('https://cudenver-ai.tech/api/judges')
         .then(res => res.json())
         .then(setJudges)
         .catch(err => console.error("Error loading judges", err));
@@ -98,7 +98,7 @@ function AdminDashboard() {
 
   const submitScores = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/scores', {
+      const response = await fetch('https://cudenver-ai.tech/api/scores', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(scores),
