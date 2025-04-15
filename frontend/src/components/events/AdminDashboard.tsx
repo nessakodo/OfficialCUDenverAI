@@ -32,7 +32,6 @@ function AdminDashboard() {
   const [adminInput, setAdminInput] = useState('');
 
   const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD
-  console.log(ADMIN_PASSWORD)
 
   useEffect(() => {
     const isAuthed = localStorage.getItem('admin-authenticated') === 'true';
