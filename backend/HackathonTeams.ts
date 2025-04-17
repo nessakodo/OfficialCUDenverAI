@@ -1,72 +1,73 @@
 const xlsx = require('xlsx');
 const { connectToDB } = require('./DatabaseConnection.ts');
 require('dotenv').config();
+const fs = require('fs');
+const csv = require('csv-parser');
 
-// Read Excel
-const workbook = xlsx.readFile('./AurariaHackTeams.xlsx'); 
-const sheetName = workbook.SheetNames[0];
-const sheet = workbook.Sheets[sheetName];
-const data = xlsx.utils.sheet_to_json(sheet); // Convert sheet to JSON
-
-// Function to create teams and update team ids for members
-async function createTeamsAndUpdateIds() {
-  try {
-    // Establish database connection
-    const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, 'hackathon');
-
-    // Group members by team name
-    const teamsDict = {};
-
-    data.forEach(row => {
-      const teamName = row['Team Name:']; // Assuming 'Team Name:' is the header in the Excel
-      const email = row['University Email:']; // Assuming 'University Email:' is the header in the Excel
-
-      if (teamName && email) {
-        if (!teamsDict[teamName]) {
-          teamsDict[teamName] = [];
-        }
-        teamsDict[teamName].push(email);
-      }
-    });
-
-    // Step 1: Insert teams into HACKATHON_TEAMS table
-    for (const teamName of Object.keys(teamsDict)) {
-      console.log(`Inserting team: "${teamName}"`);
-
-      // Insert the team into the HACKATHON_TEAMS table
-      const [teamResult] = await connection.query(
-        'INSERT INTO HACKATHON_TEAMS (team_name, created_at, updated_at) VALUES (?, NOW(), NOW())',
-        [teamName]
-      );
-
-      const teamId = teamResult.insertId;
-      console.log(`Team "${teamName}" created with team_id: ${teamId}`);
-
-      // Step 2: Update the team_id for each member
-      const members = teamsDict[teamName];
-      for (const email of members) {
-        console.log(`Updating team_id for member: ${email}`);
-        
-        // Update the team_id for each member
-        const [updateResult] = await connection.query(
-          'UPDATE TEAM_MEMBERS SET team_id = ? WHERE user_email = ?',
-          [teamId, email]
-        );
-
-        // Log the update operation result
-        if (updateResult.affectedRows > 0) {
-          console.log(`Successfully updated team_id for member: ${email}`);
-        } else {
-          console.log(`No update found for member: ${email}`);
-        }
-      }
-    }
-
-    console.log('All teams have been successfully created and members updated.');
-  } catch (err) {
-    console.error('Error occurred:', err);
-  }
+// Function to check if a team exists in the database
+async function teamExists(connection, teamName) {
+  const [rows] = await connection.execute('SELECT team_id FROM HACKATHON_TEAMS WHERE team_name = ?', [teamName]);
+  return rows.length > 0;
 }
 
-// Run the function to create teams and update team ids
-createTeamsAndUpdateIds();
+// Function to insert a new team into the database
+async function insertTeam(connection, teamName) {
+  const [result] = await connection.execute('INSERT INTO HACKATHON_TEAMS (team_name, created_at, updated_at) VALUES (?, NOW(), NOW())', [teamName]);
+  return result.insertId;  // Return the inserted team_id
+}
+
+// Function to update team members
+async function updateTeamMembers(connection, teamId, memberEmails) {
+  const updatePromises = memberEmails.map(email => 
+    connection.execute('UPDATE TEAM_MEMBERS SET team_id = ? WHERE user_email = ?', [teamId, email])
+  );
+  
+  await Promise.all(updatePromises);
+}
+
+// Function to process the teams and members
+async function processTeams() {
+  const results = [];
+  
+  // Read the CSV file
+  fs.createReadStream('./Cleaned_Team_Data.csv')  // Path to your CSV file
+    .pipe(csv())
+    .on('data', (data) => {
+      results.push(data);
+    })
+    .on('end', async () => {
+      try {
+        // Establish database connection
+        const connection = await connectToDB(process.env.DB_USERNAME, process.env.DB_PASSWORD, 'hackathon');
+
+        // Process each row from the CSV file
+        for (let row of results) {
+          const teamName = row['Team Name'];
+          const teamMembers = row['Team Members'].split(',').map(name => name.trim());
+          const teamMemberEmails = row['Team Member Emails'].split(';').map(email => email.trim());
+
+          // Step 1: Check if the team already exists
+          const exists = await teamExists(connection, teamName);
+
+          if (!exists) {
+            // Step 2: Insert the team into the HACKATHON_TEAMS table if it doesn't exist
+            const teamId = await insertTeam(connection, teamName);
+            console.log(`Team "${teamName}" created with team_id: ${teamId}`);
+
+            // Step 3: Update team members in TEAM_MEMBERS table
+            await updateTeamMembers(connection, teamId, teamMemberEmails);
+            console.log(`Updated members for team "${teamName}"`);
+          } else {
+            console.log(`Team "${teamName}" already exists, skipping insertion.`);
+          }
+        }
+
+        console.log('Team registration and member updates completed successfully!');
+      } catch (err) {
+        console.error('Error occurred:', err);
+      }
+    });
+}
+
+// Run the process
+processTeams();
