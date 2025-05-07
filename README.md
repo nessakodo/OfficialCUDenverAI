@@ -162,3 +162,5 @@ For detailed deployment instructions, refer to `production-server.md`.
 ---
 
 By following this README and the accompanying documentation, you should be able to set up, develop, and deploy the application. Please let me know if you encounter any issues.
+
+## Modifications made by Nessa Kodo
